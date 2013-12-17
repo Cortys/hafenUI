@@ -1,0 +1,12 @@
+{
+	"name": "Containerhafen",
+	"version": "1.0.0",
+	"description": "Containerhafen Web Interface",
+	"dependencies": {
+		"socket.io": "latest",
+		"express": "latest",
+		"swig": "latest",
+		"mysql": "latest"
+	},
+	"author": "Clemens Damke, Matthias Stork, GField"
+}

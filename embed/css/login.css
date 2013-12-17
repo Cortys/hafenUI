@@ -1,0 +1,127 @@
+#wrap {
+    border: 1px solid #dddddd;
+    background-color: #fafafa;
+    width: 350px;
+    height: 450px;
+    top: 50%;
+    left: 50%;
+    margin-top: -225px;
+    margin-left: -175px;
+    box-shadow: 0 1px 4px 0 #cccccc;
+    border-radius: 4px;
+    overflow: hidden;
+    display: none;
+}
+
+#connectButton {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 50px;
+    border: none;
+    border-top: 1px solid #dddddd;
+    padding: 0;
+}
+
+/* @group Robot List */
+
+#robotList {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    width: auto;
+    height: auto;
+    overflow: auto;
+}
+
+#robotList #noRobots {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	text-align: center;
+	font-weight: bold;
+	line-height: 24px;
+	height: 48px;
+	margin-top: -24px;
+	display: none;
+}
+
+#robotList ul, #robotList li {
+    list-style-type: none;
+    list-style-position: inside;
+    margin: 0;
+    padding: 0;
+}
+
+#robotList ul {
+    position: relative;
+}
+#robotList li {
+    height: 79px;
+    border-bottom: 1px solid #dddddd;
+    line-height: 80px;
+    cursor: pointer;
+}
+#robotList li:hover, #robotList li.active {
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #dddddd;
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #dddddd;
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #dddddd;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #dddddd;
+}
+
+#robotList li.active {
+	background-color: #992d2a;
+	color: #ffffff;
+}
+
+#robotList .robotInfo {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: auto;
+	height: 0;
+}
+
+#robotList .pic {
+	position: absolute;
+	top: 8px;
+	left: 9px;
+	width: 60px;
+	height: 60px;
+	border: 1px solid #333333;
+	border-radius: 4px;
+	background: url(../../imgs/robots/defaultRobot.png) no-repeat;
+}
+
+#robotList .name, #robotList .bluetoothId {
+	position: absolute;
+	left: 90px;
+	right: 10px;
+	height: 30px;
+	width: auto;
+	line-height: 30px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+#robotList .name {
+	top: 9px;
+	font-weight: bold;
+	font-size: 16px;
+}
+#robotList .bluetoothId {
+	top: 39px;
+	font: 13px/30px Menlo, Monaco, "Courier New", Courier, mono;
+	font-weight: normal;
+	color: #aaaaaa;
+}
+#robotList li.active .bluetoothId {
+	color: #ffffff;
+}
+
+/* @end */

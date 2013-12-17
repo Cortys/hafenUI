@@ -1,0 +1,1 @@
+require("./server/hafen.js")(__dirname);

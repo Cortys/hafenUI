@@ -1,0 +1,23 @@
+{% extends 'raw.html' %}
+
+{% block cssLayout %}
+	{% parent %}
+	<link rel="stylesheet" href="embed/css/login.css" type="text/css">
+{% endblock %}
+
+{% block script %}
+	<script type="text/javascript">
+		var isLoggedIn = false;
+	</script>
+	{% parent %}
+{% endblock %}
+
+{% block content %}
+	<div id="robotList">
+		<ul></ul>
+		<div id="noRobots">
+			No unconnected robots<br>could be found.
+		</div>
+	</div>
+	<input type="button" value="Connect" id="connectButton" />
+{% endblock %}

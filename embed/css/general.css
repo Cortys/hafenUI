@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    padding: 0;
+    cursor: default;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 14px;
+    -webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	overflow: hidden;
+}
+
+#wrap {
+    position: absolute;
+}
+
+#loading {
+    position: fixed;
+    bottom: -84px;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 84px;
+    background-color: #cf524f;
+    background-image: url(../../imgs/loader.gif);
+	background-repeat: repeat-x;
+	background-position: 0 0;
+}
+#loading div {
+    position: absolute;
+    top: 4px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    color: #ffffff;
+    text-align: center;
+    line-height: 80px;
+    cursor: pointer;
+}
+#loading.show {
+	bottom: -80px;
+}
+#loading.error {
+	bottom: 0;
+	background-image: none;
+}
+
+input {
+    background-color: #ffffff;
+    color: #333333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 5px;
+    margin:0;
+    font-size: 16px;
+    border: 1px solid #dddddd;
+}
+input[type="button"] {
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #ff9900;
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #ff9900;
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #ff9900;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #ff9900;
+	color: #ffffff;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: none;
+}
+input[type="button"]:hover {
+    background-color: #ff8800;
+}
+input[type="button"].inactive {
+	background-color: #dddddd !important;
+	cursor: default !important;
+}
