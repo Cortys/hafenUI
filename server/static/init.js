@@ -1,5 +1,5 @@
 var swig = require("swig"),
-	loggedIn = require("./loggedIn.js");
+	loggedIn = require("../core/loggedIn.js");
 
 module.exports = function(express, app) {
 	// Settings for HTML-rendering:
@@ -9,7 +9,7 @@ module.exports = function(express, app) {
 	app.set("view cache", false);
 	
 	// Make CSS, imgs and local-JS accessible:
-	app.use(express.static(require("./settings.js").rootDir));
+	app.use(express.static(require("../core/settings.js").rootDir));
 	
 	app.get("/", function (req, res) {
 		res.render(loggedIn(req)?"main":"login", {});

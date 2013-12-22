@@ -30,16 +30,17 @@ connect.do = {
 		var t = this;
 		if(!t.val.active)
 			return;
-		t.val.active = false;
-		if(list.val.activeId !== null)
-		socket.do.send("connectRobot", list.val.activeId, function(success) {
-			if(success && t.val.onConnect)
-				t.val.onConnect();
-			else if(t.val.onFail) {
-				t.val.active = true;
-				t.val.onFail();
-			}
-		});
+		if(list.val.activeId !== null) {
+			t.val.active = false;
+			socket.do.send("connectRobot", list.val.activeId, function(success) {
+				if(success && t.val.onConnect)
+					t.val.onConnect();
+				else if(t.val.onFail) {
+					t.val.active = true;
+					t.val.onFail();
+				}
+			});
+		}
 	},
 	onConnect: function(callback) {
 		this.val.onConnect = callback;

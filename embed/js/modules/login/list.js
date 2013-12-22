@@ -63,6 +63,8 @@ list.do = {
 		});
 	},
 	select: function(e) {
+		if(!connect.val.active)
+			return;
 		if(list.val.activeRobot)
 			list.val.activeRobot.removeClass("active");
 		list.val.activeRobot = e;

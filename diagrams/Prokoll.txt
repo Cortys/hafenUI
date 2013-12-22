@@ -1,0 +1,28 @@
+				
+
+send: send.txt				//empfangen von Server sendet an Roboter
+	Verbindung aufbauen:		
+		
+		{ID}:c:{Robot-ID}	//c -> connect
+	
+	Verbinden trennen:
+		
+		{ID}:d			//d -> disconnect
+
+	Senden:
+	
+		{ID}:s:{Message}	//s -> send	
+
+
+receive: receive.txt			//empfangen vom Roboter sendet an Server
+	Empfangen:
+	
+		{ID}:r:{Message}	//r -> receive
+
+	Verbindung aufgebaut:
+
+		{ID}:c
+
+	Verbindung getrennt:
+
+		{ID}:d

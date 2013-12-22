@@ -1,1 +1,1 @@
-require("./server/hafen.js")(__dirname);
+require("./server/init.js")(__dirname);

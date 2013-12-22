@@ -5,8 +5,6 @@ var socket = {
 	bluetooth: null,
 	init: function(app, root) {
 		
-		require("./bluetooth.js").init();
-		
 		this.server = require('http').createServer(app);
 		this.io = require('socket.io').listen(this.server);
 		this.server.listen(this.port);
@@ -16,8 +14,8 @@ var socket = {
 	},
 	addHandlers: function() {
 		// login page sockets:
-		this.io.of("/login").on("connection", require("./socket/login.js"));
-		this.io.of("/main").on("connection", require("./socket/main.js"));
+		this.io.of("/login").on("connection", require("./login/init.js"));
+		this.io.of("/main").on("connection", require("./main/init.js"));
 		console.log("> Ready for socket connections");
 	}
 };

@@ -3,7 +3,7 @@ var hafen = {
 	init: function(root) {
 		console.log("> Starting Containerhafen-Server");
 		
-		require("./settings.js").rootDir = root;
+		require("./core/settings.js").rootDir = root;
 		
 		this.root = root;
 		
@@ -15,10 +15,10 @@ var hafen = {
 		this.app = this.express();
 		
 		// page requires socket to be required:
-		this.page = require("./page.js")(this.express, this.app, this.root);
+		this.page = require("./static/init.js")(this.express, this.app, this.root);
 		
 		// sockets:
-		this.socket = require("./socket.js")(this.app, this.root);
+		this.socket = require("./socket/init.js")(this.app, this.root);
 	}
 };
 
