@@ -3,11 +3,12 @@
  */
 var Client = function(socket, robotId) { // class for storing a client connection
 	
-	this.ip = this.key = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address.address;
+	this.ip = this.key = socket.handshake.headers["x-forwarded-for"] || socket.handshake.address.address;
 	
 	if(robotId !== undefined) { // If robotId is not defined => Client object is only for key retrieval => no further initialization
 		this.robot = robots[robotId];
 		this.updateSocket(socket);
+		this.establishBluetoothConnection();
 	}
 };
 Client.prototype = {
@@ -16,15 +17,37 @@ Client.prototype = {
 	key: null,
 	robot: null,
 	connector: require("./bluetooth.js"),
+	connectionEvents: {
+		success: function() {},
+		fail: function() {}	
+	},
+	connected: false,
 	updateSocket: function(newSocket) {
 		if(newSocket !== this.socket)
 			this.socket = newSocket;
 	},
+	establishBluetoothConnection: function() {
+		var t = this;
+		t.connector.connect(t, function() {
+			t.connected = true;
+			t.connectionEvents.success();
+		});
+		t.connector.listenFor(t, "disconnect", t.connectionEvents.fail);
+		setTimeout(function() {
+			if(!t.connected) {
+				t.connector.unlistenForAll(t);
+				t.connectionEvents.fail();
+			}
+		}, require("./settings.js").timeout);
+	},
 	send: function(message) {
-		
+		this.connector.send(this, message);
 	},
 	onDone: function(success, fail) {
-		
+		if(typeof success == "function")
+			this.connectionEvents.success = success;
+		if(typeof fail == "function")
+			this.connectionEvents.fail = fail;
 	}
 };
 
