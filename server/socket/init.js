@@ -3,7 +3,7 @@ var socket = {
 	io: null,
 	port: 3700,
 	bluetooth: null,
-	init: function(app, root) {
+	init: function(app) {
 		
 		this.server = require('http').createServer(app);
 		this.io = require('socket.io').listen(this.server);

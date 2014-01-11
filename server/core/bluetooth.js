@@ -15,28 +15,31 @@ var bluetooth = module.exports = {
 			fs = this.fs,
 			codec = this.codec,
 			listeners = this.listeners;
-		fs.watch(file, { persistent:false }, function(event) {
-			if(event != "change")
+		console.log("> Watching file '"+file+"' for changes");
+		fs.watchFile(file, { persistent:true, interval:5007 }, function() {
+			var data = fs.readFileSync(file, { encoding:"utf8", flag:"r" });
+			if(!data)
 				return;
-			fs.readFile(file, { encoding:"utf8", flag:"w+" }, function(err, data) {
-				if(err)
-					throw err;
-				var lines = data.split("\n"),
-					parts;
-				for(var i = 0; i < lines.length; i++) {
-					parts = codec.decode(lines[i]);
-					if(typeof listeners[parts.key] == "object" && typeof listeners[parts.key][parts.operation] == "function")
-						listeners[parts.key][parts.operation](parts.data);
-				}	
-			});
+			fs.writeFile(file, new Buffer(0));
+			console.log("> Received change for file '"+file+"'");
+			var lines = data.split("\n"),
+				parts;
+			for(var i = 0; i < lines.length; i++) {
+				parts = codec.decode(lines[i]);
+				console.log(listeners);
+				if(parts && typeof listeners[parts.key] == "object" && typeof listeners[parts.key][parts.operation] == "function")
+					listeners[parts.key][parts.operation](parts.data);
+			}
 		});
 	},
 	connect: function(client, callback) {
-		var t = this;
+		var t = this,
 			robotKey = t.codec.createRobotKey(client.robot.bluetooth);
-		t.listenFor(client, t.codec.connect, function() {
+		console.log("> Trying to connect client "+client.key+" with "+robotKey);
+		t.listenFor(client, "connect", function() {
 			callback();
 			t.unlistenFor(client, "connect");
+			console.log("> Connected client "+client.key+" with "+robotKey);
 		});
 		t.appendLine(t.codec.encode(client.key, t.codec.operations.connect, robotKey));
 	},
@@ -52,12 +55,12 @@ var bluetooth = module.exports = {
 		this.listeners[client.key][this.codec.operations[operation]] = callback;
 	},
 	unlistenFor: function(client, operation) {
-		if(typeof listeners[client.key] == "object" && typeof listeners[client.key][operation] == "function")
-			delete listeners[client.key][this.codec.operations[operation]];
+		if(client && typeof this.listeners[client.key] == "object" && typeof this.listeners[client.key][operation] == "function")
+			delete this.listeners[client.key][this.codec.operations[operation]];
 	},
 	unlistenForAll: function(client) {
-		if(typeof listeners[client.key] == "object")
-			delete listeners[client.key];
+		if(client && typeof this.listeners[client.key] == "object")
+			delete this.listeners[client.key];
 	},
 	appendLine: function(line) {
 		console.log("Appending line: '"+line+"'");
@@ -79,7 +82,7 @@ var bluetooth = module.exports = {
 		encode: function(id, operation, data) {
 			if(!id || !operation)
 				return "";
-			return id+":"+operation+(data?":"+data:"");
+			return id+":"+operation+(data?":"+data:"")+"\n";
 		},
 		decode: function(line) {
 			var parts = line.trim().split(":", 3);

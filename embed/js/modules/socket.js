@@ -20,7 +20,7 @@ socket.do = {
 	setup: function(loggedIn) {
 		var t = this;
 		
-		t.val.socket = io.connect("http://"+(t.val.port?location.hostname+t.val.port:location.host)+"/"+(loggedIn?"main":"login"));
+		t.val.socket = io.connect("http://"+(t.val.port?location.hostname+":"+t.val.port:location.host)+"/"+(loggedIn?"main":"login"));
 		t.val.socket.on("connect", function() {
 			for (var i = 0; i < t.val.waiting.length; i++)
 				t.val.waiting[i]();
@@ -36,13 +36,14 @@ socket.do = {
 		t.ready(function() {
 			if(callback) {
 				ajaxBar.show();
-				setTimeout(function() {
+				var timer = setTimeout(function() {
 					callback();
 					callback = function() {};
 					ajaxBar.error();
 				}, t.val.timeout);
 			}
 			t.val.socket.emit(type, obj, callback?function() {
+				clearTimeout(timer);
 				ajaxBar.hide();
 				callback.apply(null, arguments);
 			}:undefined);

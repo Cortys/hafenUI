@@ -15,10 +15,10 @@ var hafen = {
 		this.app = this.express();
 		
 		// page requires socket to be required:
-		this.page = require("./static/init.js")(this.express, this.app, this.root);
+		this.page = require("./static/init.js")(this.express, this.app);
 		
 		// sockets:
-		this.socket = require("./socket/init.js")(this.app, this.root);
+		this.socket = require("./socket/init.js")(this.app);
 	}
 };
 

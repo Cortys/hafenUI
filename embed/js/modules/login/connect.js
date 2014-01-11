@@ -21,6 +21,7 @@ new Modular("connect", ["events","socket","list"], function() {
 connect.val = {
 	button: "#connectButton",
 	onConnect: null,
+	onFail: null,
 	active: true
 };
 
