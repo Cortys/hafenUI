@@ -27,6 +27,8 @@ module.exports = function(socket) {
 			socket.broadcast.emit("unconnectedRobots", connections.getUnconnectedRobots());
 		});
 	});
+    
+    console.log(require("../alreadyConnected.js"));
 	
 	socket.on("disconnect", require("../disconnect.js")(client));
 }

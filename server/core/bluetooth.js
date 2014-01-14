@@ -8,8 +8,12 @@ var bluetooth = module.exports = {
 	listeners: {},
 	init: function() {
 		this.dir = require("./settings.js").rootDir+"/bluetooth/";
+        this.resetFiles();
 		this.startListening();
 	},
+    resetFiles: function() {
+        this.fs.writeFile(this.dir+this.fileNames.send, this.codec.encode(this.codec.operations.kill));
+    },
 	startListening: function() {
 		var file = this.dir+this.fileNames.receive,
 			fs = this.fs,
@@ -74,15 +78,16 @@ var bluetooth = module.exports = {
 			connect: "c",
 			disconnect: "d",
 			send: "s",
-			receive: "r"
+			receive: "r",
+            kill: "k"
 		},
 		createRobotKey: function(target) {
 			return target.toString("hex");
 		},
 		encode: function(id, operation, data) {
-			if(!id || !operation)
+			if(!id || (!operation && id != this.operations.kill))
 				return "";
-			return id+":"+operation+(data?":"+data:"")+"\n";
+			return id+(operation?":"+operation:"")+(data?":"+data:"")+"\n";
 		},
 		decode: function(line) {
 			var parts = line.trim().split(":", 3);
