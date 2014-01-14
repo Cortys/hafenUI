@@ -1,8 +1,7 @@
 var connections = require("../core/connections.js");
 
-module.exports = function(socket) {
+module.exports = function(client) {
 	return function() {
-		var client = connections.getClient(socket);
 		if(!client)
 			return;
 		// Removal timer will be automatically quit if connection is reastablished (= accessed via connections.getClient()) within settings.timeout milliseconds.

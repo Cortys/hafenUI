@@ -32,8 +32,11 @@ connections = {
 	// add a new connection:
 	addClient: function(socket, robotId) {
 		var client = this.getClient(socket);
-		if(client)
+		console.log("A<", client, ">");
+		if(client) {
+			client.onQuit(function() {});
 			this.removeClient(client);
+		}
 		
 		client = new Client(socket, robotId);
 		
@@ -54,12 +57,20 @@ connections = {
 		return client;
 	},
 	
+	getClientFromKey: function(key) {
+		var client = clients[key];
+		if(client && client.removeTimer) // If socket is associated to client again removal timer will be quit
+			clearTimeout(client.removeTimer);
+		return client;
+	},
+	
 	// remove a connection:
 	removeClient: function(client, delay, callback) {
 		if(!(client instanceof Client))
 			return;
+		clearTimeout(client.removeTimer);
+		console.log("B<", client, ">");
 		var remove = function() {
-			clearTimeout(client.removeTimer);
 			client.connector.unlistenForAll();
 			unconnectedRobots[client.robot.id] = client.robot;
 			delete clients[client.key];
@@ -111,11 +122,10 @@ Client.prototype = {
 	establishBluetoothConnection: function() {
 		var t = this,
 			fail = function() {
-				if(!t.connected) {
-					connections.removeClient(t);
-					t.connectionEvents.fail();
-				}
 				clearTimeout(timer);
+				connections.removeClient(t);
+				t.connectionEvents.fail();
+				t.connected = false;
 			}, timer = setTimeout(fail, require("./settings.js").timeout);
 
 		t.connector.connect(t, function() {

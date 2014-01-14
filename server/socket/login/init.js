@@ -2,11 +2,14 @@ var connections = require("../../core/connections.js");
 
 module.exports = function(socket) {
 	console.log("> Socket connected");
+	
+	var client = connections.getClient(socket);
+	
 	// Send unconnected robots when client accesses server the first time:
 	socket.emit("unconnectedRobots", connections.getUnconnectedRobots());
 	// Handle connnection requests:
 	socket.on("connectRobot", function(robot, callback) {
-		var client = connections.addClient(socket, robot);
+		client = connections.addClient(socket, robot);
 		console.log("> Client "+client.key+" connected");
 		if(!client) {
 			callback(false);
@@ -25,5 +28,5 @@ module.exports = function(socket) {
 		});
 	});
 	
-	socket.on("disconnect", require("../disconnect.js")(socket));
+	socket.on("disconnect", require("../disconnect.js")(client));
 }
