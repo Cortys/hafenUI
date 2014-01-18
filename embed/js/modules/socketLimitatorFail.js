@@ -5,10 +5,10 @@
  */
 
 new Modular("socketLimitatorFail", ["socketLimitator"], function() {
-    socketLimitator.onFail(this.do);
+    socketLimitator.do.onFail(this.do);
 });
 
 socketLimitatorFail.do = function() {
-    $("#wrap").hide();
+    socket.do.quit();
     $("#limitFail").show();
-}
+};

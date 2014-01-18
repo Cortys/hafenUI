@@ -1,0 +1,104 @@
+#wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+}
+
+#wrap .side {
+	position: fixed;
+	width: 230px;
+	top: 0;
+	bottom: 0;
+	height: auto;
+}
+#wrap .side.left {
+	left: 0;
+	background-image: -webkit-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -moz-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -ms-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -o-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: linear-gradient(to right, #F9F9F9 93%, #F0F0F0 100%);
+}
+#wrap .side.right {
+	right: 0;
+	background-image: -webkit-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -moz-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -ms-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -o-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: linear-gradient(to left, #F9F9F9 93%, #F0F0F0 100%);
+}
+
+.headArea {
+	position: relative;
+	width: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 58px;
+	margin: 0;
+	padding: 0;
+}
+.headArea h1 {
+	position: relative;
+	width: auto;
+	display: block;
+	margin: 0;
+	padding: 0;
+	height: 58px;
+	line-height: 58px;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#wrap .center {
+	position: absolute;
+	top: 0;
+	left: 230px;
+	right: 230px;
+	width: auto;
+	height: auto;
+	bottom: auto;
+}
+
+.headArea .robotIcon {
+	position: static;
+	display: block;
+	width: 40px;
+	height: 40px;
+	margin-left: 8px;
+	margin-top: 8px;
+	border-radius: 4px;
+	border: 1px solid #333333;
+	float: left;
+	background: url(../../imgs/robots/defaultRobot.png) no-repeat;
+}
+.headArea h1.left {
+	position: static;
+	margin-left: 10px;
+	display: inline;
+}
+
+#logout {
+	position: absolute;
+	top: 21px;
+	right: 21px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.5s;
+	-moz-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	-webkit-transition-property: -webkit-transform;
+	-moz-transition-property: -moz-transform;
+	-o-transition-property: -o-transform;
+	transition-property: transform;
+}
+#logout:hover {
+	-webkit-transform:rotate(360deg);
+	-moz-transform:rotate(360deg);
+	-o-transform:rotate(360deg);
+}

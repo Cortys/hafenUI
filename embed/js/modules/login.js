@@ -10,22 +10,22 @@ Modular.addModules({
 });
 
 new Modular("login", ["socketLimitatorFail","list","connect"], function(d) {
-	socketLimitator.onSuccess(function() {
-        // Assumes, that #wrap is hidden by default and has to be shown, after loading robots:
-        list.do.load(function() {
-            login.do.show();
-        });
-        
-        connect.do.onConnect(function() {
-            login.do.hide();
-            setTimeout(function() {
-                location.reload();
-            }, 1000);
-        });
-        connect.do.onFail(function() {
-            login.do.fail();
-        });
-    });
+	socketLimitator.do.onSuccess(function() {
+		// Assumes, that #wrap is hidden by default and has to be shown, after loading robots:
+		list.do.load(function() {
+			login.do.show();
+		});
+		
+		connect.do.onConnect(function() {
+			login.do.hide();
+			setTimeout(function() {
+				location.reload();
+			}, 1000);
+		});
+		connect.do.onFail(function() {
+			login.do.fail();
+		});
+	});
 });
 
 login.do = {

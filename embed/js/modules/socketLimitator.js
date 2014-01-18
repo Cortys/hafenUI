@@ -18,9 +18,9 @@ socketLimitator.do = {
     val: socketLimitator.val,
     test: function() {
         var t = this;
-        socket.send("alreadyConnected", {}, function(isUnconnected) {
-            t.val[isUnconnected?"success":"fail"]();
-            t.made = !!isUnconnected;
+        socket.do.register("alreadyConnected", function(data) {
+            t.val[data.isUnconnected?"success":"fail"]();
+            t.made = !!data.isUnconnected;
         });
     },
     onSuccess: function(callback) {
@@ -29,7 +29,7 @@ socketLimitator.do = {
             callback();
     },
     onFail: function(callback) {
-        this.val.success = callback;
+        this.val.fail = callback;
         if(this.made === false)
             callback();
     }

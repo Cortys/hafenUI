@@ -1,23 +1,38 @@
-<div id="jobs">
-    <div class="headArea">
-        <h1>Jobs</h1>
+{% extends 'raw.html' %}
+
+{% block cssLayout %}
+    {% parent %}
+    <link rel="stylesheet" href="embed/css/main.css" type="text/css">
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        var isLoggedIn = true;
+    </script>
+    {% parent %}
+{% endblock %}
+
+{% block content %}
+    <div id="jobs" class="side left">
+        <div class="headArea">
+            <h1>Jobs</h1>
+        </div>
     </div>
-</div>
-<div id="center">
-    <div class="headArea">
-        <div class="robotIcon"></div>
-        <h1 class="left"></h1>
-        <img src="imgs/logout.png" alt="Logout" id="logout">
+    <div id="center" class="center">
+        <div class="headArea">
+            <div class="robotIcon"></div><h1 class="left"></h1>
+            <img src="imgs/logout.png" alt="Logout" id="logout">
+        </div>
     </div>
-</div>
-<div id="containers">
-    <div class="headArea">
-        <h1>Containers</h1>
-    </div>
-    <div id="conteinerFilter">
+    <div id="containers" class="side right">
+        <div class="headArea">
+            <h1>Containers</h1>
+        </div>
+        <div id="containerFilter">
     
-    </div>
-    <div id="conatinerList">
+        </div>
+        <div id="containerList">
     
+        </div>
     </div>
-</div>
+{% endblock %}

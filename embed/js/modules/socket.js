@@ -17,10 +17,13 @@ socket.val = {
 
 socket.do = {
 	val: socket.val,
+	disconnectHandler: function() {
+		ajaxBar.error();
+	},
 	setup: function(loggedIn) {
 		var t = this;
 		
-		t.val.socket = io.connect("http://"+(t.val.port?location.hostname+":"+t.val.port:location.host)+"/"+(loggedIn?"main":"login"));
+		t.val.socket = io.connect("http://"+(t.val.port?location.hostname+":"+t.val.port:location.host)+"/"+(isLoggedIn?"main":"login"));
 		t.val.socket.on("connect", function() {
 			for (var i = 0; i < t.val.waiting.length; i++)
 				t.val.waiting[i]();
@@ -28,8 +31,12 @@ socket.do = {
 			ajaxBar.hide();
 		});
 		t.val.socket.on("disconnect", function() {
-			ajaxBar.error();
+			t.disconnectHandler();
 		});
+	},
+	quit: function() {
+		this.disconnectHandler = function() {};
+		this.val.socket.disconnect();
 	},
 	send: function(type, obj, callback) {
 		var t = this;

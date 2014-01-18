@@ -4,6 +4,10 @@
  * Author: Clemens Damke
  */
 
-new Modular("main", [], function() {
-	
+Modular.addModules({
+	"logout": "main/logout.js",
+});
+
+new Modular("main", ["socketLimitatorFail", "logout"], function() {
+    
 });

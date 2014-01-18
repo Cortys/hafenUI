@@ -32,11 +32,13 @@ connections = {
 	// add a new connection:
 	addClient: function(socket, robotId) {
 		var client = this.getClient(socket);
-		console.log("A<", client, ">");
 		if(client) {
 			client.onQuit(function() {});
 			this.removeClient(client);
 		}
+		
+		if(!socket || !unconnectedRobots[robotId])
+			return null;
 		
 		client = new Client(socket, robotId);
 		
@@ -44,7 +46,8 @@ connections = {
 			socket.set("client", client);
 		
 		clients[client.key] = client;
-		delete unconnectedRobots[robotId];
+		if(robotId !== undefined)
+			delete unconnectedRobots[robotId];
 		return client;
 	},
 	
@@ -69,10 +72,11 @@ connections = {
 		if(!(client instanceof Client))
 			return;
 		clearTimeout(client.removeTimer);
-		console.log("B<", client, ">");
 		var remove = function() {
-			client.connector.unlistenForAll();
-			unconnectedRobots[client.robot.id] = client.robot;
+			if(client.robot !== null) {
+				client.quitBluetoothConnection();
+				unconnectedRobots[client.robot.id] = client.robot;
+			}
 			delete clients[client.key];
 			if(callback)
 				callback(client);
@@ -83,7 +87,7 @@ connections = {
 		else
 			remove();
 		return client;
-	},
+	}
 };
 
 /**
@@ -95,10 +99,11 @@ Client = function(socket, robotId) { // class for storing a client connection
 		return;
 	
 	this.ip = this.key = socket.handshake.headers["x-forwarded-for"] || socket.handshake.address.address;
-
+	
+	this.updateSocket(socket);
+	
 	if(robotId !== undefined) { // If robotId is not defined => Client object is only for key retrieval => no further initialization
 		this.robot = robots[robotId];
-		this.updateSocket(socket);
 		this.establishBluetoothConnection();
 	}
 };
@@ -116,7 +121,7 @@ Client.prototype = {
 	},
 	connected: false,
 	updateSocket: function(newSocket) {
-		if(newSocket !== this.socket)
+		if(!this.socket || newSocket.id != this.socket.id)
 			this.socket = newSocket;
 	},
 	establishBluetoothConnection: function() {
@@ -135,8 +140,13 @@ Client.prototype = {
 		});
 		t.connector.listenFor(t, "disconnect", fail);
 	},
+	quitBluetoothConnection: function() {
+		this.connector.unlistenForAll(this);
+		this.connector.disconnect(this);
+	},
 	send: function(message) {
-		this.connector.send(this, message);
+		if(this.robot !== null)
+			this.connector.send(this, message);
 	},
 	onDone: function(success, fail) {
 		if(typeof success == "function")
