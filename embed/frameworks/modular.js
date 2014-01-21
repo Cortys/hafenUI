@@ -4,13 +4,14 @@
  * License: WTFPL - Have fun! Credits only if you want to.
  */
 
-var Modular = (function($) {
+var Modular = (function() {
 	
 	/* Constructor: */
 	
-	var Modular = function(name, requires, init) {
+	var	globalContext = window,
+		Modular = function(name, requires, init) {
 		var t = this;
-		window[name] = this;
+		globalContext[name] = this;
 		t.init = init;
 		Modular.loadModules(requires, function(status) { // loadModules for-loop is used to create a hashlist of requirements too.
 			Object.getPrototypeOf(t).run.call(t, status);
@@ -53,7 +54,8 @@ var Modular = (function($) {
 		return this;
 	};
 	Modular.addModules = function(modules) {
-		this.modules = $.extend(this.modules, modules);
+		for(var key in modules)
+			this.modules[key] = modules[key];
 		return this;
 	};
 	
@@ -76,6 +78,40 @@ var Modular = (function($) {
 					return true;
 		}
 		return false;
+	}, head = document.getElementsByTagName("head")[0] || document.head || document,
+	execCode = function(code) {
+		if(code)
+			try {
+				var node = document.createElement("script");
+				node.type = "text/javascript";
+				node.text = code;
+				head.appendChild(node);
+				head.removeChild(node);
+			} catch(error) {
+				return error;
+			}
+	}, loadScript = function(url, success, fail) {
+		var xhttp = new XMLHttpRequest();
+		
+		if(!xhttp)
+			fail();
+		xhttp.open("GET", url, true);
+		xhttp.overrideMimeType("text/javascript");
+		xhttp.send();
+		xhttp.ontimeout = fail;
+		xhttp.onreadystatechange = function() {
+			if(this.readyState == 4) {
+				if(this.status == 200 || this.status == 304) {
+					var e;
+					if(e = execCode(this.responseText))
+						fail(e);
+					else
+						success();
+				}
+				else
+					fail();
+			}
+		};
 	};
 	
 	Modular.loadModule = function(module, callback, requiredBy) {
@@ -90,25 +126,30 @@ var Modular = (function($) {
 				callFunctions(t.loaded[module], [m, module]);
 				t.loaded[module] = done;
 			};
-			$.getScript(t.path+t.modules[module], function() {
-				if(window[module]) {
-					t.prototype.onDone.call(window[module], function() {
+			loadScript(t.path+t.modules[module], function() {
+				if(globalContext[module]) {
+					t.prototype.onDone.call(globalContext[module], function() {
 						finishLoad(3, true); // SUCCESS message
 					});
 				}
 				else
 					finishLoad(4, true); // INVALID message
-			}).fail(function(xhr, type, error) {
-				if(xhr.status == 200 && error) {
+			}, function(error) {
+				if(error) {
 					finishLoad(4, true); // INVALID message
-					throw new Error("In '"+module+"': "+error.message);
+					var e = new Error();
+					e.message = "In module '"+module+"': "+error.message;
+					if(document.baseURI)
+						e.sourceURL = document.baseURI+t.path+t.modules[module];
+					e.name = error.name;
+					throw e;
 				}
 				else
 					finishLoad(2, false); // FAIL message
 			});
 		}
 		else if(callback) {
-			if(t.loaded[module] === true || (requiredBy && window[module] && isModuleRequiredBy(requiredBy, module)))
+			if(t.loaded[module] === true || (requiredBy && globalContext[module] && isModuleRequiredBy(requiredBy, module)))
 				setTimeout(function() {
 					callback(t.loaded[module]===true?1:5, module); // ALREADY LOADED message OR CIRCULAR REQUIREMENT MESSAGE => both probably good
 				}, 0);
@@ -153,4 +194,4 @@ var Modular = (function($) {
 	};
 	
 	return Modular;
-})(jQuery);
+})();

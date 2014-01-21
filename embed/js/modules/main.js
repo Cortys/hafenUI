@@ -6,8 +6,9 @@
 
 Modular.addModules({
 	"logout": "main/logout.js",
+	"robotInformation": "main/robotInformation.js"
 });
 
-new Modular("main", ["socketLimitatorFail", "logout"], function() {
+new Modular("main", ["socketLimitatorFail", "robotInformation", "logout"], function() {
     
 });
