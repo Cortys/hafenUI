@@ -148,6 +148,12 @@ Client.prototype = {
 		if(this.robot !== null)
 			this.connector.send(this, message);
 	},
+	onReceive: function(callback) {
+	    if(typeof callback == "function")
+            this.connector.listenFor(this, "receive", callback);
+        else
+            this.connector.unlistenFor(this, "receive");
+	},
 	onDone: function(success, fail) {
 		if(typeof success == "function")
 			this.connectionEvents.success = success;

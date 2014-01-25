@@ -10,7 +10,8 @@
 
 #wrap .side {
 	position: fixed;
-	width: 230px;
+	width: 12%;
+	min-width: 230px;
 	top: 0;
 	bottom: 0;
 	height: auto;
@@ -62,7 +63,7 @@
 	right: 230px;
 	width: auto;
 	height: auto;
-	bottom: auto;
+	bottom: 0;
 }
 
 .headArea .robotIcon {
@@ -101,4 +102,47 @@
 	-webkit-transform:rotate(360deg);
 	-moz-transform:rotate(360deg);
 	-o-transform:rotate(360deg);
+}
+
+#remote {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 504px;
+    height: 300px;
+    margin-top: -150px;
+    margin-left: -252px;
+}
+
+#remote .direction {
+    position: absolute;
+    width: 166px;
+    height: 148px;
+    background-color: #efefef;
+}
+
+#remote .direction.left {
+    bottom: 0;
+    left: 0;
+}
+
+#remote .direction.right {
+    bottom: 0;
+    right: 0;
+}
+
+#remote .direction.bottom {
+    bottom: 0;
+    left: 50%;
+    margin-left: -83px;
+}
+
+#remote .direction.top {
+    top: 1px;
+    left: 50%;
+    margin-left: -83px;
+}
+
+#remote .direction:hover {
+    background-color: #cccccc;
 }

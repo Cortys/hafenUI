@@ -20,6 +20,7 @@ module.exports = function(socket) {
 			connections.removeClient(client);
 			callback(true);
 		});
+		socket.on("moveRobot", require("./remote.js")(client));
 	}
 	socket.on("disconnect", require("../disconnect.js")(socket));
 }
