@@ -113,11 +113,12 @@ Client.prototype = {
 	key: null,
 	robot: null,
 	connector: require("./bluetooth.js"),
+	mover: require("./robotMovement.js"),
 	removeTimer: null,
 	connectionEvents: {
-		success: function() {},
-		fail: function() {},
-		quit: function() {}
+		success: function() {}, // On connection established
+		fail: function() {}, // On connection failed and then removed
+		quit: function() {} // On connection removed
 	},
 	connected: false,
 	updateSocket: function(newSocket) {
@@ -127,13 +128,15 @@ Client.prototype = {
 	establishBluetoothConnection: function() {
 		var t = this,
 			fail = function() {
+			    t.disableRobotMovements();
 				clearTimeout(timer);
+				t.connected = false;
 				connections.removeClient(t);
 				t.connectionEvents.fail();
-				t.connected = false;
 			}, timer = setTimeout(fail, require("./settings.js").timeout);
 
 		t.connector.connect(t, function() {
+		    t.enableRobotMovements();
 			clearTimeout(timer);
 			t.connected = true;
 			t.connectionEvents.success();
@@ -143,6 +146,12 @@ Client.prototype = {
 	quitBluetoothConnection: function() {
 		this.connector.unlistenForAll(this);
 		this.connector.disconnect(this);
+	},
+	enableRobotMovements: function() {
+	    this.mover.startListeningForClient(this);
+	},
+	disableRobotMovements: function() {
+	    this.mover.stopListeningForClient(this);
 	},
 	send: function(message) {
 		if(this.robot !== null)

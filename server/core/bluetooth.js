@@ -20,7 +20,7 @@ var bluetooth = module.exports = {
 			codec = this.codec,
 			listeners = this.listeners;
 		console.log("> Watching file '"+file+"' for changes");
-		fs.watchFile(file, { persistent:true, interval:5007 }, function() {
+		fs.watchFile(file, { persistent:true, interval:2500 }, function() {
 			var data = fs.readFileSync(file, { encoding:"utf8", flag:"r" });
 			if(!data)
 				return;
@@ -29,10 +29,18 @@ var bluetooth = module.exports = {
 			var lines = data.split("\n"),
 				parts;
 			for(var i = 0; i < lines.length; i++) {
-				parts = codec.decode(lines[i]);
-				console.log(listeners);
-				if(parts && typeof listeners[parts.key] == "object" && typeof listeners[parts.key][parts.operation] == "function")
-					listeners[parts.key][parts.operation](parts.data);
+                // On "kill" (Java client restarted/crashed): Call all disconnect listeners and force quit all connections
+			    if(lines[i] == codec.operations.kill) {
+			        for(var key in listeners)
+                        if(typeof listeners[key][codec.operations.disconnect] == "function")
+                            listeners[key][codec.operations.disconnect]();
+			    }
+			    else {
+    				parts = codec.decode(lines[i]);
+    				console.log(listeners);
+    				if(parts && typeof listeners[parts.key] == "object" && typeof listeners[parts.key][parts.operation] == "function")
+    					listeners[parts.key][parts.operation](parts.data);
+			    }
 			}
 		});
 	},
@@ -40,6 +48,13 @@ var bluetooth = module.exports = {
 		var t = this,
 			robotKey = t.codec.createRobotKey(client.robot.bluetooth);
 		console.log("> Trying to connect client "+client.key+" with "+robotKey);
+		
+		//Fake login:
+		this.fs.appendFile(this.dir+this.fileNames.receive, client.key+":c", { encoding:"utf8" }, function(err) {
+			if(err)
+				throw err;
+		});
+		
 		t.listenFor(client, "connect", function() {
 			callback();
 			t.unlistenFor(client, "connect");

@@ -7,8 +7,6 @@ module.exports = function(socket) {
 	if(!require("../alreadyConnected.js")(socket))
 		return;
 	
-	connections.addClient(socket, 1);
-	
 	var client = connections.getClient(socket);
 	
 	if(client) {
@@ -17,10 +15,17 @@ module.exports = function(socket) {
 		socket.emit("robotInformation", client.robot);
 		
 		socket.on("logout", function(data, callback) {
+		    client.onQuit(function() {}); // Remove lost connection error.
 			connections.removeClient(client);
 			callback(true);
 		});
+		
+		// Lost connection:
+		client.onQuit(function() {
+		    socket.emit("connectionLost");
+		});
+		
 		socket.on("moveRobot", require("./remote.js")(client));
 	}
 	socket.on("disconnect", require("../disconnect.js")(socket));
-}
+};

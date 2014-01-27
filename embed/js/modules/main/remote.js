@@ -22,7 +22,9 @@ remote.do = {
 	move: function(dir) {
 	    var t = this.val;
 	    t.blocked = true;
-	    socket.do.send("moveRobot", { direction:dir }, function() {
+	    socket.do.send("moveRobot", { direction:dir }, function(success) {
+	        if(success)
+                console.log("BAM");
 	        t.blocked = false;
 	    });
 	}

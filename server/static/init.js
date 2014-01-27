@@ -1,11 +1,12 @@
 var swig = require("swig"),
-	loggedIn = require("../core/loggedIn.js");
+	loggedIn = require("../core/loggedIn.js"),
+	root = require("../core/settings.js").rootDir;
 
 module.exports = function(express, app) {
 	// Settings for HTML-rendering:
 	app.engine("html", swig.renderFile);
 	app.set("view engine", "html");
-	app.set("views", "pages");
+	app.set("views", root+"/pages");
 	app.set("view cache", false);
 	
 	// Make CSS, imgs and local-JS accessible:

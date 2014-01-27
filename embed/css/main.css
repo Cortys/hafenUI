@@ -16,21 +16,25 @@
 	bottom: 0;
 	height: auto;
 }
+
 #wrap .side.left {
 	left: 0;
+
 	background-image: -webkit-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
 	background-image: -moz-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: -ms-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
 	background-image: -o-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: linear-gradient(to right, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -ms-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
 }
+
 #wrap .side.right {
 	right: 0;
+
 	background-image: -webkit-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
 	background-image: -moz-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: -ms-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
 	background-image: -o-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: linear-gradient(to left, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -ms-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
 }
 
 .headArea {
@@ -43,6 +47,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 .headArea h1 {
 	position: relative;
 	width: auto;
@@ -78,6 +83,7 @@
 	float: left;
 	background: url(../../imgs/robots/defaultRobot.png) no-repeat;
 }
+
 .headArea h1.left {
 	position: static;
 	margin-left: 10px;
@@ -89,60 +95,82 @@
 	top: 21px;
 	right: 21px;
 	cursor: pointer;
+
 	-webkit-transition-duration: 0.5s;
 	-moz-transition-duration: 0.5s;
 	-o-transition-duration: 0.5s;
+	-ms-transition-duration: 0.5s;
 	transition-duration: 0.5s;
+
 	-webkit-transition-property: -webkit-transform;
 	-moz-transition-property: -moz-transform;
 	-o-transition-property: -o-transform;
+	-ms-transition-property: -ms-transform;
 	transition-property: transform;
 }
+
 #logout:hover {
-	-webkit-transform:rotate(360deg);
-	-moz-transform:rotate(360deg);
-	-o-transform:rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	transform: rotate(360deg);
 }
 
 #remote {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 504px;
-    height: 300px;
-    margin-top: -150px;
-    margin-left: -252px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 504px;
+	height: 450px;
+	margin-top: -225px;
+	margin-left: -252px;
 }
 
 #remote .direction {
-    position: absolute;
-    width: 166px;
-    height: 148px;
-    background-color: #efefef;
+	position: absolute;
+	width: 168px;
+	height: 150px;
+	background-color: #efefef;
+	border-radius: 20px;
+
+	-webkit-transition: all 0.1s ease-in-out 0s;
+	-moz-transition: all 0.1s ease-in-out 0s;
+	-o-transition: all 0.1s ease-in-out 0s;
+	-ms-transition: all 0.1s ease-in-out 0s;
+	transition: all 0.1s ease-in-out 0s;
 }
 
 #remote .direction.left {
-    bottom: 0;
-    left: 0;
+	top: 50%;
+	margin-top: -75px;
+	left: 0;
 }
 
 #remote .direction.right {
-    bottom: 0;
-    right: 0;
+	top: 50%;
+	margin-top: -75px;
+	right: 0;
 }
 
 #remote .direction.bottom {
-    bottom: 0;
-    left: 50%;
-    margin-left: -83px;
+	bottom: 0;
+	left: 50%;
+	margin-left: -84px;
 }
 
 #remote .direction.top {
-    top: 1px;
-    left: 50%;
-    margin-left: -83px;
+	top: 0px;
+	left: 50%;
+	margin-left: -83px;
 }
 
 #remote .direction:hover {
-    background-color: #cccccc;
+	background-color: #cccccc;
+
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
 }

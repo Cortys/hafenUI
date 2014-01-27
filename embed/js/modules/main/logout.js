@@ -10,6 +10,11 @@ new Modular("logout", ["socket", "events"], function() {
     $("#logout").on(events.click, function() {
     	t.do.logout();
     });
+    
+    socket.do.register("connectionLost", function() {
+        window.alert("I'm so very sorry for you.\nThe connection to your robot was destroyed.\nPlease try to reconnect.");
+        location.reload();
+    });
 });
 
 logout.do = {

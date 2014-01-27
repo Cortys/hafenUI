@@ -10,7 +10,7 @@ module.exports = {
 	    right: "r",
 	    left: "l",
 	    turn: "t",
-	    init: "i"
+	    init: "i",
 	    status: "s",
 	    position: "p",
 	    getContainer: "a",
@@ -27,9 +27,9 @@ module.exports = {
             return null;
         return {
             operation: parts[0],
-            data: (part[0]==this.operations.status?!!(part[1]*1):{
-                current: part[1],
-                last: part[2]
+            data: (parts[0]==this.operations.status?!!(parts[1]*1):{
+                current: parts[1],
+                last: parts[2]
             })
         };
 	}

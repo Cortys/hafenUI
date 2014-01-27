@@ -15,7 +15,6 @@ module.exports = function(socket) {
 	socket.on("connectRobot", function(robot, callback) {
 		client = connections.addClient(socket, robot);
 		console.log("> Client "+client.key+" connected");
-		console.log(connections.getClient(socket));
 		if(!client) {
 			callback(false);
 			return;
@@ -34,4 +33,4 @@ module.exports = function(socket) {
 	});
 	
 	socket.on("disconnect", require("../disconnect.js")(socket));
-}
+};
