@@ -19,15 +19,15 @@ body {
 
 #loading {
     position: fixed;
-    bottom: -84px;
+    top: -84px;
     left: 0;
     right: 0;
     width: auto;
     height: 84px;
     background-color: #cf524f;
     background-image: url(../../imgs/loader.gif);
-	background-repeat: repeat-x;
-	background-position: 0 0;
+    background-repeat: repeat-x;
+    background-position: 0 bottom;
 }
 #loading div {
     position: absolute;
@@ -43,10 +43,10 @@ body {
     cursor: pointer;
 }
 #loading.show {
-	bottom: -80px;
+	top: -80px;
 }
 #loading.error {
-	bottom: 0;
+	top: 0;
 	background-image: none;
 }
 
