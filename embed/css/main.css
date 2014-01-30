@@ -91,10 +91,18 @@
 }
 
 #logout {
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+#logout img {
 	position: absolute;
 	top: 21px;
-	right: 21px;
-	cursor: pointer;
+	left: 21px;
 
 	-webkit-transition-duration: 0.5s;
 	-moz-transition-duration: 0.5s;
@@ -109,7 +117,7 @@
 	transition-property: transform;
 }
 
-#logout:hover {
+#logout:hover img {
 	-webkit-transform: rotate(360deg);
 	-moz-transform: rotate(360deg);
 	-o-transform: rotate(360deg);

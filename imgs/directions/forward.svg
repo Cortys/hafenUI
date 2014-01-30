@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="28px" height="40px" viewBox="0 0 28 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>forward</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Showcase" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="main" sketch:type="MSArtboardGroup" transform="translate(-35.000000, -278.000000)" fill="#333333">
+            <g id="left" sketch:type="MSLayerGroup">
+                <g id="Group" transform="translate(0.000000, 98.000000)" sketch:type="MSShapeGroup">
+                    <g id="go-forward" transform="translate(20.000000, 160.000000)">
+                        <path d="M24,29 L24,55.9949259 C24,58.2068672 25.7996535,60 27.9999433,60 L29.0000567,60 C31.2091644,60 33,58.1993157 33,55.9949259 L33,29 L24,29 Z M28.5,20 L33,29 L24,29 L28.5,20 Z" id="forward"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
