@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.5
+-- version 4.1.4
 -- http://www.phpmyadmin.net
 --
--- Host: rdbms
--- Erstellungszeit: 14. Jan 2014 um 13:50
--- Server Version: 5.5.31-log
--- PHP-Version: 5.2.17
+-- Host: localhost
+-- Generation Time: 01. Feb 2014 um 13:44
+-- Server Version: 5.5.33
+-- PHP Version: 5.5.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Datenbank: `DB1533829`
+-- Database: `containerhafen`
 --
 
 -- --------------------------------------------------------
@@ -80,10 +80,18 @@ CREATE TABLE IF NOT EXISTS `manufacturers` (
 
 CREATE TABLE IF NOT EXISTS `maps` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `background` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Daten für Tabelle `maps`
+--
+
+INSERT INTO `maps` (`id`, `name`, `background`) VALUES
+(1, 'Simple Round', 'simpleRound');
 
 -- --------------------------------------------------------
 
@@ -122,10 +130,10 @@ CREATE TABLE IF NOT EXISTS `robots` (
 --
 
 INSERT INTO `robots` (`id`, `name`, `picture`, `bluetooth`, `turn`) VALUES
-(1, 'Heinrich', 'defaultRobot', b'111010000000011010001000001111101110101101101111', NULL),
-(2, 'Henriette', 'defaultRobot', b'000000000000000000000000000000000000000000000000', NULL),
-(3, 'Harald', 'defaultRobot', b'000000000000000000000000000000000000000000000000', NULL),
-(4, 'Hildegard', 'defaultRobot', b'000000000000000000000000000000000000000000000000', NULL);
+(1, 'Heinrich', 'cat', b'111010000000011010001000001111101110101101101111', NULL),
+(2, 'Henriette', 'owl', b'000000000000000000000000000000000000000000000000', NULL),
+(3, 'Harald', 'hedgedog', b'000000000000000000000000000000000000000000000000', NULL),
+(4, 'Hildegard', 'penguin', b'000000000000000000000000000000000000000000000000', NULL);
 
 -- --------------------------------------------------------
 
