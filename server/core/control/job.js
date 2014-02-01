@@ -3,9 +3,20 @@ var Task = require("./task.js"),
 Job = function() {},
 
 doNextTask = function() {
-	var task = this.tasks.shift();
-	if(task instanceof Task)
+	if(!this.running)
+		return;
+	var t = this,
+		task = t.tasks.shift();
+	if(task instanceof Task) {
+		task.setJobCallback(function() {
+			doNextTask.call(t);
+		});
 		task.execute();
+	}
+	else {
+		t.running = false;
+		t.callback();
+	}
 };
 
 Job.prototype = {
@@ -24,12 +35,14 @@ Job.prototype = {
 	run: function(callback) {
 		if(this.running)
 			return;
-		doNextTask.call(this);
 		this.running = true;
+		doNextTask.call(this);
 	},
 	stop: function() {
-		this.running = false;
 		this.emptyQueue();
+	},
+	pause: function() {
+		this.running = false;
 	}
 };
 

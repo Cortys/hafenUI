@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 01. Feb 2014 um 13:44
+-- Generation Time: 01. Feb 2014 um 14:48
 -- Server Version: 5.5.33
 -- PHP Version: 5.5.3
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Tabellenstruktur für Tabelle `container`
 --
 
+DROP TABLE IF EXISTS `container`;
 CREATE TABLE IF NOT EXISTS `container` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET latin1 NOT NULL,
@@ -42,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `container` (
 -- Tabellenstruktur für Tabelle `directions`
 --
 
+DROP TABLE IF EXISTS `directions`;
 CREATE TABLE IF NOT EXISTS `directions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `description` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -66,6 +68,7 @@ INSERT INTO `directions` (`id`, `description`, `short`, `picture`) VALUES
 -- Tabellenstruktur für Tabelle `manufacturers`
 --
 
+DROP TABLE IF EXISTS `manufacturers`;
 CREATE TABLE IF NOT EXISTS `manufacturers` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET latin1 NOT NULL,
@@ -78,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `manufacturers` (
 -- Tabellenstruktur für Tabelle `maps`
 --
 
+DROP TABLE IF EXISTS `maps`;
 CREATE TABLE IF NOT EXISTS `maps` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -99,6 +103,7 @@ INSERT INTO `maps` (`id`, `name`, `background`) VALUES
 -- Tabellenstruktur für Tabelle `points`
 --
 
+DROP TABLE IF EXISTS `points`;
 CREATE TABLE IF NOT EXISTS `points` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `map` int(10) unsigned NOT NULL,
@@ -115,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `points` (
 -- Tabellenstruktur für Tabelle `robots`
 --
 
+DROP TABLE IF EXISTS `robots`;
 CREATE TABLE IF NOT EXISTS `robots` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
@@ -141,6 +147,7 @@ INSERT INTO `robots` (`id`, `name`, `picture`, `bluetooth`, `turn`) VALUES
 -- Tabellenstruktur für Tabelle `turns`
 --
 
+DROP TABLE IF EXISTS `turns`;
 CREATE TABLE IF NOT EXISTS `turns` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `lastPoint` int(10) unsigned NOT NULL,
