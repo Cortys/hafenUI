@@ -5,32 +5,32 @@
 
 module.exports = {
 	operations: {
-	    idle: "n",
-	    forward: "r",
-	    right: "r",
-	    left: "l",
-	    turn: "t",
-	    init: "i",
-	    status: "s",
-	    position: "p",
-	    getContainer: "a",
-	    putContainer: "d"
+		idle: "n",
+		forward: "r",
+		right: "r",
+		left: "l",
+		turn: "t",
+		init: "i",
+		status: "s",
+		position: "p",
+		getContainer: "a",
+		putContainer: "d"
 	},
 	encode: function(operation, id) {
 		if(operation !== this.operations.getContainer)
-            return operation;
-        return id?operation+","+id:"";
+			return operation;
+		return id?operation+","+id:"";
 	},
 	decode: function(line) {
-        var parts = line.trim().split(",", 3);
-        if(!parts[0])
-            return null;
-        return {
-            operation: parts[0],
-            data: (parts[0]==this.operations.status?!!(parts[1]*1):{
-                current: parts[1],
-                last: parts[2]
-            })
-        };
+		var parts = line.trim().split(",", 3);
+		if(!parts[0])
+			return null;
+		return {
+			operation: parts[0],
+			data: (parts[0]==this.operations.status?!!(parts[1]*1):{
+				current: parts[1],
+				last: parts[2]
+			})
+		};
 	}
 };

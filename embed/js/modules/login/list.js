@@ -5,7 +5,7 @@
  */
 
 new Modular("list", ["events","socket","ajaxBar","connect"], function() {
-	list.val.list = $(list.val.list);
+	this.val.list = $(this.val.list);
 });
 
 list.val = {
@@ -19,7 +19,7 @@ list.do = {
 	val: list.val,
 	start: function(data) {
 		ajaxBar.hide();
-		list.val.list.empty();
+		this.val.list.empty();
 		var foundSelected = false,
 			foundAnything = false;
 		$.each(data, function(i,v) {
@@ -34,11 +34,11 @@ list.do = {
 			list.val.list.append('<li data-id="'+v.id+'"><div class="robotInfo"><div class="pic" style="background-image:url(imgs/robots/'+v.picture+'.png);"></div><div class="name">'+v.name+'</div><div class="bluetoothId">'+bluetooth+'</div></div></li>');
 			if(selected) {
 				foundSelected = true;
-				list.do.select(list.val.list.children("[data-id="+v.id+"]").addClass("active"));
+				list.do.select(list.val.list.children("[data-id="+v.id+"]"));
 			}
 		});
 		if(foundAnything) {
-			(foundSelected?function(){}:list.do.select)(list.val.list.children("li").on(events.click, function() {
+			(foundSelected?function(){}:this.select).call(this, list.val.list.children("li").on(events.click, function() {
 				list.do.select($(this));
 			}).on(events.doubleClick, function() {
 				connect.do.fire();
@@ -47,7 +47,7 @@ list.do = {
 			connect.do.activate();
 		}
 		else {
-			list.val.activeId = null;
+			this.val.activeId = null;
 			$("#noRobots").show();
 			connect.do.deactivate();
 		}
@@ -63,12 +63,12 @@ list.do = {
 		});
 	},
 	select: function(e) {
-		if(!connect.val.active)
+		if(!connect.val.active || connect.val.disabled)
 			return;
-		if(list.val.activeRobot)
-			list.val.activeRobot.removeClass("active");
-		list.val.activeRobot = e;
-		list.val.activeId = e.attr("data-id")*1;
-		list.val.activeRobot.addClass("active");
+		if(this.val.activeRobot)
+			this.val.activeRobot.removeClass("active");
+		this.val.activeRobot = e;
+		this.val.activeId = e.attr("data-id")*1;
+		this.val.activeRobot.addClass("active");
 	}
 };

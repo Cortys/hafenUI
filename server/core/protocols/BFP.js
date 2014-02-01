@@ -9,7 +9,7 @@ module.exports = {
 		disconnect: "d",
 		send: "s",
 		receive: "r",
-        kill: "k"
+		kill: "k"
 	},
 	createRobotKey: function(target) {
 		return target.toString("hex");

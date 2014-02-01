@@ -22,14 +22,15 @@ connect.val = {
 	button: "#connectButton",
 	onConnect: null,
 	onFail: null,
-	active: true
+	active: true,
+	disabled: false
 };
 
 connect.do = {
 	val: connect.val,
 	fire: function() {
 		var t = this;
-		if(!t.val.active)
+		if(!t.val.active || t.val.disabled)
 			return;
 		if(list.val.activeId !== null) {
 			t.val.active = false;
@@ -50,10 +51,13 @@ connect.do = {
 		this.val.onFail = callback;
 	},
 	activate: function() {
+		this.val.disabled = false;
 		this.val.button.removeClass("inactive");
 	},
 	deactivate: function() {
-		if(!this.val.button.hasClass("inactive"))
+		if(!this.val.disabled) {
 			this.val.button.addClass("inactive");
+			this.val.disabled = true;
+		}
 	}
 };

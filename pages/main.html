@@ -1,46 +1,48 @@
 {% extends 'raw.html' %}
 
 {% block cssLayout %}
-    {% parent %}
-    <link rel="stylesheet" href="embed/css/main.css" type="text/css">
+	{% parent %}
+	<link rel="stylesheet" href="embed/css/main.css" type="text/css">
 {% endblock %}
 
 {% block script %}
-    <script type="text/javascript">
-        var isLoggedIn = true;
-    </script>
-    {% parent %}
+	<script type="text/javascript">
+		var isLoggedIn = true;
+	</script>
+	{% parent %}
 {% endblock %}
 
 {% block content %}
-    <div id="jobs" class="side left">
-        <div class="headArea">
-            <h1>Jobs</h1>
-        </div>
-    </div>
-    <div id="center" class="center">
-        <div class="headArea">
-            <div class="robotIcon"></div><h1 class="left"></h1>
-            <div id="logout">
-                <img src="imgs/logout.svg" alt="Logout">
-            </div>
-        </div>
-        <div id="remote">
-            <a href="#" class="direction top" data-dir="top"></a>
-            <a href="#" class="direction left" data-dir="left"></a>
-            <a href="#" class="direction bottom" data-dir="bottom"></a>
-            <a href="#" class="direction right" data-dir="right"></a>
-        </div>
-    </div>
-    <div id="containers" class="side right">
-        <div class="headArea">
-            <h1>Containers</h1>
-        </div>
-        <div id="containerFilter">
-    
-        </div>
-        <div id="containerList">
-    
-        </div>
-    </div>
+	<div id="jobs" class="side left">
+		<div class="headArea">
+			<h1>Jobs</h1>
+		</div>
+	</div>
+	<div id="center" class="center">
+		<div class="headArea">
+			<div class="robotIcon"></div><h1 class="left"></h1>
+			<div id="logout">
+				<img src="imgs/logout.svg" alt="Logout">
+			</div>
+		</div>
+		<div id="content">
+			<div id="remote">
+				<a href="#" class="direction top" data-dir="top"></a>
+				<a href="#" class="direction left" data-dir="left"></a>
+				<a href="#" class="direction bottom" data-dir="bottom"></a>
+				<a href="#" class="direction right" data-dir="right"></a>
+			</div>
+		</div>
+	</div>
+	<div id="containers" class="side right">
+		<div class="headArea">
+			<h1>Containers</h1>
+		</div>
+		<div id="containerFilter">
+	
+		</div>
+		<div id="containerList">
+	
+		</div>
+	</div>
 {% endblock %}

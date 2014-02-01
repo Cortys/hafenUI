@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="750px" height="500px" viewBox="0 0 750 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <title>complexRound</title>
-    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
-    <defs></defs>
-    <g id="Maps" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="complexRound" sketch:type="MSArtboardGroup" stroke="#333333" stroke-width="10">
-            <g id="Group" sketch:type="MSLayerGroup" transform="translate(25.000000, 44.500000)">
-                <rect id="Rectangle-1" sketch:type="MSShapeGroup" x="0" y="54.8545817" width="553.792299" height="205.5" rx="200"></rect>
-                <path d="M142.123687,61.4043825 C225.029172,64.6776838 173.162194,7.24696979e-15 235.239207,7.24696979e-15 C262.6021,7.24696979e-15 340.606768,-8.69545348e-07 370.844035,7.24696979e-15 C418.611435,8.69545368e-07 375.729288,61.404382 465.169195,61.404382" id="Path-1" sketch:type="MSShapeGroup"></path>
-                <path d="M89.8483081,320.820292 C168.669778,325.443227 116.8028,259.535857 176.429405,259.535857 C203.826892,259.535857 291.953211,259.535858 322.228705,259.535857 C375.320887,259.535856 324.679113,320.82029 407.584597,320.82029" id="Path-1" sketch:type="MSShapeGroup" transform="translate(248.716453, 290.238048) scale(-1, -1) translate(-248.716453, -290.238048) "></path>
-                <path d="M407.176196,260.352981 C488.856474,260.352994 530.843371,332.631535 544.399067,361.056168 C579.929988,435.560152 699.183197,419.595013 699.183197,361.056168 L699.183197,107.72779 C699.183197,51.1687197 635.472579,54.8529824 599.533256,54.8529824 L436.581097,54.8529824" id="Path-3" sketch:type="MSShapeGroup"></path>
-            </g>
-        </g>
-    </g>
+	<title>complexRound</title>
+	<description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+	<defs></defs>
+	<g id="Maps" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+		<g id="complexRound" sketch:type="MSArtboardGroup" stroke="#333333" stroke-width="10">
+			<g id="Group" sketch:type="MSLayerGroup" transform="translate(25.000000, 44.500000)">
+				<rect id="Rectangle-1" sketch:type="MSShapeGroup" x="0" y="54.8545817" width="553.792299" height="205.5" rx="200"></rect>
+				<path d="M142.123687,61.4043825 C225.029172,64.6776838 173.162194,7.24696979e-15 235.239207,7.24696979e-15 C262.6021,7.24696979e-15 340.606768,-8.69545348e-07 370.844035,7.24696979e-15 C418.611435,8.69545368e-07 375.729288,61.404382 465.169195,61.404382" id="Path-1" sketch:type="MSShapeGroup"></path>
+				<path d="M89.8483081,320.820292 C168.669778,325.443227 116.8028,259.535857 176.429405,259.535857 C203.826892,259.535857 291.953211,259.535858 322.228705,259.535857 C375.320887,259.535856 324.679113,320.82029 407.584597,320.82029" id="Path-1" sketch:type="MSShapeGroup" transform="translate(248.716453, 290.238048) scale(-1, -1) translate(-248.716453, -290.238048) "></path>
+				<path d="M407.176196,260.352981 C488.856474,260.352994 530.843371,332.631535 544.399067,361.056168 C579.929988,435.560152 699.183197,419.595013 699.183197,361.056168 L699.183197,107.72779 C699.183197,51.1687197 635.472579,54.8529824 599.533256,54.8529824 L436.581097,54.8529824" id="Path-3" sketch:type="MSShapeGroup"></path>
+			</g>
+		</g>
+	</g>
 </svg>

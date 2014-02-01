@@ -1,5 +1,5 @@
 module.exports = {
 	rootDir: null,
-	dbData: require("./dbData.js"),
+	dbData: require("./connectivity/dbData.js"),
 	timeout: 20000
 };

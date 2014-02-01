@@ -11,5 +11,5 @@ Modular.addModules({
 });
 
 new Modular("main", ["socketLimitatorFail", "robotInformation", "logout", "remote"], function() {
-    
+	
 });

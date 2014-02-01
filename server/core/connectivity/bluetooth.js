@@ -7,13 +7,13 @@ var bluetooth = module.exports = {
 	},
 	listeners: {},
 	init: function() {
-		this.dir = require("./settings.js").rootDir+"/bluetooth/";
-        this.resetFiles();
+		this.dir = require("../settings.js").rootDir+"/bluetooth/";
+		this.resetFiles();
 		this.startListening();
 	},
-    resetFiles: function() {
-        this.fs.writeFile(this.dir+this.fileNames.send, this.codec.encode(this.codec.operations.kill));
-    },
+	resetFiles: function() {
+		this.fs.writeFile(this.dir+this.fileNames.send, this.codec.encode(this.codec.operations.kill));
+	},
 	startListening: function() {
 		var file = this.dir+this.fileNames.receive,
 			fs = this.fs,
@@ -29,18 +29,18 @@ var bluetooth = module.exports = {
 			var lines = data.split("\n"),
 				parts;
 			for(var i = 0; i < lines.length; i++) {
-                // On "kill" (Java client restarted/crashed): Call all disconnect listeners and force quit all connections
-			    if(lines[i] == codec.operations.kill) {
-			        for(var key in listeners)
-                        if(typeof listeners[key][codec.operations.disconnect] == "function")
-                            listeners[key][codec.operations.disconnect]();
-			    }
-			    else {
-    				parts = codec.decode(lines[i]);
-    				console.log(listeners);
-    				if(parts && typeof listeners[parts.key] == "object" && typeof listeners[parts.key][parts.operation] == "function")
-    					listeners[parts.key][parts.operation](parts.data);
-			    }
+				// On "kill" (Java client restarted/crashed): Call all disconnect listeners and force quit all connections
+				if(lines[i] == codec.operations.kill) {
+					for(var key in listeners)
+						if(typeof listeners[key][codec.operations.disconnect] == "function")
+							listeners[key][codec.operations.disconnect]();
+				}
+				else {
+					parts = codec.decode(lines[i]);
+					console.log(">", listeners);
+					if(parts && typeof listeners[parts.key] == "object" && typeof listeners[parts.key][parts.operation] == "function")
+						listeners[parts.key][parts.operation](parts.data);
+				}
 			}
 		});
 	},
@@ -82,7 +82,7 @@ var bluetooth = module.exports = {
 			delete this.listeners[client.key];
 	},
 	isListeningFor: function(client, operation) {
-	    return client && client.key && this.listeners[client.key] && this.listeners[client.key][this.codec.operations[operation]];
+		return client && client.key && this.listeners[client.key] && this.listeners[client.key][this.codec.operations[operation]];
 	},
 	appendLine: function(line) {
 		console.log("Appending line: '"+line+"'");
@@ -91,6 +91,6 @@ var bluetooth = module.exports = {
 				throw err;
 		});
 	},
-	codec: require("./protocols/BFP.js") // Use BFP for communication
+	codec: require("../protocols/BFP.js") // Use BFP for communication
 };
 bluetooth.init();

@@ -1,4 +1,4 @@
-var connections = require("../../core/connections.js");
+var connections = require("../../core/connectivity/connections.js");
 
 module.exports = function(socket) {
 	console.log("> Logged out socket connected");

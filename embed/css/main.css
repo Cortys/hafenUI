@@ -10,8 +10,7 @@
 
 #wrap .side {
 	position: fixed;
-	width: 12%;
-	min-width: 230px;
+	width: 230px;
 	top: 0;
 	bottom: 0;
 	height: auto;
@@ -46,6 +45,8 @@
 	height: 58px;
 	margin: 0;
 	padding: 0;
+	overflow: hidden;
+	z-index: 1;
 }
 
 .headArea h1 {
@@ -69,6 +70,7 @@
 	width: auto;
 	height: auto;
 	bottom: 0;
+	overflow: hidden;
 }
 
 .headArea .robotIcon {
@@ -91,12 +93,12 @@
 }
 
 #logout {
-    position: absolute;
-    width: 58px;
-    height: 58px;
-    top: 0;
-    right: 0;
-    cursor: pointer;
+	position: absolute;
+	width: 58px;
+	height: 58px;
+	top: 0;
+	right: 0;
+	cursor: pointer;
 }
 
 #logout img {
@@ -123,6 +125,17 @@
 	-o-transform: rotate(360deg);
 	-ms-transform: rotate(360deg);
 	transform: rotate(360deg);
+}
+
+#content {
+	position: absolute;
+	top: 58px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: auto;
+	height: auto;
+	overflow: hidden;
 }
 
 #remote {

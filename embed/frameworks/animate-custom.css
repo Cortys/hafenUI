@@ -189,7 +189,7 @@
 	animation-name: fadeOutUp;
 }
 @-webkit-keyframes lightSpeedOut {
-    0% { -webkit-transform: translateX(0%) skewX(0deg); opacity: 1; }
+	0% { -webkit-transform: translateX(0%) skewX(0deg); opacity: 1; }
 	100% { -webkit-transform: translateX(100%) skewX(-30deg); opacity: 0; }
 }
 
@@ -209,13 +209,13 @@
 }
 
 .lightSpeedOut {
-    -webkit-animation-name: lightSpeedOut;
-    -moz-animation-name: lightSpeedOut;
-    -o-animation-name: lightSpeedOut;
-    animation-name: lightSpeedOut;
+	-webkit-animation-name: lightSpeedOut;
+	-moz-animation-name: lightSpeedOut;
+	-o-animation-name: lightSpeedOut;
+	animation-name: lightSpeedOut;
 
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
+	-webkit-animation-timing-function: ease-in;
+	-moz-animation-timing-function: ease-in;
+	-o-animation-timing-function: ease-in;
+	animation-timing-function: ease-in;
 }

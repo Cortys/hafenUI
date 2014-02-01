@@ -1,4 +1,4 @@
-var connections = require("../core/connections.js"),
+var connections = require("../core/connectivity/connections.js"),
 	timeout = require("../core/settings.js").timeout;
 
 module.exports = function(socket) {

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="28px" height="40px" viewBox="0 0 28 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <title>left</title>
-    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
-    <defs></defs>
-    <g id="Showcase" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="main" sketch:type="MSArtboardGroup" transform="translate(-35.000000, -198.000000)" fill="#333333">
-            <g id="left" sketch:type="MSLayerGroup">
-                <g id="Group" transform="translate(0.000000, 98.000000)" sketch:type="MSShapeGroup">
-                    <g id="turn-left" transform="translate(20.000000, 80.000000)">
-                        <path d="M43,26.5000128 L43,60 L18.9968389,60 C16.7941203,60 15,58.2091276 15,55.9999745 L15,24.0000255 C15,21.7964248 16.7894457,20 18.9968389,20 L36.5015806,20 L34,20 L34,29 L43,29 L43,26.5000128 L43,26.5000128 Z M25.9974219,29 C24.8942762,29 24,29.8943377 24,30.9982138 L24,55.9949259 C24,58.2068672 25.7874739,60 28.0061948,60 L43,60 L43,29 L25.9974219,29 Z M43,24.5 L34,29 L34,20 L43,24.5 Z" id="left" transform="translate(29.000000, 40.000000) scale(-1, 1) translate(-29.000000, -40.000000) "></path>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+	<title>left</title>
+	<description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+	<defs></defs>
+	<g id="Showcase" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+		<g id="main" sketch:type="MSArtboardGroup" transform="translate(-35.000000, -198.000000)" fill="#333333">
+			<g id="left" sketch:type="MSLayerGroup">
+				<g id="Group" transform="translate(0.000000, 98.000000)" sketch:type="MSShapeGroup">
+					<g id="turn-left" transform="translate(20.000000, 80.000000)">
+						<path d="M43,26.5000128 L43,60 L18.9968389,60 C16.7941203,60 15,58.2091276 15,55.9999745 L15,24.0000255 C15,21.7964248 16.7894457,20 18.9968389,20 L36.5015806,20 L34,20 L34,29 L43,29 L43,26.5000128 L43,26.5000128 Z M25.9974219,29 C24.8942762,29 24,29.8943377 24,30.9982138 L24,55.9949259 C24,58.2068672 25.7874739,60 28.0061948,60 L43,60 L43,29 L25.9974219,29 Z M43,24.5 L34,29 L34,20 L43,24.5 Z" id="left" transform="translate(29.000000, 40.000000) scale(-1, 1) translate(-29.000000, -40.000000) "></path>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
 </svg>

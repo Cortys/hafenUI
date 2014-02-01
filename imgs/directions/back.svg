@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="28px" height="40px" viewBox="0 0 28 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <title>back</title>
-    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
-    <defs></defs>
-    <g id="Showcase" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="main" sketch:type="MSArtboardGroup" transform="translate(-35.000000, -118.000000)" fill="#333333">
-            <g id="left" sketch:type="MSLayerGroup">
-                <g id="Group" transform="translate(0.000000, 98.000000)" sketch:type="MSShapeGroup">
-                    <g id="turn-back">
-                        <path d="M38.9968389,20 C36.7894457,20 35,21.7964248 35,24.0000255 L35,55.9999745 C35,58.2091276 36.7941203,60 38.9968389,60 L63,60 L63,24.0000255 C63,21.7908724 61.2058797,20 59.0031611,20 L38.9968389,20 Z M45.999615,29 C44.8952581,29 44,29.8943377 44,30.9982138 L44,55.9949259 C44,58.2068672 45.7877996,60 48.009763,60 L54,60 L54,30.9982138 C54,29.8946308 53.1125667,29 52.000385,29 L45.999615,29 Z M54,51 L54,60 L63,60 L63,51 L54,51 Z M58.5,60 L54,51 L63,51 L58.5,60 Z" id="back"></path>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+	<title>back</title>
+	<description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+	<defs></defs>
+	<g id="Showcase" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+		<g id="main" sketch:type="MSArtboardGroup" transform="translate(-35.000000, -118.000000)" fill="#333333">
+			<g id="left" sketch:type="MSLayerGroup">
+				<g id="Group" transform="translate(0.000000, 98.000000)" sketch:type="MSShapeGroup">
+					<g id="turn-back">
+						<path d="M38.9968389,20 C36.7894457,20 35,21.7964248 35,24.0000255 L35,55.9999745 C35,58.2091276 36.7941203,60 38.9968389,60 L63,60 L63,24.0000255 C63,21.7908724 61.2058797,20 59.0031611,20 L38.9968389,20 Z M45.999615,29 C44.8952581,29 44,29.8943377 44,30.9982138 L44,55.9949259 C44,58.2068672 45.7877996,60 48.009763,60 L54,60 L54,30.9982138 C54,29.8946308 53.1125667,29 52.000385,29 L45.999615,29 Z M54,51 L54,60 L63,60 L63,51 L54,51 Z M58.5,60 L54,51 L63,51 L58.5,60 Z" id="back"></path>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
 </svg>

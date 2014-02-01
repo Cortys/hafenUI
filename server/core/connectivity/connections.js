@@ -32,12 +32,11 @@ connections = {
 	// add a new connection:
 	addClient: function(socket, robotId) {
 		var client = this.getClient(socket);
-		if(client) {
+		if(client instanceof Client) {
 			client.onQuit(function() {});
 			this.removeClient(client);
 		}
-		
-		if(!socket || !unconnectedRobots[robotId])
+		if(!socket || (!unconnectedRobots[robotId] && robotId !== undefined))
 			return null;
 		
 		client = new Client(socket, robotId);
@@ -113,7 +112,7 @@ Client.prototype = {
 	key: null,
 	robot: null,
 	connector: require("./bluetooth.js"),
-	mover: require("./robotMovement.js"),
+	mover: require("../control/robotMovement.js"),
 	removeTimer: null,
 	connectionEvents: {
 		success: function() {}, // On connection established
@@ -128,15 +127,15 @@ Client.prototype = {
 	establishBluetoothConnection: function() {
 		var t = this,
 			fail = function() {
-			    t.disableRobotMovements();
+				t.disableRobotMovements();
 				clearTimeout(timer);
 				t.connected = false;
 				connections.removeClient(t);
 				t.connectionEvents.fail();
-			}, timer = setTimeout(fail, require("./settings.js").timeout);
+			}, timer = setTimeout(fail, require("../settings.js").timeout);
 
 		t.connector.connect(t, function() {
-		    t.enableRobotMovements();
+			t.enableRobotMovements();
 			clearTimeout(timer);
 			t.connected = true;
 			t.connectionEvents.success();
@@ -148,28 +147,28 @@ Client.prototype = {
 		this.connector.disconnect(this);
 	},
 	enableRobotMovements: function() {
-	    this.mover.startListeningForClient(this);
+		this.mover.startListeningForClient(this);
 	},
 	disableRobotMovements: function() {
-	    this.mover.stopListeningForClient(this);
+		this.mover.stopListeningForClient(this);
 	},
 	send: function(message) {
 		if(this.robot !== null)
 			this.connector.send(this, message);
 	},
 	onReceive: function(callback) {
-	    if(typeof callback == "function")
-            this.connector.listenFor(this, "receive", callback);
-        else
-            this.connector.unlistenFor(this, "receive");
+		if(typeof callback == "function")
+			this.connector.listenFor(this, "receive", callback);
+		else
+			this.connector.unlistenFor(this, "receive");
 	},
-	onDone: function(success, fail) {
+	onDone: function(success, fail) { // bluetooth connection established / quit
 		if(typeof success == "function")
 			this.connectionEvents.success = success;
 		if(typeof fail == "function")
 			this.connectionEvents.fail = fail;
 	},
-	onQuit: function(quit) {
+	onQuit: function(quit) { // client server login connection quit (connection error with bluetooth OR websocket)
 		if(typeof quit == "function")
 			this.connectionEvents.quit = quit;
 	}
