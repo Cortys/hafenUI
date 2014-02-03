@@ -5,7 +5,6 @@ var mover = require("./robotMovement.js");
 Task = function(type, data) {
 	this.type = type;
 	this.data = data;
-	this.client = client;
 };
 
 Task.prototype = {
@@ -18,14 +17,20 @@ Task.prototype = {
 			return;
 		var prop = this.data.concat(add);
 		prop.unshift(client);
-		mover.do[type].apply(mover.do, prop);
+		mover.do[this.type].apply(mover.do, prop);
 	},
-	execute: function() {},
+	execute: function(client) {},
 	setDone: function() {
 		this.done = true;
 	},
 	setJobCallback: function() {
 		this.jobCallback = null;
+	},
+	getObject: function() {
+		return {
+			title: "Prototype Task",
+			image: null
+		};
 	}
 };
 module.exports = Task;

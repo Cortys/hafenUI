@@ -1,4 +1,4 @@
-var robotMovement = require("../../core/control/robotMovement.js"),
+var JobSimple = require("../../core/control/jobs/simple.js"),
 	dirs = {
 		top: "forward",
 		left: "left",
@@ -6,11 +6,8 @@ var robotMovement = require("../../core/control/robotMovement.js"),
 		right: "right"
 	};
 
-module.exports = function(client) {
-	return function(data, callback) {
-		if(dirs[data.direction])
-			robotMovement.do.move(client, dirs[data.direction], function(positions) {
-				callback(true);
-			});
-	};
+module.exports = function(jobManager) {
+	jobManager.client.socket.on("moveRobot", function(dir) {
+		jobManager.addJob(new JobSimple(dirs[dir]));
+	});
 };

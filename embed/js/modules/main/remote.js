@@ -11,6 +11,7 @@ new Modular("remote", ["socket", "events"], function() {
 		if(!t.val.blocked)
 			t.do.move($(this).attr("data-dir"));
 	});
+	t.do.listen();
 });
 
 remote.val = {
@@ -21,11 +22,14 @@ remote.do = {
 	val: remote.val,
 	move: function(dir) {
 		var t = this.val;
-		t.blocked = true;
-		socket.do.send("moveRobot", { direction:dir }, function(success) {
-			if(success)
-				console.log("BAM");
-			t.blocked = false;
+		socket.do.send("moveRobot", { direction:dir });
+	},
+	listen: function() {
+		socket.do.register("currentJobs", function(data) {
+			console.log("jobs", data);
+		});
+		socket.do.register("currentTasks", function(data) {
+			console.log("tasks", data);
 		});
 	}
 };

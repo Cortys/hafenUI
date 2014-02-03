@@ -2,26 +2,31 @@ var Task = require("./task.js"),
 
 Job = function() {},
 
-doNextTask = function() {
+doNextTask = function(client) {
 	if(!this.running)
 		return;
 	var t = this,
 		task = t.tasks.shift();
 	if(task instanceof Task) {
 		task.setJobCallback(function() {
-			doNextTask.call(t);
+			if(typeof t.stepper == "function")
+				t.stepper(task);
+			doNextTask.call(t, client);
 		});
-		task.execute();
+		task.execute(client);
 	}
 	else {
 		t.running = false;
-		t.callback();
+		if(typeof t.callback == "function")
+			t.callback(t, true);
 	}
 };
 
 Job.prototype = {
 	tasks: [],
 	running: false,
+	callback: null,
+	stepper: null,
 	addTask: function(task) {
 		if(task instanceof Task)
 			this.tasks.push(task);
@@ -32,17 +37,34 @@ Job.prototype = {
 	emptyQueue: function() {
 		this.tasks = [];
 	},
-	run: function(callback) {
+	run: function(client, callback, stepper) {
 		if(this.running)
 			return;
+		if(callback !== undefined)
+			this.callback = callback;
+		if(stepper !== undefined)
+			this.stepper = stepper;
 		this.running = true;
-		doNextTask.call(this);
+		doNextTask.call(this, client);
 	},
 	stop: function() {
+		var c = this.callback;
+		this.callback = null;
 		this.emptyQueue();
+		c(this, false);
 	},
 	pause: function() {
 		this.running = false;
+	},
+	
+	getObject: function() {
+		return { title: "Prototype Job" };
+	},
+	getTasksObject: function() {
+		var tasks = [];
+		for(var i = 0; i < this.tasks; i++)
+			tasks.push(this.tasks[0].getObject());
+		return tasks;
 	}
 };
 

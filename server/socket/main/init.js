@@ -15,7 +15,8 @@ module.exports = function(socket) {
 		
 		socket.emit("robotInformation", client.robot);
 		
-		var jobManager = new JobManager(socket);
+		var jobManager = new JobManager(socket),
+			remote = require("./remote.js")(jobManager);
 		
 		socket.on("logout", function(data, callback) {
 			client.onQuit(function() {}); // Remove lost connection error.
@@ -27,8 +28,6 @@ module.exports = function(socket) {
 		client.onQuit(function() {
 			socket.emit("connectionLost");
 		});
-		
-		socket.on("moveRobot", require("./remote.js")(client));
 	}
 	else // connection was killed right after connection:
 		socket.emit("connectionLost");
