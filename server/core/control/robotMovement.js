@@ -22,6 +22,9 @@ var robotMovement = {
 			client.onReceive(null);
 		}
 	},
+	isListeningForClient: function(client) {
+		return client && this.listeners.hasOwnProperty(client.key);
+	},
 	
 	codec: require("../protocols/RCP.js") // Use RCP for robot movements
 };

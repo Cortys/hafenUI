@@ -7,7 +7,7 @@ var JobSimple = require("../../core/control/jobs/simple.js"),
 	};
 
 module.exports = function(jobManager) {
-	jobManager.client.socket.on("moveRobot", function(dir) {
-		jobManager.addJob(new JobSimple(dirs[dir]));
+	jobManager.client.socket.on("moveRobot", function(data) {
+		jobManager.addJob(new JobSimple(dirs[data.direction]));
 	});
 };

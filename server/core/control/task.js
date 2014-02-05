@@ -13,7 +13,7 @@ Task.prototype = {
 	done: false,
 	jobCallback: undefined,
 	rawExecute: function(client, add) {
-		if(this.done)
+		if(this.done || !mover.isListeningForClient(client))
 			return;
 		var prop = this.data.concat(add);
 		prop.unshift(client);

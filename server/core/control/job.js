@@ -1,14 +1,17 @@
 var Task = require("./task.js"),
 
-Job = function() {},
+Job = function() {
+	this.tasks = [];
+},
 
 doNextTask = function(client) {
 	if(!this.running)
 		return;
 	var t = this,
-		task = t.tasks.shift();
+		task = t.tasks[0];
 	if(task instanceof Task) {
 		task.setJobCallback(function() {
+			t.tasks.shift();
 			if(typeof t.stepper == "function")
 				t.stepper(task);
 			doNextTask.call(t, client);
@@ -23,7 +26,7 @@ doNextTask = function(client) {
 };
 
 Job.prototype = {
-	tasks: [],
+	tasks: null,
 	running: false,
 	callback: null,
 	stepper: null,
@@ -62,8 +65,8 @@ Job.prototype = {
 	},
 	getTasksObject: function() {
 		var tasks = [];
-		for(var i = 0; i < this.tasks; i++)
-			tasks.push(this.tasks[0].getObject());
+		for(var i = 0; i < this.tasks.length; i++)
+			tasks.push(this.tasks[i].getObject());
 		return tasks;
 	}
 };

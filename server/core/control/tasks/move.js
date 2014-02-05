@@ -19,7 +19,7 @@ TaskMove.prototype.execute = function(client) {
 }
 TaskMove.prototype.getObject = function() {
 	return {
-		title: "Move "+this.dir,
+		title: (this.dir=="turn"?"Turn back":"Move "+this.dir),
 		image: null
 	};
 };

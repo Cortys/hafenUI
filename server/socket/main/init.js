@@ -15,17 +15,22 @@ module.exports = function(socket) {
 		
 		socket.emit("robotInformation", client.robot);
 		
-		var jobManager = new JobManager(socket),
-			remote = require("./remote.js")(jobManager);
+		if(!client.jobManager)
+			client.jobManager = new JobManager(client);
+		
+		var remote = require("./remote.js")(client.jobManager);
 		
 		socket.on("logout", function(data, callback) {
-			client.onQuit(function() {}); // Remove lost connection error.
+			client.onQuit(function() {
+				client.jobManager.quit();
+			}); // Remove lost connection error.
 			connections.removeClient(client);
 			callback(true);
 		});
 		
 		// Lost connection to client:
 		client.onQuit(function() {
+			client.jobManager.quit();
 			socket.emit("connectionLost");
 		});
 	}

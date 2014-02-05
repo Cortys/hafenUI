@@ -1,11 +1,13 @@
 var mover = require("../../core/control/robotMovement.js"),
-	connections = require("../../core/connectivity/connections.js"),
 	Job = require("../../core/control/job.js");
 
-var JobManager = function(socket) {
-	this.client = connections.getClient(socket);
-	
-	mover.startListeningForClient(this.client);
+var JobManager = function(client) {
+	this.jobs = [];
+	if(client) {
+		this.client = client;
+		console.log("> New JobManager for client "+client.key);
+		mover.startListeningForClient(client);
+	}
 },
 
 doNextJob = function() {
@@ -29,7 +31,7 @@ doNextJob = function() {
 
 JobManager.prototype = {
 	client: null,
-	jobs: [],
+	jobs: null,
 	running: false,
 	
 	addJob: function(job) {
@@ -42,16 +44,22 @@ JobManager.prototype = {
 	},
 	
 	pushJobs: function() {
-		var jobs = [];
+		var jobs = {
+			jobs: [],
+			tasks: []
+		};
 		for(var i = 0; i < this.jobs.length; i++)
-			jobs.push(this.jobs[i].getObject());
+			jobs.jobs.push(this.jobs[i].getObject());
+		if(this.jobs[0])
+			jobs.tasks = this.jobs[0].getTasksObject();
 		this.client.socket.emit("currentJobs", jobs);
-		this.pushTasks();
 	},
 	
 	pushTasks: function() {
-		var tasks = this.jobs[0].getTasksObject();
-		this.client.socket.emit("currentTasks", tasks);
+		if(this.jobs[0]) {
+			var tasks = this.jobs[0].getTasksObject();
+			this.client.socket.emit("currentTasks", tasks);
+		}
 	},
 	
 	quit: function() {
