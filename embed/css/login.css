@@ -71,6 +71,13 @@
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #dddddd;
 }
 
+#robotList li:active {
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 100%) #dddddd;
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 100%) #dddddd;
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 100%) #dddddd;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 100%) #dddddd;
+}
+
 #robotList li.active {
 	background-color: #992d2a;
 	color: #ffffff;

@@ -7,9 +7,10 @@
 Modular.addModules({
 	"logout": "main/logout.js",
 	"robotInformation": "main/robotInformation.js",
-	"remote": "main/remote.js"
+	"remote": "main/remote.js",
+	"jobs": "main/jobs.js"
 });
 
-new Modular("main", ["socketLimitatorFail", "robotInformation", "logout", "remote"], function() {
+new Modular("main", ["socketLimitatorFail", "robotInformation", "logout", "jobs", "remote"], function() {
 	
 });

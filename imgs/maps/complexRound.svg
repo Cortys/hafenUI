@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="750px" height="500px" viewBox="0 0 750 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-	<title>complexRound</title>
-	<description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
-	<defs></defs>
-	<g id="Maps" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-		<g id="complexRound" sketch:type="MSArtboardGroup" stroke="#333333" stroke-width="10">
-			<g id="Group" sketch:type="MSLayerGroup" transform="translate(25.000000, 44.500000)">
-				<rect id="Rectangle-1" sketch:type="MSShapeGroup" x="0" y="54.8545817" width="553.792299" height="205.5" rx="200"></rect>
-				<path d="M142.123687,61.4043825 C225.029172,64.6776838 173.162194,7.24696979e-15 235.239207,7.24696979e-15 C262.6021,7.24696979e-15 340.606768,-8.69545348e-07 370.844035,7.24696979e-15 C418.611435,8.69545368e-07 375.729288,61.404382 465.169195,61.404382" id="Path-1" sketch:type="MSShapeGroup"></path>
-				<path d="M89.8483081,320.820292 C168.669778,325.443227 116.8028,259.535857 176.429405,259.535857 C203.826892,259.535857 291.953211,259.535858 322.228705,259.535857 C375.320887,259.535856 324.679113,320.82029 407.584597,320.82029" id="Path-1" sketch:type="MSShapeGroup" transform="translate(248.716453, 290.238048) scale(-1, -1) translate(-248.716453, -290.238048) "></path>
-				<path d="M407.176196,260.352981 C488.856474,260.352994 530.843371,332.631535 544.399067,361.056168 C579.929988,435.560152 699.183197,419.595013 699.183197,361.056168 L699.183197,107.72779 C699.183197,51.1687197 635.472579,54.8529824 599.533256,54.8529824 L436.581097,54.8529824" id="Path-3" sketch:type="MSShapeGroup"></path>
-			</g>
-		</g>
-	</g>
+    <title>complexRound</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs>
+        <path id="path-1" d="M102.7448,0.3546 C46.00043,0.3546 0,46.3608 0,103.1046 L0,103.1046 C0,159.8518 45.99707,205.8546 102.7448,205.8546 L451.0475,205.8546 C507.7919,205.8546 553.7923,159.8483 553.7923,103.1046 L553.7923,103.1046 C553.7923,46.3573 507.7952,0.3546 451.0475,0.3546 L102.7448,0.3546 L102.7448,0.3546 Z"></path>
+        <mask id="mask-2" sketch:name="Clip 2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <path id="path-3" d="M0.1237,61.9044 C83.0292,65.1777 31.1622,0.5 93.2392,0.5 L228.844,0.5 C276.6114,0.5 233.7293,61.9044 323.1692,61.9044"></path>
+        <mask id="mask-4" sketch:name="Clip 5" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <path id="path-5" d="M317.5846,0.1558 C238.7631,-4.4671 290.6301,61.4402 231.0035,61.4402 L85.2042,61.4402 C32.112,61.4402 82.7538,0.1558 -0.1517,0.1558"></path>
+        <mask id="mask-6" sketch:name="Clip 8" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+        <path id="path-7" d="M0.1762,205.853 C81.8565,205.853 123.8434,278.1315 137.3991,306.55617 C172.93,381.06015 292.1832,365.09501 292.1832,306.55617 L292.1832,53.2278 C292.1832,-3.3313 228.4726,0.353 192.5333,0.353 L29.5811,0.353"></path>
+        <mask id="mask-8" sketch:name="Clip 11" fill="white">
+            <use xlink:href="#path-7"></use>
+        </mask>
+    </defs>
+    <g id="Maps" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="complexRound" sketch:type="MSArtboardGroup">
+            <g sketch:type="MSLayerGroup" transform="translate(25.500000, 43.500000)">
+                <g id="Group-3" transform="translate(0.000000, 55.000000)">
+                    <g id="Clip-2"></g>
+                    <path d="M102.7448,0.3546 C46.00043,0.3546 0,46.36085 0,103.1046 L0,103.1046 C0,159.8519 45.99707,205.8546 102.7448,205.8546 L451.0475,205.8546 C507.7919,205.8546 553.7923,159.8483 553.7923,103.1046 L553.7923,103.1046 C553.7923,46.35734 507.7952,0.3546 451.0475,0.3546 L102.7448,0.3546 L102.7448,0.3546 Z" id="Stroke-1" stroke="#333333" stroke-width="20" sketch:type="MSShapeGroup" mask="url(#mask-2)"></path>
+                </g>
+                <g id="Group-6" transform="translate(142.000000, 0.000000)">
+                    <g id="Clip-5"></g>
+                    <path d="M0.1237,61.90438 C83.02918,65.17768 31.16221,0.5 93.23922,0.5 L228.844,0.5 C276.6114,0.5 233.7293,61.90438 323.1692,61.90438" id="Stroke-4" stroke="#333333" stroke-width="20" sketch:type="MSShapeGroup" mask="url(#mask-4)"></path>
+                </g>
+                <g id="Group-9" transform="translate(90.000000, 260.000000)">
+                    <g id="Clip-8"></g>
+                    <path d="M317.5846,0.15576 C238.76313,-4.46717 290.63011,61.4402 231.0035,61.4402 C203.606,61.4402 115.4797,61.4401987 85.2042,61.4402 C32.112,61.4402 82.7538,0.15577 -0.1517,0.15577" id="Stroke-7" stroke="#333333" stroke-width="20" sketch:type="MSShapeGroup" mask="url(#mask-6)"></path>
+                </g>
+                <g id="Group-12" transform="translate(407.000000, 55.000000)">
+                    <g id="Clip-11"></g>
+                    <path d="M0.1762,205.853 C81.85648,205.853 123.8434,278.1316 137.3991,306.5562 C172.93,381.0602 292.1832,365.095 292.1832,306.5562 L292.1832,53.22781 C292.1832,-3.331264 228.4726,0.35299832 192.5333,0.35299832 L29.5811,0.35299832" id="Stroke-10" stroke="#333333" stroke-width="20" sketch:type="MSShapeGroup" mask="url(#mask-8)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

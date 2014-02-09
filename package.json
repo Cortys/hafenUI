@@ -6,7 +6,8 @@
 		"socket.io": "latest",
 		"express": "latest",
 		"swig": "latest",
-		"mysql": "latest"
+		"mysql": "latest",
+		"chokidar": "latest"
 	},
 	"author": "Clemens Damke, Matthias Stork, GField"
 }

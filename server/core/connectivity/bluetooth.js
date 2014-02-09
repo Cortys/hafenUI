@@ -15,12 +15,13 @@ var bluetooth = module.exports = {
 		this.fs.writeFile(this.dir+this.fileNames.send, this.codec.encode(this.codec.operations.kill));
 	},
 	startListening: function() {
-		var file = this.dir+this.fileNames.receive,
+		var fileName = this.fileNames.receive,
+			file = this.dir+fileName,
 			fs = this.fs,
 			codec = this.codec,
 			listeners = this.listeners;
 		console.log("> Watching file '"+file+"' for changes");
-		fs.watchFile(file, { persistent:true, interval:2500 }, function() {
+		require("chokidar").watch(file, { persistent:false }).on("change", function(filename) {
 			var data = fs.readFileSync(file, { encoding:"utf8", flag:"r" });
 			if(!data)
 				return;

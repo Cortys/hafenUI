@@ -13,20 +13,19 @@ var JobManager = function(client) {
 doNextJob = function() {
 	this.running = true;
 	var t = this,
-		job = t.jobs[0];
+		job = t.jobs.length?t.jobs[0]:null;
 	
 	if(job instanceof Job) {
 		job.run(t.client, function(success) { // callback:
 			t.jobs.shift();
-			t.pushJobs();
-			doNextJob.call(this);
-		}, function(task) { // after each step:
-			t.pushTasks();
+			t.pushJobs("shift");
+			doNextJob.call(t);
+		}, function(task, irregular) { // after each step:
+			t.pushTasks(irregular?undefined:"shift");
 		});
 	}
-	else {
+	else
 		t.running = false;
-	}
 };
 
 JobManager.prototype = {
@@ -34,30 +33,47 @@ JobManager.prototype = {
 	jobs: null,
 	running: false,
 	
+	start: function() {
+		this.pushJobs();
+	},
+	
 	addJob: function(job) {
 		if(job instanceof Job) {
 			this.jobs.push(job);
-			this.pushJobs();
+			this.pushJobs("push");
 			if(!this.running)
 				doNextJob.call(this);
 		}
 	},
 	
-	pushJobs: function() {
+	pushJobs: function(type) {
 		var jobs = {
 			jobs: [],
-			tasks: []
+			tasks: [],
+			type: (type || "all")
 		};
-		for(var i = 0; i < this.jobs.length; i++)
-			jobs.jobs.push(this.jobs[i].getObject());
-		if(this.jobs[0])
+		
+		if(type !== "shift")
+			for(var i = (type === "push" && this.jobs.length?this.jobs.length-1:0); i < this.jobs.length; i++)
+				jobs.jobs.push(this.jobs[i].getObject());
+		else
+			delete jobs.jobs;
+			
+		if(this.running && type && type !== "shift") // ALL flag not set or REMOVE FLAG NOT SET: remove task information
+			delete jobs.tasks;
+		else if(this.jobs[0])
 			jobs.tasks = this.jobs[0].getTasksObject();
 		this.client.socket.emit("currentJobs", jobs);
 	},
 	
-	pushTasks: function() {
+	pushTasks: function(type) {
 		if(this.jobs[0]) {
-			var tasks = this.jobs[0].getTasksObject();
+			var tasks = type==="shift"?{
+				type: "shift"
+			}:{
+				tasks: this.jobs[0].getTasksObject(),
+				type: "all"
+			};
 			this.client.socket.emit("currentTasks", tasks);
 		}
 	},

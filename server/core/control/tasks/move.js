@@ -13,14 +13,16 @@ TaskMove.prototype.execute = function(client) {
 	var t = this;
 	t.rawExecute(client, [function(positionData) {
 		t.setDone();
-		t.dataCallback(positionData);
-		t.jobCallback();
+		if(typeof t.dataCallback == "function")
+			t.dataCallback(positionData);
+		if(typeof t.jobCallback == "function")
+			t.jobCallback();
 	}]);
-}
+};
 TaskMove.prototype.getObject = function() {
 	return {
-		title: (this.dir=="turn"?"Turn back":"Move "+this.dir),
-		image: null
+		type: "move",
+		value: this.dir
 	};
 };
 

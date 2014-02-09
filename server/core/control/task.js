@@ -23,13 +23,13 @@ Task.prototype = {
 	setDone: function() {
 		this.done = true;
 	},
-	setJobCallback: function() {
-		this.jobCallback = null;
+	setJobCallback: function(callback) {
+		this.jobCallback = callback;
 	},
 	getObject: function() {
 		return {
-			title: "Prototype Task",
-			image: null
+			type: "text",
+			value: "Prototype Task"
 		};
 	}
 };

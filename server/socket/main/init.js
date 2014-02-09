@@ -15,11 +15,15 @@ module.exports = function(socket) {
 		
 		socket.emit("robotInformation", client.robot);
 		
+		// Job Management:
 		if(!client.jobManager)
 			client.jobManager = new JobManager(client);
 		
+		client.jobManager.start(); // Emit job infos on first start + on reopening the page while logged in
+		
 		var remote = require("./remote.js")(client.jobManager);
 		
+		// Logout feature (too basic for a seperate module, maybe later):
 		socket.on("logout", function(data, callback) {
 			client.onQuit(function() {
 				client.jobManager.quit();

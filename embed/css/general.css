@@ -81,11 +81,11 @@ input {
 	margin:0;
 	font-size: 16px;
 	border: 1px solid #dddddd;
+	outline: none;
 }
 input[type="button"] {
 	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #ff9900;
-	background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #ff9900;
-	background: -ms-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #ff9900;
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.15)), to(rgba(255, 255, 255, 0))) #ff9900;
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #ff9900;
 	color: #ffffff;
 	cursor: pointer;
@@ -97,11 +97,33 @@ input[type="button"]:hover {
 }
 input[type="button"]:active {
 	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 100%) #ff8800;
-	background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 100%) #ff8800;
-	background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 100%) #ff8800;
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.15))) #ff8800;
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 100%) #ff8800;
 }
 input[type="button"].inactive {
 	background-color: #dddddd !important;
 	cursor: default !important;
 }
+
+/* @group Scrollbars */
+
+::-webkit-scrollbar-track {
+	background: none;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	background: none;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #cccccc;
+	border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: #999999;
+}
+
+/* @end */

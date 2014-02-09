@@ -13,7 +13,7 @@ doNextTask = function(client) {
 		task.setJobCallback(function() {
 			t.tasks.shift();
 			if(typeof t.stepper == "function")
-				t.stepper(task);
+				t.stepper(task, t.irregularTaskChange);
 			doNextTask.call(t, client);
 		});
 		task.execute(client);
@@ -30,15 +30,24 @@ Job.prototype = {
 	running: false,
 	callback: null,
 	stepper: null,
+	irregularTaskChange: false,
 	addTask: function(task) {
-		if(task instanceof Task)
+		if(task instanceof Task) {
 			this.tasks.push(task);
+			this.irregularTaskChange = this.running;
+		}
 	},
 	addTasks: function(tasks) {
 		this.tasks = this.tasks.concat(tasks);
+		this.irregularTaskChange = this.running;
+	},
+	replaceQueue: function(tasks) {
+		this.tasks = tasks.concat([]);
+		this.irregularTaskChange = this.running;
 	},
 	emptyQueue: function() {
 		this.tasks = [];
+		this.irregularTaskChange = this.running;
 	},
 	run: function(client, callback, stepper) {
 		if(this.running)
@@ -61,7 +70,10 @@ Job.prototype = {
 	},
 	
 	getObject: function() {
-		return { title: "Prototype Job" };
+		return {
+			type: "text",
+			value: "Prototype Job"
+		};
 	},
 	getTasksObject: function() {
 		var tasks = [];
