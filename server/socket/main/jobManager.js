@@ -20,8 +20,9 @@ doNextJob = function() {
 			t.jobs.shift();
 			t.pushJobs("shift");
 			doNextJob.call(t);
-		}, function(task, irregular) { // after each step:
-			t.pushTasks(irregular?undefined:"shift");
+		}, function(task, irregular, isLast) { // after each step:
+			if(!isLast)
+				t.pushTasks(irregular?undefined:"shift");
 		});
 	}
 	else

@@ -215,7 +215,7 @@
 }
 
 #jobList .job.hiddenTop {
-	-webkit-transform: translateY(-25px) rotate3d(1,0,0,60deg);
+	-webkit-transform: translateY(-25px) rotate3d(1,0,0,90deg);
 	opacity: 0;
 }
 
@@ -256,7 +256,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	-webkit-transition: all 1s ease-in-out 0s;
+	-webkit-transition: all 0.5s ease-in-out 0s;
 
 }
 .job:not(.hiddenTop):first-child ul li:first-child {
@@ -264,9 +264,8 @@
 	background: url(../../imgs/directions/marker.svg) 0 center no-repeat;
 }
 
-.job ul li.hidden {
-	
-
+.job ul:not(.hiddenTop) li.hidden {
+	-webkit-transform: translateX(-100%);
 }
 
 .job ul li img {

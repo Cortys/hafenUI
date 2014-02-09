@@ -13,7 +13,7 @@ doNextTask = function(client) {
 		task.setJobCallback(function() {
 			t.tasks.shift();
 			if(typeof t.stepper == "function")
-				t.stepper(task, t.irregularTaskChange);
+				t.stepper(task, t.irregularTaskChange, !(t.tasks[0] instanceof Task));
 			doNextTask.call(t, client);
 		});
 		task.execute(client);

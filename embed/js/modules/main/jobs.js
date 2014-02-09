@@ -46,11 +46,9 @@ jobs.do = {
 		}
 		else { // Remove first job
 			var e = t.val.e.children(".job").not(".hiddenTop").first().addClass("hiddenTop");
-			setTimeout(function() {
-				e.slideUp(300, function() {
-					e.remove();
-				});
-			}, 200)
+			e.next(".job").animate({ marginTop:(e[0].clientHeight*(-1)) }, 200, "linear", function() {
+				e.remove();
+			});
 		}		
 		if(jobs.tasks)
 			t.showTasks({
@@ -68,7 +66,12 @@ jobs.do = {
 			}
 			jobs.val.e.children(".job").not(".hiddenTop").first().children("ul").html(html);
 		}
-		else
-			$("li:first-child", jobs.val.e).remove();
+		else {
+			var e = $("li:first-child", jobs.val.e).addClass("hidden");
+			e.animate({ marginTop:(e[0].clientHeight*(-1)) }, 500, "linear", function() {
+				e.remove();
+			});
+			
+		}
 	}
 };
