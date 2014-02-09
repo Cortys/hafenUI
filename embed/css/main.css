@@ -182,8 +182,11 @@
 	background-color: #cccccc;
 
 	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-o-transform: scale(1.1);
 	-ms-transform: scale(1.1);
 	transform: scale(1.1);
+
 }
 
 /* @group Jobs */
@@ -205,17 +208,36 @@
 #jobList .job {
 	border-bottom: 1px solid #cccccc;
 	-webkit-transition: -webkit-transform 0.3s ease-out 0s, opacity 0.3s ease-out 0s;
+	-moz-transition: -moz-transform 0.3s ease-out 0s, opacity 0.3s ease-out 0s;
+	-o-transition: -o-transform 0.3s ease-out 0s, opacity 0.3s ease-out 0s;
+	-ms-transition: -ms-transform 0.3s ease-out 0s, opacity 0.3s ease-out 0s;
+	transition: transform 0.3s ease-out 0s, opacity 0.3s ease-out 0s;
 	-webkit-transform: translateY(0) rotate3d(1,0,0,0deg);
+	-moz-transform: translateY(0) rotate3d(1,0,0,0deg);
+	-o-transform: translateY(0) rotate3d(1,0,0,0deg);
+	-ms-transform: translateY(0) rotate3d(1,0,0,0deg);
+	transform: translateY(0) rotate3d(1,0,0,0deg);
+
 	opacity: 1;
 }
 
 #jobList .job.hiddenBottom {
 	-webkit-transform: translateY(25px) rotate3d(1,0,0,-60deg);
+	-moz-transform: translateY(25px) rotate3d(1,0,0,-60deg);
+	-o-transform: translateY(25px) rotate3d(1,0,0,-60deg);
+	-ms-transform: translateY(25px) rotate3d(1,0,0,-60deg);
+	transform: translateY(25px) rotate3d(1,0,0,-60deg);
+
 	opacity: 0;
 }
 
 #jobList .job.hiddenTop {
 	-webkit-transform: translateY(-25px) rotate3d(1,0,0,90deg);
+	-moz-transform: translateY(-25px) rotate3d(1,0,0,90deg);
+	-o-transform: translateY(-25px) rotate3d(1,0,0,90deg);
+	-ms-transform: translateY(-25px) rotate3d(1,0,0,90deg);
+	transform: translateY(-25px) rotate3d(1,0,0,90deg);
+
 	opacity: 0;
 }
 
@@ -258,6 +280,11 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	-webkit-transition: -webkit-transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
+	-moz-transition: -moz-transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
+	-o-transition: -o-transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
+	-ms-transition: -ms-transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
+	transition: transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
+
 
 }
 .job:not(.hiddenTop):first-child ul li:first-child {
@@ -267,6 +294,11 @@
 
 .job ul:not(.hiddenTop) li.hidden {
 	-webkit-transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
+	-ms-transform: translateX(-100%);
+	transform: translateX(-100%);
+
 	opacity: 0;
 }
 
