@@ -204,7 +204,7 @@
 
 #jobList .job {
 	border-bottom: 1px solid #cccccc;
-	-webkit-transition: -webkit-transform 0.2s ease-out 0s, opacity 0.2s ease-out 0s;
+	-webkit-transition: -webkit-transform 0.3s ease-out 0s, opacity 0.3s ease-out 0s;
 	-webkit-transform: translateY(0) rotate3d(1,0,0,0deg);
 	opacity: 1;
 }
@@ -257,7 +257,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	-webkit-transition: -webkit-transform 0.5s ease-in-out 0s, opacity 0.5s ease-in-out 0s;
+	-webkit-transition: -webkit-transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
 
 }
 .job:not(.hiddenTop):first-child ul li:first-child {

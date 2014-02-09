@@ -50,14 +50,14 @@ jobs.do = {
 		}
 		else { // Remove first job
 			var e = t.val.e.children(".job").not(".hiddenTop").first().addClass("hiddenTop"),
-				n = e.next(".job").animate({ marginTop:(e[0].clientHeight*(-1)) }, 200, "linear", function() {
+				n = e.next(".job").animate({ marginTop:(e[0].clientHeight*(-1)) }, 300, "linear", function() {
 				n.css({ marginTop:0 });
 				e.remove();
 			});
 			if(!n || !n.length)
 				setTimeout(function() {
 					e.remove();
-				}, 200);
+				}, 300);
 		}		
 		if(jobs.tasks)
 			t.showTasks({
@@ -77,7 +77,7 @@ jobs.do = {
 		}
 		else {
 			var e = $("li:first-child", jobs.val.e).addClass("hidden"),
-				n = e.next("li").animate({ marginTop:(e[0].clientHeight*(-1)) }, 500, "linear", function() {
+				n = e.next("li").animate({ marginTop:(e[0].clientHeight*(-1)) }, 200, "linear", function() {
 				n.css({ marginTop:0 });
 				e.remove();
 			});
