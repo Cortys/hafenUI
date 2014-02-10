@@ -20,6 +20,8 @@ new Modular("jobs", ["socket", "jobCreator", "taskCreator"], function(res) {
 
 jobs.val = {
 	e: null,
+	jobSpeed: 300,
+	taskSpeed: 200
 };
 
 jobs.do = {
@@ -50,19 +52,27 @@ jobs.do = {
 		}
 		else { // Remove first job
 			var e = t.val.e.children(".job").not(".hiddenTop").first().addClass("hiddenTop"),
-				n = e.next(".job").animate({ marginTop:(e[0].clientHeight*(-1)) }, 300, "linear", function() {
-				n.css({ marginTop:0 });
-				e.remove();
-			});
+				target = e[0].clientHeight*(-1),
+				n = e.next(".job").animate({ marginTop:(e[0].clientHeight*(-1)) }, {
+					duration:this.val.jobSpeed, easing:"linear",
+					step:function(now, fx) {
+						if(e[0].clientHeight*(-1) > fx.end) // stop animation from going to far and causing a job to jump behind the header of job-sidebar
+							fx.end = e[0].clientHeight*(-1);
+					}, complete:function() {
+						n.css({ marginTop:0 });
+						e.remove();
+					}
+				});
+			e.finish(); // stop animation if multiple jobs are hidden at once to reduce CPU usage (negative effects of this jump are not visible due to the speed of the animations)
 			if(!n || !n.length)
 				setTimeout(function() {
 					e.remove();
-				}, 300);
+				}, this.val.jobSpeed);
 		}		
 		if(jobs.tasks)
 			t.showTasks({
 				tasks: jobs.tasks,
-				type: "all"
+				type: (jobs.type=="all"?"all":"update")
 			});
 	},
 	showTasks: function(tasks) {
@@ -71,20 +81,24 @@ jobs.do = {
 				task;
 			for(var i = 0; i < tasks.tasks.length; i++) {
 				task = tasks.tasks[i];
-				html += "<li>"+(taskCreator.create[task.type](task.value))+"</li>";
+				html += "<li"+(tasks.type=="update"?" class='hidden'":"")+">"+(taskCreator.create[task.type](task.value))+"</li>";
 			}
-			jobs.val.e.children(".job").not(".hiddenTop").first().children("ul").html(html);
+			var e = this.val.e.children(".job").not(".hiddenTop").first().children("ul").html(html);
+			if(tasks.type == "update")
+				setTimeout(function() {
+					e.children().removeClass("hidden");
+				}, 0);
 		}
 		else {
 			var e = $("li:first-child", jobs.val.e).addClass("hidden"),
-				n = e.next("li").animate({ marginTop:(e[0].clientHeight*(-1)) }, 200, "linear", function() {
-				n.css({ marginTop:0 });
-				e.remove();
-			});
+				n = e.next("li").animate({ marginTop:(e[0].clientHeight*(-1)) }, this.val.taskSpeed, "linear", function() {
+					n.css({ marginTop:0 });
+					e.remove();
+				});
 			if(!n || !n.length)
 				setTimeout(function() {
 					e.remove();
-				}, 200);
+				}, this.val.taskSpeed);
 		}
 	}
 };

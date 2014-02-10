@@ -9,30 +9,67 @@
 }
 
 #wrap .side {
-	position: fixed;
+	position: absolute;
 	width: 230px;
 	top: 0;
 	bottom: 0;
 	height: auto;
 	overflow: hidden;
-	overflow-x: hidden;
-	overflow-y: auto;
 }
 
-#wrap .side.left {
+#wrap .side.left  {
 	left: 0;
-
+	
 	background-image: -webkit-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: -webkit-gradient(linear, left top, right top, from(#F9F9F9), to(#F0F0F0));
-	background-image: linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -moz-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -ms-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: linear-gradient(to right, #F9F9F9 93%, #F0F0F0 100%);
 }
 
 #wrap .side.right {
 	right: 0;
-
+	
 	background-image: -webkit-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: -webkit-gradient(linear, right top, left top, from(#F9F9F9), to(#F0F0F0));
-	background-image: linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -moz-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -ms-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: linear-gradient(to left, #F9F9F9 93%, #F0F0F0 100%);
+}
+
+#wrap .side .scrollable::-webkit-scrollbar-thumb {
+	background: none;
+}
+#wrap .side .scrollable:hover::-webkit-scrollbar-thumb {
+	background-color: #cccccc;
+}
+#wrap .side .scrollable:hover::-webkit-scrollbar-thumb:hover {
+	background-color: #bbbbbb;
+}
+.scrollable {
+	position: absolute;
+	width: auto;
+	height: auto;
+	-webkit-perspective: 500px;
+	-moz-perspective: 500px;
+	-o-perspective: 500px;
+	-ms-perspective: 500px;
+	perspective: 500px;
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
+	top: 58px;
+	padding-bottom: 15px;
+	padding-left: 20px;
+	bottom: 0;
+	padding-right: 13px;
+	left: 0;
+	right: 7px;
+}
+
+.side .wrapper {
+	position: fixed;
+	width: 230px;
+	height: auto;
+	z-index: 1;
 }
 
 .headArea {
@@ -191,18 +228,10 @@
 
 /* @group Jobs */
 
-#jobList {
-	position: relative;
-	width: auto;
-	height: auto;
-	margin-left: 20px;
+#jobs .headArea {
+	border-bottom: 1px solid #cccccc;
 	margin-right: 20px;
-	-webkit-perspective: 500px;
-	-moz-perspective: 500px;
-	-o-perspective: 500px;
-	-ms-perspective: 500px;
-	perspective: 500px;
-	margin-bottom: 15px;
+	margin-left: 20px;
 }
 
 #jobList .job {
@@ -212,6 +241,7 @@
 	-o-transition: -o-transform 0.3s ease-out 0s, opacity 0.3s ease-out 0s;
 	-ms-transition: -ms-transform 0.3s ease-out 0s, opacity 0.3s ease-out 0s;
 	transition: transform 0.3s ease-out 0s, opacity 0.3s ease-out 0s;
+	
 	-webkit-transform: translateY(0) rotate3d(1,0,0,0deg);
 	-moz-transform: translateY(0) rotate3d(1,0,0,0deg);
 	-o-transform: translateY(0) rotate3d(1,0,0,0deg);
@@ -232,17 +262,13 @@
 }
 
 #jobList .job.hiddenTop {
-	-webkit-transform: translateY(-25px) rotate3d(1,0,0,90deg);
-	-moz-transform: translateY(-25px) rotate3d(1,0,0,90deg);
-	-o-transform: translateY(-25px) rotate3d(1,0,0,90deg);
-	-ms-transform: translateY(-25px) rotate3d(1,0,0,90deg);
-	transform: translateY(-25px) rotate3d(1,0,0,90deg);
+	-webkit-transform: translateY(-25px) rotate3d(1,0,0,60deg);
+	-moz-transform: translateY(-25px) rotate3d(1,0,0,60deg);
+	-o-transform: translateY(-25px) rotate3d(1,0,0,60deg);
+	-ms-transform: translateY(-25px) rotate3d(1,0,0,60deg);
+	transform: translateY(-25px) rotate3d(1,0,0,60deg);
 
 	opacity: 0;
-}
-
-#jobList .job:not(.hiddenTop):first-child {
-	border-top: 1px solid #cccccc;
 }
 
 .job h2 {
@@ -273,19 +299,21 @@
 	display: block;
 }
 
+.job:not(.hiddenTop):first-child {
+	padding-top: 1px;
+}
+
 .job ul li {
 	height: 80px;
 	opacity: 0.5;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	-webkit-transition: -webkit-transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
-	-moz-transition: -moz-transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
-	-o-transition: -o-transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
-	-ms-transition: -ms-transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
-	transition: transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
-
-
+	-webkit-transition: -webkit-transform 0.2s ease-out 0s, opacity 0.2s ease-in-out 0s;
+	-moz-transition: -moz-transform 0.2s ease-out 0s, opacity 0.2s ease-in-out 0s;
+	-o-transition: -o-transform 0.2s ease-out 0s, opacity 0.2s ease-in-out 0s;
+	-ms-transition: -ms-transform 0.2s ease-out 0s, opacity 0.2s ease-in-out 0s;
+	transition: transform 0.2s ease-out 0s, opacity 0.2s ease-in-out 0s;
 }
 .job:not(.hiddenTop):first-child ul li:first-child {
 	opacity: 1;
