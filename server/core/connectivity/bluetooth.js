@@ -21,7 +21,7 @@ var bluetooth = module.exports = {
 			codec = this.codec,
 			listeners = this.listeners;
 		console.log("> Watching file '"+file+"' for changes");
-		require("chokidar").watch(file, { persistent:false }).on("change", function(filename) {
+		require("chokidar").watch(file, { persistent:false }).on("change", function(filename, stats) {
 			var data = fs.readFileSync(file, { encoding:"utf8", flag:"r" });
 			if(!data)
 				return;

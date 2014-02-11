@@ -35,7 +35,7 @@ module.exports = function(socket) {
 		/**
 		 * Remote feature (disabled):
 		 */
-		// var remote = require("./remote.js")(client.jobs);
+		 var remote = require("./remote.js")(client.jobs);
 		
 		/**
 		 * Logout feature (too basic for a seperate module, maybe later):

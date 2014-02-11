@@ -142,8 +142,8 @@
 	top: 21px;
 	left: 21px;
 
-	-webkit-transition-duration: 0.5s;
-	transition-duration: 0.5s;
+	-webkit-transition-duration: 0.35s;
+	transition-duration: 0.35s;
 
 	-webkit-transition-property: -webkit-transform;
 	transition-property: transform;
@@ -166,7 +166,7 @@
 	overflow: hidden;
 }
 
-/*/* @group Remote *!/
+/* @group Remote */
 
 #remote {
 	position: absolute;
@@ -228,7 +228,7 @@
 	
 }
 
-/* @end *!/*/
+/* @end */
 
 /* @group Jobs */
 
