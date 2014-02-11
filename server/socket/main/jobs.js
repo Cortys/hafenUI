@@ -1,7 +1,7 @@
 var mover = require("../../core/control/robotMovement.js"),
-	Job = require("../../core/control/job.js");
+	Job = require("../../core/control/job.js"),
 
-var JobManager = function(client) {
+JobManager = function(client) {
 	this.jobs = [];
 	if(client) {
 		this.client = client;

@@ -1,5 +1,6 @@
 var connections = require("../../core/connectivity/connections.js"),
-	JobManager = require("./jobManager.js");
+	JobManager = require("./jobs.js"),
+	Map = require("./map.js");
 
 module.exports = function(socket) {
 	console.log("> Logged in socket connected");
@@ -15,28 +16,43 @@ module.exports = function(socket) {
 		
 		socket.emit("robotInformation", client.robot);
 		
-		// Job Management:
-		if(!client.jobManager)
-			client.jobManager = new JobManager(client);
+		/**
+		 * Job Management:
+		 */
+		if(!client.jobs)
+			client.jobs = new JobManager(client);
 		
-		client.jobManager.start(); // Emit job infos on first start + on reopening the page while logged in
+		client.jobs.start(); // Emit job infos on first start + on reopening the page while logged in
 		
-		var remote = require("./remote.js")(client.jobManager);
+		/**
+		 * Map Management:
+		 */
+		if(!client.map)
+			client.map = new Map(client);
 		
-		// Logout feature (too basic for a seperate module, maybe later):
+		client.map.start(); // Listen for map data requests and emit selected map or if not selected possible selections
+		
+		/**
+		 * Remote feature (disabled):
+		 */
+		// var remote = require("./remote.js")(client.jobs);
+		
+		/**
+		 * Logout feature (too basic for a seperate module, maybe later):
+		 */
 		socket.on("logout", function(data, callback) {
 			client.onQuit(function() {
-				client.jobManager.quit();
+				client.jobs.quit();
 			}); // Remove lost connection error.
 			connections.removeClient(client);
 			callback(true);
 		});
-		
 		// Lost connection to client:
 		client.onQuit(function() {
-			client.jobManager.quit();
+			client.jobs.quit();
 			socket.emit("connectionLost");
 		});
+		
 	}
 	else // connection was killed right after connection:
 		socket.emit("connectionLost");

@@ -166,6 +166,8 @@
 	overflow: hidden;
 }
 
+/*/* @group Remote *!/
+
 #remote {
 	position: absolute;
 	top: 50%;
@@ -223,8 +225,10 @@
 	-o-transform: scale(1.1);
 	-ms-transform: scale(1.1);
 	transform: scale(1.1);
-
+	
 }
+
+/* @end *!/*/
 
 /* @group Jobs */
 
@@ -348,3 +352,14 @@
 }
 
 /* @end */
+
+#mapSelection {
+	position: relative;
+	overflow: auto;
+}
+#mapSelection li {
+	list-style: none;
+}
+#mapSelection ul li {
+	float: left;
+}

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 01. Feb 2014 um 14:48
+-- Generation Time: 11. Feb 2014 um 13:59
 -- Server Version: 5.5.33
 -- PHP Version: 5.5.3
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `containerhafen`
 --
+CREATE DATABASE IF NOT EXISTS `containerhafen` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `containerhafen`;
 
 -- --------------------------------------------------------
 
@@ -36,31 +38,6 @@ CREATE TABLE IF NOT EXISTS `container` (
   PRIMARY KEY (`id`),
   KEY `manufacturer` (`manufacturer`,`point`,`rfid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `directions`
---
-
-DROP TABLE IF EXISTS `directions`;
-CREATE TABLE IF NOT EXISTS `directions` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `description` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `short` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `picture` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
-
---
--- Daten für Tabelle `directions`
---
-
-INSERT INTO `directions` (`id`, `description`, `short`, `picture`) VALUES
-(1, 'turn left', 'l', 'left'),
-(2, 'turn right', 'r', 'right'),
-(3, 'turn back', 'b', 'back'),
-(4, 'go forward', 'f', 'forward');
 
 -- --------------------------------------------------------
 
