@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 11. Feb 2014 um 13:59
+-- Generation Time: 13. Feb 2014 um 14:57
 -- Server Version: 5.5.33
 -- PHP Version: 5.5.3
 
@@ -65,14 +65,15 @@ CREATE TABLE IF NOT EXISTS `maps` (
   `background` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `maps`
 --
 
 INSERT INTO `maps` (`id`, `name`, `background`) VALUES
-(1, 'Simple Round', 'simpleRound');
+(1, 'Lame Lane', 'simpleRound'),
+(2, 'Wheezy Ways', 'complexRound');
 
 -- --------------------------------------------------------
 
