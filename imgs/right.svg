@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="24px" viewBox="0 0 20 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>right</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Showcase" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="main" sketch:type="MSArtboardGroup" transform="translate(-277.000000, -77.000000)">
+            <g id="middle" sketch:type="MSLayerGroup" transform="translate(240.000000, 10.000000)"></g>
+            <path d="M297,77 L297,79 L280,89 L297,99 L297,101 L277,89 L297,77 Z" id="right" fill="#F89614" sketch:type="MSShapeGroup" transform="translate(287.000000, 89.000000) rotate(-180.000000) translate(-287.000000, -89.000000) "></path>
+        </g>
+        <g sketch:type="MSArtboardGroup" transform="translate(-802.000000, -228.000000)"></g>
+    </g>
+</svg>

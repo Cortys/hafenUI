@@ -4,7 +4,11 @@
  * Author: Clemens Damke
  */
 
-new Modular("mapPicker", ["socket"], function() {
+new Modular("mapPicker", ["socket", "events"], function() {
+	this.val.c = $("#mapSelection");
+	
+	this.val.e = this.val.c.children(".maps");
+	
 	this.do.requestMaps();
 });
 
@@ -26,7 +30,42 @@ mapPicker.do = {
 	},
 	
 	showMaps: function(maps) {
-		$("#mapSelection").unslider();
+		
+		var t = this,
+			list = $("ul", t.val.e);
+		
+		list.empty();
+		
+		if(!maps.length)
+			return;
+		
+		for(var i = 0; i < maps.length; i++)
+			list.append("<li><div class='mapImg' style='background-image: url(imgs/maps/"+(maps[i].background)+".svg);'></div><div class='name'>"+(maps[i].name)+"</div></li>");
+		
+		t.val.c.show();
+		
+		var slider = t.val.e.unslider({
+			fluid: false,
+			autoplay: false,
+			setheight: false,
+			speed: 250,
+			dots: true,
+			easing: "swing",
+			keys: true
+		}).data("unslider");
+		
+		$(".arrow", this.val.c).unbind(events.click).on(events.click, function() {
+			slider[$(this).attr("data-dir") == "left"?"prev":"next"]();
+		});
+		
+		$(".continue", this.val.c).unbind(events.click).on(events.click, function() {
+			t.pickMap(maps[slider.i]);
+		});
+		
+	},
+	
+	pickMap: function(map) {
+		
 	},
 	
 	onPicked: function(callback) {
