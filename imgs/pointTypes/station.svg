@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="48px" height="41px" viewBox="0 0 48 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+<svg width="30px" height="26px" viewBox="0 0 30 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     <title>station</title>
     <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
     <defs>
@@ -7,23 +7,22 @@
             <stop stop-color="#75A82D" offset="0%"></stop>
             <stop stop-color="#6A9929" offset="100%"></stop>
         </linearGradient>
-        <filter x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" id="filter-2">
-            <feMorphology radius="2" in="SourceAlpha" operator="dilate" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0.533333333   0 0 0 0 0.533333333   0 0 0 0 0.533333333  0 0 0 0.7 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
-            <feMerge>
-                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
-                <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
-        </filter>
+        <path id="path-2" d="M372.468085,123 L393.531915,123 L393.531915,109.071429 L398,109.071429 L383,97 L368,109.071429 L372.468085,109.071429 L372.468085,123 Z"></path>
+        <path d="M373.300049,122.266667 L392.699951,122.266667 L392.699951,108.266667 L395.599976,108.266667 L383,98.1000061 L370.300049,108.266667 L373.300049,108.266667 L373.300049,122.266667 Z M375.034173,120.700012 L391.05952,120.700012 L391.05952,107 L391.800049,107 L383,100.180751 L374.199951,107 L375.034173,107 L375.034173,120.700012 Z" id="path-3"></path>
     </defs>
     <g id="Showcase" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="main" sketch:type="MSArtboardGroup" transform="translate(-615.000000, -200.000000)" stroke="#FFFFFF" filter="url(#filter-2)" stroke-width="2" fill="url(#linearGradient-1)">
+        <g id="main" sketch:type="MSArtboardGroup" transform="translate(-624.000000, -208.000000)">
             <g id="middle" sketch:type="MSLayerGroup" transform="translate(240.000000, 10.000000)">
-                <g id="map" transform="translate(10.000000, 101.000000)" sketch:type="MSShapeGroup">
+                <g id="map" transform="translate(10.000000, 101.000000)">
                     <g id="points" transform="translate(6.000000, 0.000000)">
-                        <path d="M373.87234,109.071429 L373.87234,123 L392.12766,123 L392.12766,109.071429 L396,109.071429 L383,97 L370,109.071429 L373.87234,109.071429 Z" id="house1"></path>
+                        <g id="house1">
+                            <use fill="url(#linearGradient-1)" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-2"></use>
+                            <use fill="none" xlink:href="#path-2"></use>
+                        </g>
+                        <g id="house1">
+                            <use fill="#FFFFFF" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-3"></use>
+                            <use fill="none" xlink:href="#path-3"></use>
+                        </g>
                     </g>
                 </g>
             </g>
