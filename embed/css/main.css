@@ -1,3 +1,5 @@
+/* @group General */
+
 #wrap {
 	position: fixed;
 	top: 0;
@@ -15,24 +17,32 @@
 	bottom: 0;
 	height: auto;
 	overflow: hidden;
+	opacity: 1;
+	
+	-webkit-transition: all 0.35s ease-out 0s;
+
 }
 
-#wrap .side.left  {
+#wrap .side.hidden {
+	opacity: 0;
+	width: 0;
+}
+
+#wrap .side.left {
 	left: 0;
-	
-	background-image: -webkit-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: -moz-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: -ms-linear-gradient(left, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: linear-gradient(to right, #F9F9F9 93%, #F0F0F0 100%);
+	background: -webkit-linear-gradient(left, rgb(249, 249, 249) 93%, #F0F0F0 100%) #f9f9f9;
+	background: -moz-linear-gradient(left, rgb(249, 249, 249) 93%, #F0F0F0 100%) #f9f9f9;
+	background: -ms-linear-gradient(left, rgb(249, 249, 249) 93%, #F0F0F0 100%) #f9f9f9;
+	background: linear-gradient(to right, rgb(249, 249, 249) 93%, #F0F0F0 100%) #f9f9f9;
 }
 
 #wrap .side.right {
 	right: 0;
 	
-	background-image: -webkit-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: -moz-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: -ms-linear-gradient(right, #F9F9F9 93%, #F0F0F0 100%);
-	background-image: linear-gradient(to left, #F9F9F9 93%, #F0F0F0 100%);
+	background-image: -webkit-linear-gradient(right, rgb(249, 249, 249) 93%, #F0F0F0 100%);
+	background-image: -moz-linear-gradient(right, rgb(249, 249, 249) 93%, #F0F0F0 100%);
+	background-image: -ms-linear-gradient(right, rgb(249, 249, 249) 93%, #F0F0F0 100%);
+	background-image: linear-gradient(to left, rgb(249, 249, 249) 93%, #F0F0F0 100%);
 }
 
 #wrap .side .scrollable::-webkit-scrollbar-thumb {
@@ -168,6 +178,8 @@
 	height: auto;
 	overflow: hidden;
 }
+
+/* @end */
 
 /* @group Remote */
 
@@ -357,16 +369,28 @@
 
 /* @end */
 
+/* @group Map */
+
+/* @group Selection */
+
 #mapSelection {
 	position: absolute;
 	left: 60px;
 	top: 80px;
 	width: auto;
 	height: auto;
-	display: none;
 	bottom: 50px;
 	right: 60px;
 	overflow: visible;
+	-webkit-transition: opacity 0.35s ease-in-out 0s;
+	-moz-transition: opacity 0.35s ease-in-out 0s;
+	-o-transition: opacity 0.35s ease-in-out 0s;
+	-ms-transition: opacity 0.35s ease-in-out 0s;
+	transition: opacity 0.35s ease-in-out 0s;
+}
+
+#mapSelection.hidden {
+	opacity: 0;
 }
 
 #mapSelection h1 {
@@ -510,3 +534,81 @@
 	background-color: #ff9900;
 	opacity: 1;
 }
+
+/* @end */
+
+#map {
+	position: absolute;
+	left: 40px;
+	top: 40px;
+	bottom: 40px;
+	right: 40px;
+	width: auto;
+	height: auto;
+	display: none;
+}
+
+#map .adjust {
+	position: absolute;
+	left: 20px;
+	top: 40px;
+	width: auto;
+	height: auto;
+	bottom: 10px;
+	right: 20px;
+	
+	-webkit-transition: all 0.35s ease-in-out 0s;
+	-moz-transition: all 0.35s ease-in-out 0s;
+	-o-transition: all 0.35s ease-in-out 0s;
+	-ms-transition: all 0.35s ease-in-out 0s;
+	transition: all 0.35s ease-in-out 0s;
+}
+
+#map > .adjust > .adjust {
+	left: 5%;
+	right: 5%;
+	top: 5%;
+	bottom: 70px;
+}
+
+#map .adjust.normal {
+	top: 0 !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	left: 0 !important;
+}
+
+#map .bg {
+	position: absolute;
+	width: auto;
+	height: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+#map .points {
+	position: absolute;
+	width: auto;
+	height: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+#map .points .point {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	top: 5%;
+	left: 5%;
+	
+	filter: greyscale(100%);
+}
+
+
+/* @end */

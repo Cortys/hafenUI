@@ -13,17 +13,19 @@ new Modular("mapPicker", ["socket", "events"], function() {
 });
 
 mapPicker.val = {
-	callback: null
+	callback: null,
+	disabled: false
 };
 
 mapPicker.do = {
 	val: mapPicker.val,
 	requestMaps: function() {
 		var t = this;
-		socket.do.send("mapData", {}, function(data) {
-			console.log(data);
-			if(data.picked && typeof t.val.callback == "function")
-				t.val.callback(data.map);
+		socket.do.send("mapData", null, function(data) {
+			if(data.picked && typeof t.val.callback == "function") {
+				t.val.callback(data.map, true);
+				t.hide();
+			}
 			else
 				t.showMaps(data.maps);
 		});
@@ -36,13 +38,15 @@ mapPicker.do = {
 		
 		list.empty();
 		
-		if(!maps.length)
+		if(!maps.length) {
+			$(".continue", this.val.c).addClass("inactive");
 			return;
+		}
 		
 		for(var i = 0; i < maps.length; i++)
 			list.append("<li><div class='mapImg' style='background-image: url(imgs/maps/"+(maps[i].background)+".svg);'></div><div class='name'>"+(maps[i].name)+"</div></li>");
 		
-		t.val.c.show();
+		t.show();
 		
 		var slider = t.val.e.unslider({
 			fluid: false,
@@ -58,14 +62,36 @@ mapPicker.do = {
 			slider[$(this).attr("data-dir") == "left"?"prev":"next"]();
 		});
 		
-		$(".continue", this.val.c).unbind(events.click).on(events.click, function() {
+		$(".continue", this.val.c).removeClass("inactive").unbind(events.click).on(events.click, function() {
 			t.pickMap(maps[slider.i]);
 		});
 		
 	},
 	
+	show: function() {
+		this.val.c.removeClass("hidden");
+	},
+	
+	hide: function() {
+		var c = this.val.c.addClass("hidden");
+		setTimeout(function() {
+			c.remove();
+		}, 350);
+	},
+	
 	pickMap: function(map) {
-		
+		var t = this;
+		if(t.val.disabled)
+			return;
+		t.val.disabled = true;
+		socket.do.send("mapData", map, function(map) {
+			if(map) {
+				if(typeof t.val.callback == "function")
+					t.val.callback(map);
+				t.hide();
+			}
+			t.val.disabled = false;
+		});
 	},
 	
 	onPicked: function(callback) {

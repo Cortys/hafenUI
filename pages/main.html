@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block content %}
-	<div id="jobs" class="side left">
+	<div id="jobs" class="side left hidden">
 		<div class="headArea">
 			<h1>Jobs</h1>
 		</div>
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div id="content">
-			<div id="mapSelection">
+			<div id="mapSelection" class="hidden">
 				<h1>Place your robot and continue</h1>
 				<div class="maps">
 					<ul></ul>
@@ -40,6 +40,16 @@
 					<input type='button' value='Continue' class='continue' />
 				</div>
 			</div>
+			<div id="map">
+				<div class="adjust">
+					<div class="adjust">
+						<div class="bg"></div>
+						<div class="points">
+							<img src="imgs/pointTypes/point.svg" alt="" class="point normal" />
+						</div>
+					</div>
+				</div>
+			</div>
 			<div id="remote">
 				<a href="#" class="direction top" data-dir="forward"></a>
 				<a href="#" class="direction left" data-dir="left"></a>
@@ -48,7 +58,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="containers" class="side right">
+	<div id="containers" class="side right hidden">
 		<div class="headArea">
 			<h1>Containers</h1>
 		</div>

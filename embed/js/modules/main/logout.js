@@ -20,8 +20,12 @@ new Modular("logout", ["socket", "events"], function() {
 logout.do = {
 	logout: function() {
 		socket.do.send("logout", {}, function(success) {
-			if(success)
-				location.reload();
+			if(success) {
+				$("body").attr("class", "animated fadeOutUp");
+				setTimeout(function() {
+					location.reload();
+				}, 1000);
+			}
 		});
 	}
 };

@@ -14,18 +14,26 @@ Map.prototype = {
 	start: function() {
 		var t = this;
 		t.client.socket.on("mapData", function(data, callback) {
-			if(t.data)
-				callback({
-					picked: true,
-					map: t.data
-				});
-			else
-				t.getMaps(function(maps) {
+			if(!data) { // no map given
+				if(t.data)
 					callback({
-						picked: false,
-						maps: maps
+						picked: true,
+						map: t.data
 					});
+				else
+					t.getMaps(function(maps) {
+						callback({
+							picked: false,
+							maps: maps
+						});
+					});
+			}
+			else { // map given, details required
+				t.getMap(data, function(map) {
+					t.data = map;
+					callback(map);
 				});
+			}
 		});
 	},
 	
@@ -35,6 +43,13 @@ Map.prototype = {
 				callback([]);
 			else
 				callback(result);
+		});
+	},
+	
+	getMap: function(map, callback) {
+		db.query("SELECT * FROM `points` WHERE `map` = "+(db.escape(map.id)), function(err, result) {
+			map.points = err?{}:result;
+			callback(map);
 		});
 	}
 };
