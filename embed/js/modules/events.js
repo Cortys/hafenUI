@@ -12,6 +12,7 @@ new Modular("events", [], function() {
 	this.down = this.deviceType?"touchstart":"mousedown";
 	this.end = this.deviceType?"touchend":"mouseup";
 	this.doubleClick = "dblclick";
+	this.transitionEnd = "transitionend webkitTransitionEnd animationend webkitAnimationEnd";
 });
 
 events.getDeviceType = function() {

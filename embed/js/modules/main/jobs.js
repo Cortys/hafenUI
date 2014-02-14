@@ -13,7 +13,7 @@ Modular.addModules({
 	taskCreator: "main/jobCreators/taskCreator.js",
 });
 
-new Modular("jobs", ["socket", "jobCreator", "taskCreator"], function(res) {
+new Modular("jobs", ["socket", "jobCreator", "taskCreator", "events"], function(res) {
 	this.val.e = $("#jobList");
 	this.do.listen();
 });
@@ -65,9 +65,9 @@ jobs.do = {
 				});
 			e.finish(); // stop animation if multiple jobs are hidden at once to reduce CPU usage (negative effects of this jump are not visible due to the speed of the animations)
 			if(!n || !n.length)
-				setTimeout(function() {
+				e.on(events.transitionEnd, function() {
 					e.remove();
-				}, this.val.jobSpeed);
+				});
 		}		
 		if(jobs.tasks)
 			t.showTasks({
@@ -96,9 +96,9 @@ jobs.do = {
 					e.remove();
 				});
 			if(!n || !n.length)
-				setTimeout(function() {
+				e.on(events.transitionEnd, function() {
 					e.remove();
-				}, this.val.taskSpeed);
+				});
 		}
 	}
 };

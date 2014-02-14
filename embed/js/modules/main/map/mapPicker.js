@@ -73,10 +73,9 @@ mapPicker.do = {
 	},
 	
 	hide: function() {
-		var c = this.val.c.addClass("hidden");
-		setTimeout(function() {
-			c.remove();
-		}, 350);
+		this.val.c.addClass("hidden").on(events.transitionEnd, function() {
+			$(this).remove();
+		});
 	},
 	
 	pickMap: function(map) {

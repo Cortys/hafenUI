@@ -9,7 +9,7 @@ Modular.addModules({
 	"connect": "login/connect.js"
 });
 
-new Modular("login", ["socketLimitatorFail","list","connect"], function(d) {
+new Modular("login", ["events", "socketLimitatorFail","list","connect"], function(d) {
 	socketLimitator.do.onSuccess(function() {
 		// Assumes, that #wrap is hidden by default and has to be shown, after loading robots:
 		list.do.load(function() {
@@ -17,10 +17,10 @@ new Modular("login", ["socketLimitatorFail","list","connect"], function(d) {
 		});
 		
 		connect.do.onConnect(function() {
-			login.do.hide();
-			setTimeout(function() {
+			login.do.hide(function() {
 				location.reload();
-			}, 1000);
+			});
+
 		});
 		connect.do.onFail(function() {
 			login.do.fail();
@@ -31,19 +31,14 @@ new Modular("login", ["socketLimitatorFail","list","connect"], function(d) {
 login.do = {
 	interval: null,
 	show: function() {
-		clearInterval(this.interval);
-		$("#wrap").show().attr("class", "animated fadeInDown");
+		$("#wrap").show().unbind(events.transitionEnd).attr("class", "animated fadeInDown");
 	},
-	hide: function() {
-		clearInterval(this.interval);
-		$("#wrap").attr("class", "animated fadeOutUp");
+	hide: function(callback) {
+		$("#wrap").attr("class", "animated fadeOutUp").unbind(events.transitionEnd).on(events.transitionEnd, callback || function() {});
 	},
 	fail: function() {
-		if(this.interval)
-			clearInterval(this.interval);
-		$("#wrap").attr("class", "animated wobble");
-		this.interval = setTimeout(function() {
+		$("#wrap").attr("class", "animated wobble").on(events.transitionEnd, function() {
 			$("#wrap").removeAttr("class");
-		}, 1000);
+		});
 	}
 };

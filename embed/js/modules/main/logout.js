@@ -21,10 +21,9 @@ logout.do = {
 	logout: function() {
 		socket.do.send("logout", {}, function(success) {
 			if(success) {
-				$("body").attr("class", "animated fadeOutUp");
-				setTimeout(function() {
+				$("body").attr("class", "animated fadeOutUp").unbind(events.transitionEnd).on(events.transitionEnd, function() {
 					location.reload();
-				}, 1000);
+				});
 			}
 		});
 	}

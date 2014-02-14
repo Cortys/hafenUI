@@ -578,6 +578,14 @@
 	left: 0 !important;
 }
 
+#map .adjust > .adjust > div {
+	-webkit-transition: opacity 0.35s ease-in-out 0s;
+	-moz-transition: opacity 0.35s ease-in-out 0s;
+	-o-transition: opacity 0.35s ease-in-out 0s;
+	-ms-transition: opacity 0.35s ease-in-out 0s;
+	transition: opacity 0.35s ease-in-out 0s;
+}
+
 #map .bg {
 	position: absolute;
 	width: auto;
@@ -592,23 +600,70 @@
 }
 #map .points {
 	position: absolute;
-	width: auto;
-	height: auto;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
+	top: 50%;
+	left: 50%;
+	
+	opacity: 1;
+}
+#map .points.hidden {
+	opacity: 0;
 }
 
 #map .points .point {
 	position: absolute;
-	margin: 0;
-	padding: 0;
-	top: 5%;
-	left: 5%;
+	align-content: center;
+	width: 2.5%;
+	height: 0;
+	padding-bottom: 2.5%;
+	overflow: visible;
+	font-size: 1em;
+	line-height: inherit;
+
+}
+#map .points .point > div {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: -50%;
+	left: -50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center top;
+	text-align: center;
+	color: #ffffff;
+	font-size: 1em;
+	line-height: inherit;
+	font-weight: bold;
 	
-	filter: greyscale(100%);
+	cursor: pointer;
+	
+	-webkit-transition: -webkit-transform 0.05s ease-in-out 0s;
+	-moz-transition: -moz-transform 0.05s ease-in-out 0s;
+	-o-transition: -o-transform 0.05s ease-in-out 0s;
+	-ms-transition: -ms-transform 0.05s ease-in-out 0s;
+	transition: transform 0.05s ease-in-out 0s;
 }
 
+#map .points .point.normal > div {
+	background-image: url(../../imgs/pointTypes/point.svg);
+}
+
+#map .points .point.station {
+	width: 2.8%;
+	padding-bottom: 2.8%;
+}
+
+#map .points .point.station > div {
+	padding-top: 2px;
+	background-image: url(../../imgs/pointTypes/station.svg);
+}
+
+#map .points .point > div:hover {
+	-webkit-transform: scale(1.6);
+	-moz-transform: scale(1.6);
+	-o-transform: scale(1.6);
+	-ms-transform: scale(1.6);
+	transform: scale(1.6);
+}
 
 /* @end */

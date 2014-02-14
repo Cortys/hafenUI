@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 13. Feb 2014 um 14:57
+-- Generation Time: 15. Feb 2014 um 00:32
 -- Server Version: 5.5.33
 -- PHP Version: 5.5.3
 
@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `maps` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `background` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `backgroundRatio` double NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
@@ -71,9 +72,9 @@ CREATE TABLE IF NOT EXISTS `maps` (
 -- Daten für Tabelle `maps`
 --
 
-INSERT INTO `maps` (`id`, `name`, `background`) VALUES
-(1, 'Lame Lane', 'simpleRound'),
-(2, 'Wheezy Ways', 'complexRound');
+INSERT INTO `maps` (`id`, `name`, `background`, `backgroundRatio`) VALUES
+(1, 'Lame Lane', 'simpleRound', 1.5),
+(2, 'Wheezy Ways', 'complexRound', 1.5);
 
 -- --------------------------------------------------------
 
@@ -88,9 +89,26 @@ CREATE TABLE IF NOT EXISTS `points` (
   `x` int(10) unsigned NOT NULL,
   `y` int(10) unsigned NOT NULL,
   `type` int(10) unsigned NOT NULL,
+  `code` int(11) NOT NULL,
+  `name` char(1) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `map` (`map`,`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  KEY `map` (`map`,`type`),
+  KEY `code` (`code`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+
+--
+-- Daten für Tabelle `points`
+--
+
+INSERT INTO `points` (`id`, `map`, `x`, `y`, `type`, `code`, `name`) VALUES
+(1, 1, 333, 100, 1, 0, 'A'),
+(2, 1, 666, 100, 2, 0, 'B'),
+(3, 1, 666, 900, 2, 0, 'E'),
+(4, 1, 333, 900, 2, 0, 'F'),
+(5, 1, 902, 300, 1, 0, 'C'),
+(6, 1, 902, 700, 1, 0, 'D'),
+(7, 1, 98, 700, 1, 0, 'G'),
+(8, 1, 98, 300, 2, 0, 'H');
 
 -- --------------------------------------------------------
 
