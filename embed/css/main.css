@@ -611,7 +611,6 @@
 
 #map .points .point {
 	position: absolute;
-	align-content: center;
 	width: 2.5%;
 	height: 0;
 	padding-bottom: 2.5%;
