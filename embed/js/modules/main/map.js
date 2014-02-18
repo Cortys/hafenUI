@@ -49,6 +49,7 @@ map.do = {
 			w = y*ratio<x?y*ratio:x,
 			h = y*ratio<x?y:x/ratio,
 			f = w*0.025;
+        console.log(ratio);
 		t.val.proportions.css({ width:w, height:h, marginTop:(-h/2), marginLeft:(-w/2), fontSize:(f/2), lineHeight:(f+"px") }).removeClass("hidden");
 	},
 	
