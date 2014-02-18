@@ -65,7 +65,7 @@ jobs.do = {
 				});
 			e.finish(); // stop animation if multiple jobs are hidden at once to reduce CPU usage (negative effects of this jump are not visible due to the speed of the animations)
 			if(!n || !n.length)
-				e.on(events.transitionEnd, function() {
+				e.one(events.transitionEnd, function() {
 					e.remove();
 				});
 		}		

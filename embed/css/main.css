@@ -584,6 +584,11 @@
 	-o-transition: opacity 0.35s ease-in-out 0s;
 	-ms-transition: opacity 0.35s ease-in-out 0s;
 	transition: opacity 0.35s ease-in-out 0s;
+	opacity: 1;
+}
+
+#map .adjust > .adjust > div.hidden {
+	opacity: 0;
 }
 
 #map .bg {
@@ -598,15 +603,10 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 }
-#map .points {
+#map .preserveProportion {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	
-	opacity: 1;
-}
-#map .points.hidden {
-	opacity: 0;
 }
 
 #map .points .point {
@@ -615,7 +615,7 @@
 	height: 0;
 	padding-bottom: 2.5%;
 	overflow: visible;
-	font-size: 1em;
+	font-size: 100%;
 	line-height: inherit;
 
 }
@@ -663,6 +663,90 @@
 	-o-transform: scale(1.6);
 	-ms-transform: scale(1.6);
 	transform: scale(1.6);
+}
+
+#map .points .point.robot > div {
+	border: 0.15em solid #ffffff;
+	border-radius: 0.4em;
+	-moz-box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.5);
+}
+
+@keyframes "rotate" {
+	0% {
+		-webkit-transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+
+}
+@-moz-keyframes rotate {
+	0% {
+		-moz-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-moz-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+@-webkit-keyframes "rotate" {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+@-ms-keyframes "rotate" {
+	0% {
+		-ms-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-ms-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+@-o-keyframes "rotate" {
+	0% {
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-o-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+#map .locating > div {
+	position: absolute;
+	width: auto;
+	height: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url(../../imgs/radar.png) center center no-repeat;
+	background-size: contain;
+	-webkit-animation: rotate 4s linear 0s infinite normal;
+}
+
+@media screen and (min-width: 1040px) and (min-height: 638px) {
+	#map .locating > div {
+		background-image: url(../../imgs/radar@2x.png);
+	}
 }
 
 /* @end */

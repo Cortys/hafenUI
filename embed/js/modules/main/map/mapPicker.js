@@ -23,7 +23,7 @@ mapPicker.do = {
 		var t = this;
 		socket.do.send("mapData", null, function(data) {
 			if(data.picked && typeof t.val.callback == "function") {
-				t.val.callback(data.map, true);
+				t.val.callback(data.map, data.robotPosition, true);
 				t.hide();
 			}
 			else
@@ -58,14 +58,17 @@ mapPicker.do = {
 			keys: true
 		}).data("unslider");
 		
-		$(".arrow", this.val.c).unbind(events.click).on(events.click, function() {
-			slider[$(this).attr("data-dir") == "left"?"prev":"next"]();
-		});
+		if(maps.length > 1)
+			$(".arrow", this.val.c).show().unbind(events.click).on(events.click, function() {
+				slider[$(this).attr("data-dir") == "left"?"prev":"next"]();
+			});
+		else {
+			$(".arrow, .dots").hide();
+		}
 		
 		$(".continue", this.val.c).removeClass("inactive").unbind(events.click).on(events.click, function() {
 			t.pickMap(maps[slider.i]);
 		});
-		
 	},
 	
 	show: function() {
@@ -73,7 +76,7 @@ mapPicker.do = {
 	},
 	
 	hide: function() {
-		this.val.c.addClass("hidden").on(events.transitionEnd, function() {
+		this.val.c.addClass("hidden").one(events.transitionEnd, function() {
 			$(this).remove();
 		});
 	},

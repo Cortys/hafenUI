@@ -12,7 +12,7 @@ var robotMovement = {
 			if(typeof t.listeners[client.key][data.operation] == "function") {
 				var f = t.listeners[client.key][data.operation];
 				delete t.listeners[client.key][data.operation];
-				f(data);
+				f(data.data);
 			}
 		});
 	},
@@ -38,6 +38,9 @@ robotMovement.do = {
 			return true;
 		}
 		return false;
+	},
+	init: function(client, callback) {
+		return this.send(client, this.codec.encode(this.codec.operations.init), this.codec.operations.position, callback);
 	},
 	move: function(client, direction, callback) {
 		return this.send(client, this.codec.encode(this.codec.operations[direction]), this.codec.operations.position, callback);

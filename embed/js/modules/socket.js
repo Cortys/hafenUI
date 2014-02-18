@@ -33,10 +33,13 @@ socket.do = {
 		t.val.socket.on("disconnect", function() {
 			t.disconnectHandler();
 		});
+		
+		$(window).on("beforeunload", function() {
+			t.quit();
+		});
 	},
 	quit: function() {
 		this.disconnectHandler = function() {};
-		this.val.socket.disconnect();
 	},
 	send: function(type, obj, callback) {
 		var t = this;

@@ -11,6 +11,12 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 	overflow: hidden;
+	
+	-webkit-transform: translate3d(0px 0px 0px);
+	-moz-transform: translate3d(0px 0px 0px);
+	-o-transform: translate3d(0px 0px 0px);
+	-ms-transform: translate3d(0px 0px 0px);
+	transform: translate3d(0px 0px 0px);
 }
 
 #wrap {
@@ -28,6 +34,7 @@ body {
 	background-image: url(../../imgs/loader.gif);
 	background-repeat: repeat-x;
 	background-position: 0 bottom;
+	z-index: 100;
 }
 #loading div {
 	position: absolute;

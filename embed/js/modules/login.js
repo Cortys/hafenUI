@@ -34,10 +34,10 @@ login.do = {
 		$("#wrap").show().unbind(events.transitionEnd).attr("class", "animated fadeInDown");
 	},
 	hide: function(callback) {
-		$("#wrap").attr("class", "animated fadeOutUp").unbind(events.transitionEnd).on(events.transitionEnd, callback || function() {});
+		$("#wrap").attr("class", "animated fadeOutUp").unbind(events.transitionEnd).one(events.transitionEnd, callback || function() {});
 	},
 	fail: function() {
-		$("#wrap").attr("class", "animated wobble").on(events.transitionEnd, function() {
+		$("#wrap").attr("class", "animated wobble").one(events.transitionEnd, function() {
 			$("#wrap").removeAttr("class");
 		});
 	}
