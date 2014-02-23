@@ -25,7 +25,7 @@ socket.do = {
 		
 		t.val.socket = io.connect("http://"+(t.val.port?location.hostname+":"+t.val.port:location.host)+"/"+(isLoggedIn?"main":"login"));
 		t.val.socket.on("connect", function() {
-			for (var i = 0; i < t.val.waiting.length; i++)
+			for(var i = 0; i < t.val.waiting.length; i++)
 				t.val.waiting[i]();
 			t.val.waiting = [];
 			ajaxBar.hide();

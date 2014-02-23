@@ -60,7 +60,7 @@ var Modular = (function() {
 	};
 	
 	var callFunctions = function(list, args) {
-		for (var i = 0; i < list.length; i++)
+		for(var i = 0; i < list.length; i++)
 			list[i].apply(Modular, args);
 	}, moduleIsRequiredBy = function(module, byModule) { // setter to dependency: 'module' is required by 'byModule'
 		if(!Modular.requiredBy[module])
@@ -162,7 +162,7 @@ var Modular = (function() {
 		var done = 0,
 			result = {};
 		if(modules && modules.length)
-			for (var i = 0; i < modules.length; i++) {
+			for(var i = 0; i < modules.length; i++) {
 				this.loadModule(modules[i], function(status, module) {
 					done++;
 					result[module] = status;

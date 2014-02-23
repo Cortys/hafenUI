@@ -22,7 +22,7 @@ module.exports = function(socket) {
 		if(!client.jobs)
 			client.jobs = new JobManager(client);
 		
-		client.jobs.start(); // Emit job infos on first start + on reopening the page while logged in
+		client.jobs.start();
 		
 		/**
 		 * Map Management:

@@ -35,7 +35,10 @@ JobManager.prototype = {
 	running: false,
 	
 	start: function() {
-		this.pushJobs();
+		var t = this;
+		t.client.socket.on("pushJobs", function() {
+			t.pushJobs();
+		});
 	},
 	
 	addJob: function(job) {
@@ -48,11 +51,12 @@ JobManager.prototype = {
 	},
 	
 	pushJobs: function(type) {
-		var jobs = {
-			jobs: [],
-			tasks: [],
-			type: (type || "all")
-		};
+		var t = this,
+			jobs = {
+				jobs: [],
+				tasks: [],
+				type: (type || "all")
+			};
 		
 		if(type !== "shift")
 			for(var i = (type === "push" && this.jobs.length?this.jobs.length-1:0); i < this.jobs.length; i++)
@@ -60,22 +64,33 @@ JobManager.prototype = {
 		else
 			delete jobs.jobs;
 			
-		if(this.running && type && type !== "shift") // ALL flag not set or REMOVE FLAG NOT SET: remove task information
+		if(t.running && type && type !== "shift") { // ALL flag not set or REMOVE FLAG NOT SET: remove task information
 			delete jobs.tasks;
-		else if(this.jobs[0])
-			jobs.tasks = this.jobs[0].getTasksObject();
-		this.client.socket.emit("currentJobs", jobs);
+			t.client.socket.emit("currentJobs", jobs);
+		}
+		else if(t.jobs[0])
+			t.jobs[0].getTasksObject(function(tasks) {
+				jobs.tasks = tasks;
+				t.client.socket.emit("currentJobs", jobs);
+			});
+		else
+			t.client.socket.emit("currentJobs", jobs);
 	},
 	
 	pushTasks: function(type) {
+		var t = this;
 		if(this.jobs[0]) {
-			var tasks = type==="shift"?{
-				type: "shift"
-			}:{
-				tasks: this.jobs[0].getTasksObject(),
-				type: "all"
-			};
-			this.client.socket.emit("currentTasks", tasks);
+			if(type==="shift")
+				this.client.socket.emit("currentTasks", {
+					type: "shift"
+				});
+			else
+				this.jobs[0].getTasksObject(function(tasks) {
+					t.client.socket.emit("currentTasks", {
+						tasks: tasks,
+						type: "all"
+					});
+				});
 		}
 	},
 	

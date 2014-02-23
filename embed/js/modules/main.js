@@ -12,6 +12,6 @@ Modular.addModules({
 	"map": "main/map.js"
 });
 
-new Modular("main", ["socketLimitatorFail", "robotInformation", "logout", "jobs", "remote", "map"], function() {
+new Modular("main", ["socketLimitatorFail", "robotInformation", "logout", "jobs", "map"], function() {
 	
 });

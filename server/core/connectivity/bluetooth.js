@@ -19,7 +19,8 @@ var bluetooth = module.exports = {
 			file = this.dir+fileName,
 			fs = this.fs,
 			codec = this.codec,
-			listeners = this.listeners;
+			listeners = this.listeners,
+			t = this;
 		console.log("> Watching file '"+file+"' for changes");
 		require("chokidar").watch(file, { persistent:false }).on("change", function(filename, stats) {
 			var data = fs.readFileSync(file, { encoding:"utf8", flag:"r" });
@@ -35,6 +36,7 @@ var bluetooth = module.exports = {
 					for(var key in listeners)
 						if(typeof listeners[key][codec.operations.disconnect] == "function")
 							listeners[key][codec.operations.disconnect]();
+					t.listeners = listeners = {};
 				}
 				else {
 					parts = codec.decode(lines[i]);
@@ -86,7 +88,7 @@ var bluetooth = module.exports = {
 		return client && client.key && this.listeners[client.key] && this.listeners[client.key][this.codec.operations[operation]];
 	},
 	appendLine: function(line) {
-		console.log("Appending line: '"+line+"'");
+		console.log("> Appending line: '"+line+"'");
 		this.fs.appendFile(this.dir+this.fileNames.send, line, { encoding:"utf8" }, function(err) {
 			if(err)
 				throw err;

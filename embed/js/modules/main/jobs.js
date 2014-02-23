@@ -13,9 +13,11 @@ Modular.addModules({
 	taskCreator: "main/jobCreators/taskCreator.js",
 });
 
-new Modular("jobs", ["socket", "jobCreator", "taskCreator", "events"], function(res) {
+new Modular("jobs", ["socket", "jobCreator", "taskCreator", "events", "map"], function(res) {
 	this.val.e = $("#jobList");
-	this.do.listen();
+	map.do.onRendered(function() {
+		jobs.do.listen();
+	});
 });
 
 jobs.val = {
@@ -28,6 +30,7 @@ jobs.do = {
 	val: jobs.val,
 	listen: function() {
 		var t = this;
+		socket.do.send("pushJobs", {});
 		socket.do.register("currentJobs", function(data) {
 			t.showJobs(data);
 			

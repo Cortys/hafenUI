@@ -28,7 +28,7 @@ list.do = {
 			foundAnything = true;
 			var bluetooth = [],
 				selected = v.id==list.val.activeId;
-			for (var i = 0; i < v.bluetooth.length; i++)
+			for(var i = 0; i < v.bluetooth.length; i++)
 				bluetooth[i] = (v.bluetooth[i]<16?"0":"")+v.bluetooth[i].toString(16);
 			bluetooth = bluetooth.join("-").toUpperCase();
 			list.val.list.append('<li data-id="'+v.id+'"><div class="robotInfo"><div class="pic" style="background-image:url(imgs/robots/'+v.picture+'.png);"></div><div class="name">'+v.name+'</div><div class="bluetoothId">'+bluetooth+'</div></div></li>');

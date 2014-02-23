@@ -7,7 +7,9 @@
 		"express": "latest",
 		"swig": "latest",
 		"mysql": "latest",
-		"chokidar": "latest"
+		"chokidar": "latest",
+		"heap": "latest",
+		"async": "latest"
 	},
 	"author": "Clemens Damke, Matthias Stork, GField"
 }

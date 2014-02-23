@@ -656,19 +656,23 @@
 	background-image: url(../../imgs/pointTypes/station.svg);
 }
 
-#map .points .point > div:hover {
+#map .points .point.robot > div {
+	overflow: hidden;
+	border: 0.15em solid #ffffff;
+	border-radius: 0.4em;
+	-moz-box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.5);
+	background-size: cover;
+	text-indent: -200%;
+	cursor: default;
+}
+
+#map .points .point:not(.robot) > div:hover {
 	-webkit-transform: scale(1.6);
 	-moz-transform: scale(1.6);
 	-o-transform: scale(1.6);
 	-ms-transform: scale(1.6);
 	transform: scale(1.6);
-}
-
-#map .points .point.robot > div {
-	border: 0.15em solid #ffffff;
-	border-radius: 0.4em;
-	-moz-box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.5);
-	box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.5);
 }
 
 @keyframes "rotate" {

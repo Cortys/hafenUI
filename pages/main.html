@@ -6,11 +6,11 @@
 {% endblock %}
 
 {% block script %}
-	<script src="embed/frameworks/jquery.event.swipe.js" type="text/javascript"></script>
-	<script src="embed/frameworks/unslider.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		var isLoggedIn = true;
 	</script>
+	<script src="embed/frameworks/jquery.event.swipe.js" type="text/javascript"></script>
+	<script src="embed/frameworks/unslider.js" type="text/javascript"></script>
 	{% parent %}
 {% endblock %}
 
@@ -45,16 +45,16 @@
 					<div class="adjust">
 						<div class="bg"></div>
 						<div class="points hidden preserveProportion"></div>
-						<div class="locating hidden preserveProportion"><div></div></div>
+						<div class="locating preserveProportion"><div></div></div>
 					</div>
 				</div>
 			</div>
-			<div id="remote">
+			<!--<div id="remote">
 				<a href="#" class="direction top" data-dir="forward"></a>
 				<a href="#" class="direction left" data-dir="left"></a>
 				<a href="#" class="direction bottom" data-dir="turn"></a>
 				<a href="#" class="direction right" data-dir="right"></a>
-			</div>
+			</div>-->
 		</div>
 	</div>
 	<div id="containers" class="side right hidden">

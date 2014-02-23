@@ -28,6 +28,10 @@ new Modular("map", ["events", "mapPicker", "robotInformation"], function() {
 		if(position !== null)
 			t.do.setRobotPosition(position);
 	});
+	
+	t.val.points.on(events.click, ".point", function() {
+		t.do.goTo($(this).attr("data-id")*1);
+	});
 });
 
 map.val = {
@@ -36,7 +40,8 @@ map.val = {
 		1: "normal",
 		2: "station"
 	},
-	position: null
+	position: null,
+	renderedCallback: null
 };
 
 map.do = {
@@ -49,8 +54,7 @@ map.do = {
 			w = y*ratio<x?y*ratio:x,
 			h = y*ratio<x?y:x/ratio,
 			f = w*0.025;
-        console.log(ratio);
-		t.val.proportions.css({ width:w, height:h, marginTop:(-h/2), marginLeft:(-w/2), fontSize:(f/2), lineHeight:(f+"px") }).removeClass("hidden");
+		t.val.proportions.css({ width:w, height:h, marginTop:(-h/2), marginLeft:(-w/2), fontSize:(f/2), lineHeight:(f+"px") }).not(".locating").removeClass("hidden");
 	},
 	
 	show: function(map, initial) {
@@ -78,6 +82,9 @@ map.do = {
 		
 		initial?f():setTimeout(f, 350);
 		
+		if(!t.val.shownBefore && typeof t.renderedCallback == "function")
+			t.renderedCallback();
+		
 		t.val.shownBefore = true;
 	},
 	
@@ -87,9 +94,9 @@ map.do = {
 			html = "",
 			p;
 		
-		for (var i = 0; i < points.length; i++) {
+		for(var i = 0; i < points.length; i++) {
 			p = points[i];
-			html += "<div class='point "+(t.val.pointTypes[p.type])+"' data-id='"+p.id+"' style='top:"+(p.y/10)+"%; left:"+(p.x/10)+"%'><div>"+(p.name)+"</div></div>";
+			html += "<div class='point "+(t.val.pointTypes[p.type])+" n"+p.id+"' data-id='"+p.id+"' style='top:"+(p.y/10)+"%; left:"+(p.x/10)+"%'><div>"+(p.name)+"</div></div>";
 		}
 		
 		t.val.points.html(html);
@@ -98,12 +105,25 @@ map.do = {
 	setRobotPosition: function(position) {
 		var t = this;
 		if(this.val.position)
-			t.val.points.children("[data-id="+(this.val.position)+"]").removeClass("robot").children("div").css({ backgroundImage:"" });
+			t.val.points.children("[data-id="+(this.val.position.current)+"]").removeClass("robot").children("div").css({ backgroundImage:"" });
 		else
-			t.val.locating.addClass("hidden");
+			t.val.locating.addClass("hidden").one(events.transitionEnd, function() {
+				$(this).remove();
+			});
 		t.val.position = position;
 		robotInformation.getData(function(robot) {
-			t.val.points.children("[data-id="+(t.val.position)+"]").addClass("robot").children("div").css({ backgroundImage:("url(imgs/robots/"+robot.picture+".png)") });
+			t.val.points.children("[data-id="+(t.val.position.current)+"]").addClass("robot").children("div").css({ backgroundImage:("url(imgs/robots/"+robot.picture+".png)") });
 		});
+	},
+	
+	goTo: function(position) {
+		socket.do.send("goToPoint", { target:position });
+	},
+	
+	onRendered: function(callback) {
+		if(this.shownBefore)
+			callback();
+		else
+			this.renderedCallback = callback;
 	}
 };

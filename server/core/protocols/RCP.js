@@ -22,6 +22,8 @@ module.exports = {
 		return id?operation+","+id:"";
 	},
 	decode: function(line) {
+		if(typeof line != "string")
+			return null;
 		var parts = line.trim().split(",", 3);
 		if(!parts[0])
 			return null;

@@ -11,7 +11,7 @@ connections = {
 				return;
 			}
 			var results = [];
-			for (var i = 0; i < rawResults.length; i++)
+			for(var i = 0; i < rawResults.length; i++)
 				results[rawResults[i].id] = rawResults[i];
 			robots = unconnectedRobots = results;
 			console.log("> Got "+rawResults.length+" robot(s) from database");

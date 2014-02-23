@@ -1,5 +1,4 @@
-var db = require("./connectivity/db.js"),
-	connections = require("./connectivity/connections.js");
+var connections = require("./connectivity/connections.js");
 
 module.exports = function(req) {
 	//return true;
