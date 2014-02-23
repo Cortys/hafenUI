@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 15. Feb 2014 um 00:32
+-- Generation Time: 23. Feb 2014 um 02:12
 -- Server Version: 5.5.33
 -- PHP Version: 5.5.3
 
@@ -92,8 +92,9 @@ CREATE TABLE IF NOT EXISTS `points` (
   `code` int(11) NOT NULL,
   `name` char(1) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `map` (`map`,`type`),
-  KEY `code` (`code`)
+  KEY `code` (`code`),
+  KEY `map` (`map`),
+  KEY `type` (`type`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
@@ -101,14 +102,14 @@ CREATE TABLE IF NOT EXISTS `points` (
 --
 
 INSERT INTO `points` (`id`, `map`, `x`, `y`, `type`, `code`, `name`) VALUES
-(1, 1, 333, 100, 1, 0, 'A'),
-(2, 1, 666, 100, 2, 0, 'B'),
-(3, 1, 666, 900, 2, 0, 'E'),
-(4, 1, 333, 900, 2, 0, 'F'),
-(5, 1, 902, 300, 1, 0, 'C'),
-(6, 1, 902, 700, 1, 0, 'D'),
-(7, 1, 98, 700, 1, 0, 'G'),
-(8, 1, 98, 300, 2, 0, 'H');
+(1, 1, 333, 100, 1, 1, 'A'),
+(2, 1, 666, 100, 2, 2, 'B'),
+(3, 1, 666, 900, 2, 5, 'E'),
+(4, 1, 333, 900, 2, 6, 'F'),
+(5, 1, 902, 300, 1, 3, 'C'),
+(6, 1, 902, 700, 1, 4, 'D'),
+(7, 1, 98, 700, 1, 7, 'G'),
+(8, 1, 98, 300, 2, 8, 'H');
 
 -- --------------------------------------------------------
 
@@ -122,7 +123,6 @@ CREATE TABLE IF NOT EXISTS `robots` (
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
   `picture` varchar(50) CHARACTER SET latin1 NOT NULL DEFAULT 'defaultRobot',
   `bluetooth` bit(48) NOT NULL,
-  `turn` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`,`bluetooth`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
@@ -131,11 +131,11 @@ CREATE TABLE IF NOT EXISTS `robots` (
 -- Daten für Tabelle `robots`
 --
 
-INSERT INTO `robots` (`id`, `name`, `picture`, `bluetooth`, `turn`) VALUES
-(1, 'Heinrich', 'cat', b'111010000000011010001000001111101110101101101111', NULL),
-(2, 'Henriette', 'owl', b'000000000000000000000000000000000000000000000000', NULL),
-(3, 'Harald', 'hedgedog', b'000000000000000000000000000000000000000000000000', NULL),
-(4, 'Hildegard', 'penguin', b'000000000000000000000000000000000000000000000000', NULL);
+INSERT INTO `robots` (`id`, `name`, `picture`, `bluetooth`) VALUES
+(1, 'Heinrich', 'cat', b'111010000000011010001000001111101110101101101111'),
+(2, 'Henriette', 'owl', b'000000000000000000000000000000000000000000000000'),
+(3, 'Harald', 'hedgedog', b'000000000000000000000000000000000000000000000000'),
+(4, 'Hildegard', 'penguin', b'000000000000000000000000000000000000000000000000');
 
 -- --------------------------------------------------------
 
@@ -149,10 +149,48 @@ CREATE TABLE IF NOT EXISTS `turns` (
   `lastPoint` int(10) unsigned NOT NULL,
   `currentPoint` int(10) unsigned NOT NULL,
   `nextPoint` int(10) unsigned NOT NULL,
-  `direction` int(10) unsigned NOT NULL,
+  `direction` enum('forward','left','right','turn') COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `lastPoint` (`lastPoint`,`currentPoint`,`nextPoint`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  UNIQUE KEY `lastPoint` (`lastPoint`,`currentPoint`,`nextPoint`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
+
+--
+-- Daten für Tabelle `turns`
+--
+
+INSERT INTO `turns` (`id`, `lastPoint`, `currentPoint`, `nextPoint`, `direction`) VALUES
+(1, 8, 1, 2, 'forward'),
+(2, 1, 2, 5, 'forward'),
+(3, 2, 5, 6, 'forward'),
+(4, 5, 6, 3, 'forward'),
+(5, 6, 3, 4, 'forward'),
+(6, 3, 4, 7, 'forward'),
+(7, 4, 7, 8, 'forward'),
+(8, 7, 8, 1, 'forward'),
+(9, 1, 8, 7, 'forward'),
+(10, 8, 7, 4, 'forward'),
+(11, 7, 4, 3, 'forward'),
+(12, 4, 3, 6, 'forward'),
+(13, 3, 6, 5, 'forward'),
+(14, 6, 5, 2, 'forward'),
+(15, 5, 2, 1, 'forward'),
+(16, 2, 1, 8, 'forward'),
+(17, 1, 2, 1, 'turn'),
+(18, 2, 5, 2, 'turn'),
+(19, 5, 6, 5, 'turn'),
+(20, 6, 3, 6, 'turn'),
+(21, 3, 4, 3, 'turn'),
+(22, 4, 7, 4, 'turn'),
+(23, 7, 8, 7, 'turn'),
+(24, 8, 1, 8, 'turn'),
+(25, 1, 8, 1, 'turn'),
+(26, 2, 1, 2, 'turn'),
+(27, 5, 2, 5, 'turn'),
+(28, 6, 5, 6, 'turn'),
+(29, 3, 6, 3, 'turn'),
+(30, 4, 3, 4, 'turn'),
+(31, 7, 4, 7, 'turn'),
+(32, 8, 7, 8, 'turn');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
