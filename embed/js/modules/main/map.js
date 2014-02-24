@@ -25,8 +25,7 @@ new Modular("map", ["events", "mapPicker", "robotInformation"], function() {
 	});
 	
 	socket.do.register("robotPosition", function(position) {
-		if(position !== null)
-			t.do.setRobotPosition(position);
+		t.do.setRobotPosition(position);
 	});
 	
 	t.val.points.on(events.click, ".point", function() {
@@ -54,7 +53,8 @@ map.do = {
 			w = y*ratio<x?y*ratio:x,
 			h = y*ratio<x?y:x/ratio,
 			f = w*0.025;
-		t.val.proportions.css({ width:w, height:h, marginTop:(-h/2), marginLeft:(-w/2), fontSize:(f/2), lineHeight:(f+"px") }).not(".locating").removeClass("hidden");
+		t.val.proportions.not(".locating").css({ width:w, height:h, marginTop:(-h/2), marginLeft:(-w/2), fontSize:(f/2), lineHeight:(f+"px") }).removeClass("hidden");
+		t.val.proportions.filter(".locating").css({ width:h, height:h, marginTop:(-h/2), marginLeft:(-h/2) });
 	},
 	
 	show: function(map, initial) {
@@ -103,17 +103,29 @@ map.do = {
 	},
 	
 	setRobotPosition: function(position) {
-		var t = this;
-		if(this.val.position)
-			t.val.points.children("[data-id="+(this.val.position.current)+"]").removeClass("robot").children("div").css({ backgroundImage:"" });
-		else
-			t.val.locating.addClass("hidden").one(events.transitionEnd, function() {
-				$(this).remove();
+		var t = this,
+			hide = function() {
+				t.val.points.children("[data-id="+(t.val.position.current)+"]").removeClass("robot").children("div").css({ backgroundImage:"" });
+			};
+		if(position && (!t.val.position || position.current != t.val.position.current)) {
+			if(!t.val.position)
+				t.val.locating.addClass("hidden").one(events.transitionEnd, function() {
+					$(this).hide();
+				});
+			else
+				hide();
+			
+			robotInformation.getData(function(robot) {
+				t.val.points.children("[data-id="+(position.current)+"]").addClass("robot").children("div").css({ backgroundImage:("url(imgs/robots/"+robot.picture+".png)") });
 			});
+		}
+		else if(!position) {
+			alert("Oh no! Your little robot friend is hiding from me. But do not worry I will try again.");
+			t.val.locating.show();
+			hide();
+			t.val.locating.removeClass("hidden");
+		}
 		t.val.position = position;
-		robotInformation.getData(function(robot) {
-			t.val.points.children("[data-id="+(t.val.position.current)+"]").addClass("robot").children("div").css({ backgroundImage:("url(imgs/robots/"+robot.picture+".png)") });
-		});
 	},
 	
 	goTo: function(position) {

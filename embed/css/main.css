@@ -664,7 +664,6 @@
 	box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.5);
 	background-size: cover;
 	text-indent: -200%;
-	cursor: default;
 }
 
 #map .points .point:not(.robot) > div:hover {
@@ -735,8 +734,6 @@
 
 #map .locating > div {
 	position: absolute;
-	width: auto;
-	height: auto;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -744,6 +741,11 @@
 	background: url(../../imgs/radar.png) center center no-repeat;
 	background-size: contain;
 	-webkit-animation: rotate 0.5s linear 0s infinite normal;
+	-moz-animation: rotate 0.5s linear 0s infinite normal;
+	-ms-animation: rotate 0.5s linear 0s infinite normal;
+	-o-animation: rotate 0.5s linear 0s infinite normal;
+	animation: rotate 0.5s linear 0s infinite normal;
+
 }
 
 @media screen and (min-width: 1040px) and (min-height: 638px) {

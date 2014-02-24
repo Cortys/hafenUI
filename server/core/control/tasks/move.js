@@ -14,9 +14,10 @@ TaskMove.prototype.execute = function(client) {
 	t.rawExecute(client, [function(positionData) {
 		t.setDone();
 		if(typeof t.dataCallback == "function")
-			t.dataCallback(positionData);
-		if(typeof t.jobCallback == "function")
-			t.jobCallback();
+			t.dataCallback(positionData, function() {
+				if(typeof t.jobCallback == "function")
+					t.jobCallback();
+			});
 	}]);
 };
 TaskMove.prototype.getObject = function() {

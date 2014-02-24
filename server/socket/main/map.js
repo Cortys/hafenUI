@@ -69,7 +69,8 @@ Map.prototype = {
 		});
 		
 		t.client.socket.on("goToPoint", function(data, callback) {
-			t.client.jobs.addJob(new JobMoveTo(data.target, t));
+			if(t.client.robot.position)
+				t.client.jobs.addJob(new JobMoveTo(data.target, t));
 		});
 	},
 	
@@ -77,10 +78,10 @@ Map.prototype = {
 		callback(this.data?this.data.id:-1);
 	},
 	
-	locateRobot: function() {
+	locateRobot: function(callback) {
 		var t = this;
 		mover.do.init(t.client, function(position) {
-			t.updatePosition(position);
+			t.updatePosition(position, callback);
 		});
 	},
 	
@@ -88,9 +89,11 @@ Map.prototype = {
 		var t = this;
 		sql.getPosition(t.data.id, position, function(position) {
 			t.client.robot.position = position;
-			t.client.socket.emit("robotPosition", position);
-			if(typeof callback == "function")
+			if(!position)
+				t.locateRobot(callback);
+			else if(typeof callback == "function")
 				callback(position);
+			t.client.socket.emit("robotPosition", position);
 		});
 	},
 	

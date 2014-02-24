@@ -46,11 +46,15 @@ Job.prototype = {
 		this.irregularTaskChange = this.running && this.prepared;
 	},
 	replaceQueue: function(tasks) {
-		this.tasks = tasks.concat([]);
+		var a = this.running && this.prepared && this.tasks.length ? this.tasks.slice(0, 1):[];
+		this.tasks = a.concat(tasks);
 		this.irregularTaskChange = this.running && this.prepared;
 	},
 	emptyQueue: function() {
-		this.tasks = [];
+		if(this.running && this.prepared && this.tasks.length)
+			this.tasks = this.tasks.slice(0, 1); // preserve currently running task. do not delete it.
+		else
+			this.tasks = [];
 		this.irregularTaskChange = this.running && this.prepared;
 	},
 	run: function(client, callback, stepper) {

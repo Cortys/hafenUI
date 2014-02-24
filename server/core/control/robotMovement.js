@@ -9,7 +9,7 @@ var robotMovement = {
 		console.log("> Started RCP listening for client '"+client.ip+"'");
 		client.onReceive(function(message) {
 			var data = t.codec.decode(message);
-			if(typeof t.listeners[client.key][data.operation] == "function") {
+			if(data && typeof t.listeners[client.key][data.operation] == "function") {
 				var f = t.listeners[client.key][data.operation];
 				delete t.listeners[client.key][data.operation];
 				f(data.data);

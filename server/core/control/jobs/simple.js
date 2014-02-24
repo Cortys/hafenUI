@@ -4,7 +4,10 @@ var Job = require("../job.js"),
 JobSimple = function(dir, callback) {
 	Job.call(this);
 	this.dir = dir;
-	this.addTask(new TaskMove(dir, callback));
+	this.addTask(new TaskMove(dir, function(position, c) {
+		callback(position);
+		c();
+	}));
 };
 
 JobSimple.prototype = Object.create(Job.prototype);

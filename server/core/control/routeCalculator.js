@@ -55,7 +55,6 @@ RouteCalculator.prototype = {
 					return a.distance - b.distance;
 				}),
 				table = [], // hash table of all open list entries that ever existed (used to replace points)
-				closed = [], // closed list
 				
 				point = null; // currently viewed point
 			
@@ -70,18 +69,17 @@ RouteCalculator.prototype = {
 					callback();
 					return;
 				}
-				closed[point.id()] = true;
 				point.possibleWays(function(wayPoints) {
 					for(var i = 0; i < wayPoints.length; i++) {
-						var possible = wayPoints[i];
-						if(closed[possible.id()])
-							continue;
-						var currentPoint = table[possible.id()];
+						var possible = wayPoints[i],
+							currentPoint = table[possible.id()];
 						if(currentPoint === undefined) {
 							table[possible.id()] = possible;
 							openHeap.push(possible);
 						}
-						else if(currentPoint.distance > possible.distance) {
+						else {
+							if(currentPoint.closed || currentPoint.distance <= possible.distance)
+								continue;
 							currentPoint.update(possible.current, possible.last);
 							openHeap.updateItem(currentPoint);
 						}
@@ -92,7 +90,7 @@ RouteCalculator.prototype = {
 			}, function() {
 				var path = [],
 					recursion = function(p) {
-						if(p === start || p === before || !p) // stop recursion if start point is reached (or later at before point if unexpected error should occur)
+						if(p === before || !p) // stop recursion if before point is reached (or later if unexpected error should occur)
 							return;
 						path.unshift(p.current);
 						recursion(p.last);
@@ -122,6 +120,7 @@ WayPoint.prototype = {
 	current: null,
 	last: null,
 	target: null,
+	closed: false, // closed flag replaces A* closed list
 	
 	id: function() {
 		return this.current.id;
@@ -129,6 +128,7 @@ WayPoint.prototype = {
 	
 	possibleWays: function(callback) {
 		var t = this;
+		t.closed = true;
 		db.query("SELECT `points`.*, `turns`.`direction` FROM `points` INNER JOIN `turns` ON `points`.`id` = `turns`.`nextPoint` WHERE `lastPoint` = "+(t.last.current.id*1)+" AND `currentPoint` = "+(t.current.id*1), function(err, result) {
 			if(!err) {
 				for(var i = 0; i < result.length; i++)
