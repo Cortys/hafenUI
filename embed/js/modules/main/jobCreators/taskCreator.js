@@ -9,6 +9,6 @@ new Modular("taskCreator", [], function() {});
 
 taskCreator.create = {
 	move: function(value) {
-		return "<img src='imgs/directions/"+value+".svg' alt='' /><span>"+(value=="turn"?"Turn back":"Go "+value)+"</span>";
+		return "<img src='imgs/directions/"+value+".svg' alt='' /><span>"+(value=="turn"?"Turn 'n move":"Go "+value)+"</span>";
 	}
 };
