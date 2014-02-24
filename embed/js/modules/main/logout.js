@@ -12,7 +12,7 @@ new Modular("logout", ["socket", "events"], function() {
 	});
 	
 	socket.do.register("connectionLost", function() {
-		alert("I'm so very sorry for you.\nThe connection to your robot was destroyed.\nPlease try to reconnect.");
+		window.alert("I'm so very sorry for you.\nThe connection to your robot was destroyed.\nPlease try to reconnect.");
 		location.reload();
 	});
 });

@@ -120,7 +120,7 @@ map.do = {
 			});
 		}
 		else if(!position) {
-			alert("Oh no! Your little robot friend is hiding from me. But do not worry I will try again.");
+			window.alert("Oh no! Your little robot friend is hiding from me. But do not worry I will try again.");
 			t.val.locating.show();
 			hide();
 			t.val.locating.removeClass("hidden");
