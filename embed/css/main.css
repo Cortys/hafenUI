@@ -144,7 +144,6 @@
 	height: 58px;
 	top: 0;
 	right: 0;
-	cursor: pointer;
 }
 
 #logout img {
@@ -156,10 +155,11 @@
 	-o-transition: -o-transform 0.35s ease-in-out 0s;
 	-ms-transition: -ms-transform 0.35s ease-in-out 0s;
 	transition: transform 0.35s ease-in-out 0s;
+	cursor: pointer;
 
 }
 
-#logout:hover img {
+#logout img:hover {
 	-webkit-transform: rotate(360deg);
 	-moz-transform: rotate(360deg);
 	-o-transform: rotate(360deg);
@@ -745,7 +745,6 @@
 	-ms-animation: rotate 0.5s linear 0s infinite normal;
 	-o-animation: rotate 0.5s linear 0s infinite normal;
 	animation: rotate 0.5s linear 0s infinite normal;
-
 }
 
 @media screen and (min-width: 1040px) and (min-height: 638px) {
