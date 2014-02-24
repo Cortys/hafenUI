@@ -666,14 +666,6 @@
 	text-indent: -200%;
 }
 
-#map .points .point:not(.robot) > div:hover {
-	-webkit-transform: scale(1.6);
-	-moz-transform: scale(1.6);
-	-o-transform: scale(1.6);
-	-ms-transform: scale(1.6);
-	transform: scale(1.6);
-}
-
 @keyframes "rotate" {
 	0% {
 		-webkit-transform: rotate(0deg);
