@@ -17,6 +17,7 @@ new Modular("map", ["events", "mapPicker", "robotInformation"], function() {
 	t.val.points = t.val.adjust.children(".points");
 	t.val.proportions = t.val.adjust.children(".preserveProportion");
 	t.val.locating = t.val.adjust.children(".locating");
+	t.val.overlay = t.val.adjust.children(".overlay");
 	
 	mapPicker.do.onPicked(function(map, position, initial) {
 		t.do.show(map, initial);
@@ -46,6 +47,19 @@ map.val = {
 map.do = {
 	val: map.val,
 	
+	showLocator: function() {
+		this.val.locating.show();
+		this.val.overlay.show();
+		this.val.locating.removeClass("hidden");
+	},
+	
+	hideLocator: function() {
+		this.val.overlay.hide();
+		this.val.locating.addClass("hidden").one(events.transitionEnd, function() {
+			$(this).hide();
+		});
+	},
+	
 	updatePoints: function(ratio) {
 		var t = this,
 			x = t.val.bg[0].clientWidth,
@@ -53,8 +67,8 @@ map.do = {
 			w = y*ratio<x?y*ratio:x,
 			h = y*ratio<x?y:x/ratio,
 			f = w*0.025;
-		t.val.proportions.not(".locating").css({ width:w, height:h, marginTop:(-h/2), marginLeft:(-w/2), fontSize:(f/2), lineHeight:(f+"px") }).removeClass("hidden");
-		t.val.proportions.filter(".locating").css({ width:h, height:h, marginTop:(-h/2), marginLeft:(-h/2) });
+		t.val.proportions.not(".locating").css({ width:w, height:h, marginTop:(-h/2), marginLeft:(-w/2), fontSize:(f/2), lineHeight:(f+"px") }).not(".overlay").removeClass("hidden");
+		t.val.locating.css({ width:h, height:h, marginTop:(-h/2), marginLeft:(-h/2) });
 	},
 	
 	show: function(map, initial) {
@@ -109,9 +123,7 @@ map.do = {
 			};
 		if(position && (!t.val.position || position.current != t.val.position.current)) {
 			if(!t.val.position)
-				t.val.locating.addClass("hidden").one(events.transitionEnd, function() {
-					$(this).hide();
-				});
+				t.hideLocator();
 			else
 				hide();
 			
@@ -121,9 +133,8 @@ map.do = {
 		}
 		else if(!position) {
 			window.alert("Oh no! Your little robot friend is hiding from me. But do not worry I will try again.");
-			t.val.locating.show();
 			hide();
-			t.val.locating.removeClass("hidden");
+			t.showLocator();
 		}
 		t.val.position = position;
 	},
