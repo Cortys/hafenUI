@@ -52,11 +52,11 @@ var bluetooth = module.exports = {
 			robotKey = t.codec.createRobotKey(client.robot.bluetooth);
 		console.log("> Trying to connect client "+client.key+" with "+robotKey);
 		
-		//Fake login:
+	/*	//Fake login:
 		this.fs.appendFile(this.dir+this.fileNames.receive, client.key+":c", { encoding:"utf8" }, function(err) {
 			if(err)
 				throw err;
-		});
+		}); */
 		
 		t.listenFor(client, "connect", function() {
 			callback();

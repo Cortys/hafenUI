@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.4
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: 23. Feb 2014 um 02:12
--- Server Version: 5.5.33
--- PHP Version: 5.5.3
+-- Host: 127.0.0.1
+-- Erstellungszeit: 25. Feb 2014 um 17:23
+-- Server Version: 5.6.11
+-- PHP-Version: 5.5.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `containerhafen`
+-- Datenbank: `containerhafen`
 --
 CREATE DATABASE IF NOT EXISTS `containerhafen` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `containerhafen`;
@@ -28,7 +28,6 @@ USE `containerhafen`;
 -- Tabellenstruktur für Tabelle `container`
 --
 
-DROP TABLE IF EXISTS `container`;
 CREATE TABLE IF NOT EXISTS `container` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET latin1 NOT NULL,
@@ -45,7 +44,6 @@ CREATE TABLE IF NOT EXISTS `container` (
 -- Tabellenstruktur für Tabelle `manufacturers`
 --
 
-DROP TABLE IF EXISTS `manufacturers`;
 CREATE TABLE IF NOT EXISTS `manufacturers` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET latin1 NOT NULL,
@@ -58,7 +56,6 @@ CREATE TABLE IF NOT EXISTS `manufacturers` (
 -- Tabellenstruktur für Tabelle `maps`
 --
 
-DROP TABLE IF EXISTS `maps`;
 CREATE TABLE IF NOT EXISTS `maps` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -82,7 +79,6 @@ INSERT INTO `maps` (`id`, `name`, `background`, `backgroundRatio`) VALUES
 -- Tabellenstruktur für Tabelle `points`
 --
 
-DROP TABLE IF EXISTS `points`;
 CREATE TABLE IF NOT EXISTS `points` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `map` int(10) unsigned NOT NULL,
@@ -117,7 +113,6 @@ INSERT INTO `points` (`id`, `map`, `x`, `y`, `type`, `code`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `robots`
 --
 
-DROP TABLE IF EXISTS `robots`;
 CREATE TABLE IF NOT EXISTS `robots` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
@@ -132,10 +127,10 @@ CREATE TABLE IF NOT EXISTS `robots` (
 --
 
 INSERT INTO `robots` (`id`, `name`, `picture`, `bluetooth`) VALUES
-(1, 'Heinrich', 'cat', b'111010000000011010001000001111101110101101101111'),
-(2, 'Henriette', 'owl', b'000000000000000000000000000000000000000000000000'),
-(3, 'Harald', 'hedgedog', b'000000000000000000000000000000000000000000000000'),
-(4, 'Hildegard', 'penguin', b'000000000000000000000000000000000000000000000000');
+(1, 'Heinrich', 'cat', b'001100100011010100110101001100010011000100110100'),
+(2, 'Henriette', 'owl', b'001110010011010100111000001110000011000100111000'),
+(3, 'Harald', 'hedgedog', b'001100000000000000000000000000000000000000000000'),
+(4, 'Hildegard', 'penguin', b'001100000000000000000000000000000000000000000000');
 
 -- --------------------------------------------------------
 
@@ -143,7 +138,6 @@ INSERT INTO `robots` (`id`, `name`, `picture`, `bluetooth`) VALUES
 -- Tabellenstruktur für Tabelle `turns`
 --
 
-DROP TABLE IF EXISTS `turns`;
 CREATE TABLE IF NOT EXISTS `turns` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `lastPoint` int(10) unsigned NOT NULL,
