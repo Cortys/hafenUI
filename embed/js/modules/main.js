@@ -9,9 +9,10 @@ Modular.addModules({
 	"robotInformation": "main/robotInformation.js",
 	"remote": "main/remote.js", // not used right now
 	"jobs": "main/jobs.js",
-	"map": "main/map.js"
+	"map": "main/map.js",
+	"containers": "main/containers.js"
 });
 
-new Modular("main", ["robotInformation", "socketLimitatorFail", "logout", "jobs", "map"], function() {
+new Modular("main", ["robotInformation", "socketLimitatorFail", "logout", "jobs", "map", "containers"], function() {
 	
 });
