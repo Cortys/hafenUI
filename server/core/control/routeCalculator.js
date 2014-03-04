@@ -61,7 +61,7 @@ RouteCalculator.prototype = {
 			openHeap.push(start);
 			table[start.id()] = start;
 			
-			async.whilst(function() { return openHeap && !openHeap.empty(); }, function(callback) {
+			async.whilst(function() { return openHeap && !openHeap.empty(); }, function(callback) { // asynchronous while loop (DB lookups for neighbor points take some time)
 				point = openHeap.pop();
 				
 				if(point.id() == targetPoint.id) {
@@ -87,7 +87,7 @@ RouteCalculator.prototype = {
 					callback();
 				});
 				
-			}, function() {
+			}, function() { // recursive reconstruction of the path after completing the while loop:
 				var path = [],
 					recursion = function(p) {
 						if(p === before || !p) // stop recursion if before point is reached (or later if unexpected error should occur)

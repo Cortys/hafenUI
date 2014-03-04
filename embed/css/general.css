@@ -81,15 +81,42 @@ body {
 }
 
 input {
+	position: relative;
 	background-color: #ffffff;
 	color: #333333;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	padding: 5px;
-	margin:0;
-	font-size: 16px;
-	border: 1px solid #dddddd;
+	padding: 0;
+	margin: 0;
+	font-size: 15px;
+	height: 30px;
+	border: 1px solid #cccccc;
 	outline: none;
+	padding-right: 5px;
+	padding-left: 5px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+
 }
+
+input:not([type="button"]):focus {
+	border-color: #992d2a;
+}
+
+::-webkit-input-placeholder {
+	color: #cccccc;
+}
+:-moz-placeholder {
+	color: #cccccc;
+}
+::-moz-placeholder {
+	color: #cccccc;
+}
+:-ms-input-placeholder {
+	color: #cccccc;
+}
+
 input[type="button"] {
 	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #ff9900;
 	background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) #ff9900;
@@ -99,6 +126,7 @@ input[type="button"] {
 	cursor: pointer;
 	text-transform: uppercase;
 	border: none;
+	font-size: 16px;
 }
 input[type="button"]:hover {
 	background-color: #ff8800;
@@ -118,13 +146,14 @@ input[type="button"].inactive {
 
 ::-webkit-scrollbar-track {
 	background: none;
-	margin: 2px;
+	margin: 2px 0;
 }
 
 ::-webkit-scrollbar {
 	width: 6px;
 	height: 6px;
 	background: none;
+	-webkit-appearance: none;
 }
 
 ::-webkit-scrollbar-thumb {

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1.4
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 25. Feb 2014 um 17:23
--- Server Version: 5.6.11
--- PHP-Version: 5.5.3
+-- Host: localhost
+-- Generation Time: 04. Mrz 2014 um 15:28
+-- Server Version: 5.5.33
+-- PHP Version: 5.5.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Datenbank: `containerhafen`
+-- Database: `containerhafen`
 --
 CREATE DATABASE IF NOT EXISTS `containerhafen` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `containerhafen`;
@@ -28,6 +28,7 @@ USE `containerhafen`;
 -- Tabellenstruktur für Tabelle `container`
 --
 
+DROP TABLE IF EXISTS `container`;
 CREATE TABLE IF NOT EXISTS `container` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET latin1 NOT NULL,
@@ -36,7 +37,18 @@ CREATE TABLE IF NOT EXISTS `container` (
   `point` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `manufacturer` (`manufacturer`,`point`,`rfid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Daten für Tabelle `container`
+--
+
+INSERT INTO `container` (`id`, `name`, `manufacturer`, `rfid`, `point`) VALUES
+(1, '1yd of Doge', 1, 0, 0),
+(2, '2 Many Stocks', 2, 0, 0),
+(3, '200lb Heisendoge', 3, 0, 0),
+(4, '3x ''/dogepong''', 4, 0, 0),
+(5, 'Bestest VPN', 5, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -44,11 +56,23 @@ CREATE TABLE IF NOT EXISTS `container` (
 -- Tabellenstruktur für Tabelle `manufacturers`
 --
 
+DROP TABLE IF EXISTS `manufacturers`;
 CREATE TABLE IF NOT EXISTS `manufacturers` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Daten für Tabelle `manufacturers`
+--
+
+INSERT INTO `manufacturers` (`id`, `name`) VALUES
+(1, 'Much WOW Inc.'),
+(2, 'Kewl Business'),
+(3, 'Los Pollos Hermanos'),
+(4, 'joshforde.com'),
+(5, 'Anym');
 
 -- --------------------------------------------------------
 
@@ -56,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `manufacturers` (
 -- Tabellenstruktur für Tabelle `maps`
 --
 
+DROP TABLE IF EXISTS `maps`;
 CREATE TABLE IF NOT EXISTS `maps` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -79,6 +104,7 @@ INSERT INTO `maps` (`id`, `name`, `background`, `backgroundRatio`) VALUES
 -- Tabellenstruktur für Tabelle `points`
 --
 
+DROP TABLE IF EXISTS `points`;
 CREATE TABLE IF NOT EXISTS `points` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `map` int(10) unsigned NOT NULL,
@@ -113,6 +139,7 @@ INSERT INTO `points` (`id`, `map`, `x`, `y`, `type`, `code`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `robots`
 --
 
+DROP TABLE IF EXISTS `robots`;
 CREATE TABLE IF NOT EXISTS `robots` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
@@ -120,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `robots` (
   `bluetooth` bit(48) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`,`bluetooth`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Daten für Tabelle `robots`
@@ -129,8 +156,8 @@ CREATE TABLE IF NOT EXISTS `robots` (
 INSERT INTO `robots` (`id`, `name`, `picture`, `bluetooth`) VALUES
 (1, 'Heinrich', 'cat', b'001100100011010100110101001100010011000100110100'),
 (2, 'Henriette', 'owl', b'001110010011010100111000001110000011000100111000'),
-(3, 'Harald', 'hedgedog', b'001100000000000000000000000000000000000000000000'),
-(4, 'Hildegard', 'penguin', b'001100000000000000000000000000000000000000000000');
+(3, 'Harald', 'hedgedog', b'000000000000000000000000000000000000000000000000'),
+(4, 'Hildegard', 'penguin', b'000000000000000000000000000000000000000000000000');
 
 -- --------------------------------------------------------
 
@@ -138,6 +165,7 @@ INSERT INTO `robots` (`id`, `name`, `picture`, `bluetooth`) VALUES
 -- Tabellenstruktur für Tabelle `turns`
 --
 
+DROP TABLE IF EXISTS `turns`;
 CREATE TABLE IF NOT EXISTS `turns` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `lastPoint` int(10) unsigned NOT NULL,

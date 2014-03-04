@@ -144,23 +144,23 @@ Client.prototype = {
 		this.onDone(function() {}, function() {});
 		this.connector.disconnect(this);
 	},
-	send: function(message) {
+	send: function(message) { // bluetooth send
 		if(this.robot !== null)
 			this.connector.send(this, message);
 	},
-	onReceive: function(callback) {
+	onReceive: function(callback) { // bluetooth receive
 		if(typeof callback == "function")
 			this.connector.listenFor(this, "receive", callback);
 		else
 			this.connector.unlistenFor(this, "receive");
 	},
-	onDone: function(success, fail) { // bluetooth connection established / quit
+	onDone: function(success, fail) { // bluetooth connection established and quit
 		if(typeof success == "function")
 			this.connectionEvents.success = success;
 		if(typeof fail == "function")
 			this.connectionEvents.fail = fail;
 	},
-	onQuit: function(quit) { // client server login connection quit (connection error with bluetooth OR websocket)
+	onQuit: function(quit) { // client-server-robot login connection quit at any point (connection error with bluetooth OR websocket)
 		if(typeof quit == "function")
 			this.connectionEvents.quit = quit;
 	}

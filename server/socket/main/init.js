@@ -1,5 +1,6 @@
 var connections = require("../../core/connectivity/connections.js"),
 	JobManager = require("./jobs.js"),
+	ContainerManager = require("./containers.js"),
 	Map = require("./map.js");
 
 module.exports = function(socket) {
@@ -26,6 +27,7 @@ module.exports = function(socket) {
 		
 		/**
 		 * Map Management:
+		 * client.jobs has to be created at this point (used by Map)
 		 */
 		if(!client.map)
 			client.map = new Map(client);
@@ -33,23 +35,31 @@ module.exports = function(socket) {
 		client.map.start(); // Listen for map data requests and emit selected map or if not selected possible selections
 		
 		/**
-		 * Remote feature (disabled):
+		 * Container Management:
 		 */
-		 var remote = require("./remote.js")(client.jobs);
+		if(!client.containers)
+			client.containers = new ContainerManager(client);
+		
+		client.containers.start();
 		
 		/**
 		 * Logout feature (too basic for a seperate module, maybe later):
 		 */
+		
+		var end = function() { // stop all running features
+			client.jobs.quit();
+			client.map.quit();
+			client.containers.quit();
+		};
+		
 		socket.on("logout", function(data, callback) {
-			client.onQuit(function() {
-				client.jobs.quit();
-			}); // Remove lost connection error.
+			client.onQuit(end); // Remove lost connection error.
 			connections.removeClient(client);
 			callback(true);
 		});
 		// Lost connection to client:
 		client.onQuit(function() {
-			client.jobs.quit();
+			end();
 			socket.emit("connectionLost");
 		});
 		

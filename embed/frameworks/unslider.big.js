@@ -1,3 +1,4 @@
+/* REMEMBER: customized from official release (no px values but % are used for scaling) */
 /**
  *   Unslider by @idiot and @damirfoy
  *   Contributors:
@@ -108,7 +109,7 @@
 					_.r && clearTimeout(_.r);
 
 					_.r = setTimeout(function() {
-						var styl = {height: '100%'},
+						var styl = {},
 							width = el.outerWidth();
 
 						o.setheight && ul.css(styl);
@@ -153,7 +154,7 @@
 
 			var speed = callback ? 5 : o.speed | 0,
 				easing = o.easing,
-				obj = {height: target.outerHeight()};
+				obj = {};
 
 			if (!ul.queue('fx').length) {
 				//  Handle those pesky dots

@@ -2,6 +2,7 @@
 
 {% block cssLayout %}
 	{% parent %}
+	<link rel="stylesheet" href="embed/frameworks/jquery.ui.css" type="text/css">
 	<link rel="stylesheet" href="embed/css/main.css" type="text/css">
 {% endblock %}
 
@@ -9,6 +10,9 @@
 	<script type="text/javascript">
 		var isLoggedIn = true;
 	</script>
+	<script src="embed/frameworks/jquery.ui.js" type="text/javascript"></script>
+	<script src="embed/frameworks/jquery.ui.touch-punch.js" type="text/javascript"></script>
+	
 	<script src="embed/frameworks/jquery.event.swipe.js" type="text/javascript"></script>
 	<script src="embed/frameworks/unslider.js" type="text/javascript"></script>
 	{% parent %}
@@ -63,10 +67,8 @@
 			<h1>Containers</h1>
 		</div>
 		<div id="containerFilter">
-	
+			<input type="text" value="" placeholder="Filter" />
 		</div>
-		<div id="containerList">
-	
-		</div>
+		<div id="containerList" class="scrollable"></div>
 	</div>
 {% endblock %}

@@ -64,8 +64,6 @@
 	-ms-perspective: 500px;
 	perspective: 500px;
 	overflow: hidden;
-	overflow-x: hidden;
-	overflow-y: auto;
 	top: 58px;
 	padding-bottom: 15px;
 	padding-left: 20px;
@@ -73,6 +71,13 @@
 	padding-right: 13px;
 	left: 0;
 	right: 7px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.scrollable {
+		overflow-y: scroll;
+		overflow-x: hidden;
+		padding-right: 7px;
+	}
 }
 
 .side .wrapper {
@@ -743,6 +748,78 @@
 	#map .locating > div {
 		background-image: url(../../imgs/radar@2x.png);
 	}
+}
+
+/* @end */
+
+/* @group Containers */
+
+#containerFilter {
+	position: absolute;
+	width: auto;
+	left: 0;
+	right: 0;
+	height: 30px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#containerFilter input {
+	left: 0;
+	width: 100%;
+	padding-left: 30px;
+	background: url(../../imgs/search.svg) 7px center no-repeat #ffffff;
+}
+
+#containerList {
+	margin-top: 30px;
+}
+
+#containerList .container {
+	position: relative;
+	width: auto;
+	left: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	height: 80px;
+	background: url(../../imgs/container.svg) 10px center;
+	background-repeat: no-repeat !important;
+	font-size: 15px;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+#containerList .container:hover {
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) 0 0, url(../../imgs/container.svg) 10px center #dddddd;
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) 0 0, url(../../imgs/container.svg) 10px center #dddddd;
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) 0 0, url(../../imgs/container.svg) 10px center #dddddd;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) 0 0, url(../../imgs/container.svg) 10px center #dddddd;
+}
+
+#containerList .container.active {
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) 0 0, url(../../imgs/containerActive.svg) 10px center #992d2a;
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) 0 0, url(../../imgs/containerActive.svg) 10px center #992d2a;
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) 0 0, url(../../imgs/containerActive.svg) 10px center #992d2a;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) 0 0, url(../../imgs/containerActive.svg) 10px center #992d2a;
+	color: #ffffff;
+}
+
+#containerList .container > div {
+	position: absolute;
+	width: auto;
+	left: 58px;
+	right: 5px;
+	top: 50%;
+	height: 20px;
+}
+#containerList .container .name {
+	margin-top: -20px;
+}
+
+#containerList .container .company {
+	font-size: 12px;
+	margin-top: 0px;
 }
 
 /* @end */

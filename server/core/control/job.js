@@ -87,6 +87,15 @@ Job.prototype = {
 		};
 	},
 	
+	completePrepatation: function() { // call this method in subclasses to set prepare() result to true and signal all waiting processes to continue -> it then can be assumed, that all tasks for this job are calculated and ready to be executed.
+		if(!this.preparationCallbacks)
+			return;
+		for(i = 0; i < this.preparationCallbacks.length; i++)
+			this.preparationCallbacks[i]();
+		this.preparationCallbacks = null;
+	},
+	
+	// ABSTRACT: Has to be implemented by all jobs. Returns true if job is ready to be executed. false if tasks are not calculated yet. Look at jobs/moveTo.js to see a basic way to use job preparation
 	prepare: function(callback) {
 		var t = this;
 		if(typeof callback != "function")
