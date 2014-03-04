@@ -14,7 +14,7 @@ ContainerManager.prototype = {
 	blockedContainers: [],
 	
 	fetchContainers: function(callback) {
-		db.query("SELECT `container`.`id`, `container`.`name`, `rfid`, `point`, `manufacturers`.`name` AS `manufacturer` FROM `container` INNER JOIN `manufacturers` ON `container`.`manufacturer` = `manufacturers`.`id`", function(err, result) {
+		db.query("SELECT `container`.`id`, `container`.`name`, `rfid`, `point`, `manufacturers`.`name` AS `manufacturer` FROM `container` INNER JOIN `manufacturers` ON `container`.`manufacturer` = `manufacturers`.`id` INNER JOIN `points` ON `container`.`point` = `points`.`id` WHERE `points`.`map` = " + this.client.map.manager.data.id, function(err, result) {
 			if (result)
 				callback(result);
 		});
