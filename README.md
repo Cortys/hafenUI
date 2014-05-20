@@ -37,12 +37,13 @@ Communcation between JS server and Java Client currently works via the filesyste
 - `embed`: All local CSS and JS resources for visualization
 	- `css`: CSS files
 	- `js`: JS files
-		- `modules`: The client visualization is split into multiple modules. Each performing a small task in the whole thing (like handling the list of robots in the login screen or handling the connect button in the login screen, etc.). Each module file contains a description of what it does.
+		- `modules`: The client visualization is split into multiple modules. Each performing a small task in the whole thing (like handling the list of robots in the login screen or handling the connect button in the login screen, etc.). Each module file contains a description of what it does. ![](diagrams/nxt_clientgui02.jpg)
 		- `script.js`: Main JS starting point. No need to change anything here. Does not contain any features. Just kickstarts the modules.
 	- `frameworks`: JS and CSS frameworks we use are stored here.
 - `java`: Source code of the Java client.
 - `pages`: HTML base structures of the pages. We use the swig templating engine here.
 - `server`: Code of the Node.js server
+	- `*.sql`: Dump of the database structure. ![](diagrams/nxt_databse02.jpg)	
 	- `core`: Contains abstract core features. Nothing server specific (HTTP connction handling and such thing) lies here.
 		- `connectivity`: Handles connection stuff. Database connection bluetooth connections to robots via the filesytem and the Java Client.
 		- `protocols`: Contains our RCP and BFP protocol implementations. Robot Control Protocol (the way we communicate with a robot and send commands to it). Bluetooth File Protocol (the way we communicate with the Java client via the txt files).
