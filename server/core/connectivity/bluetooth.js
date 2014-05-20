@@ -52,10 +52,10 @@ var bluetooth = module.exports = {
 		console.log("> Trying to connect client "+client.key+" with "+robotKey);
 		
 		//Fake login:
-		this.fs.appendFile(this.dir+this.fileNames.receive, client.key+":c", { encoding:"utf8" }, function(err) {
+		/*this.fs.appendFile(this.dir+this.fileNames.receive, client.key+":c", { encoding:"utf8" }, function(err) {
 			if(err)
 				throw err;
-		});
+		});*/
 		
 		t.listenFor(client, "connect", function() {
 			callback();
