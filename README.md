@@ -30,7 +30,7 @@ The Node.js program starts a HTTP webserver you can connect with on port 3700 wi
 
 Communcation between JS server and Java Client currently works via the filesystem (the two `.txt` files in the `bluetooth` folder).
 
-[Overview of project structure](diagrams/generalStructure.pdf)
+[Overview of project structure](http://raw.githubusercontent.com/Cortys/hafenUI/master/diagrams/generalStructure.pdf)
 
 ## File structure ##
 
@@ -42,7 +42,7 @@ Communcation between JS server and Java Client currently works via the filesyste
 	- `frameworks`: JS and CSS frameworks we use are stored here.
 - `java`: Source code of the Java client.
 - `pages`: HTML base structures of the pages. We use the swig templating engine here.
-- `server`: Code of the Node.js server
+- `server`: Code of the Node.js server. [Overview of the involved modules](http://raw.githubusercontent.com/Cortys/hafenUI/master/diagrams/serverStructure.pdf).
 	- `*.sql`: Dump of the database structure. ![](diagrams/nxt_databse02.jpg)	
 	- `core`: Contains abstract core features. Nothing server specific (HTTP connction handling and such thing) lies here.
 		- `connectivity`: Handles connection stuff. Database connection bluetooth connections to robots via the filesytem and the Java Client.
