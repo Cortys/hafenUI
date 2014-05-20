@@ -3,6 +3,8 @@ The hafenUI project
 
 Simulation of a Container terminal.
 
+![](diagrams/Showcase.jpg)
+
 ## Installation ##
 
 - Get the source code from here
