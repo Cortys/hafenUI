@@ -30,7 +30,7 @@ The Node.js program starts a HTTP webserver you can connect with on port 3700 wi
 
 Communcation between JS server and Java Client currently works via the filesystem (the two `.txt` files in the `bluetooth` folder).
 
-![Overview of project structure](diagrams/generalStructure.pdf)
+[Overview of project structure](diagrams/generalStructure.pdf)
 
 ## File structure ##
 
